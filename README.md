@@ -24,22 +24,32 @@ Magnetic surveys are often conducted to rapidely map magneticaly succeptible ano
 
 During this practicals, you will learn how to convert raw MAG data into maps that can be interpreted in terms of anomalies and emit hypothesis on the nature of the anomalies observed given the geological and geophysical context.
 
+Sites: Onoz and Colonster
+
 ## EMI
 ![EMI](./pictures/EMI_measurements.jpg)
 *Fig.3: Example of an EMI survey*
 
 As for MAG surveyx, EMI is often used to rapidely cover large areas. 
 
+Sites: Westhoek and Colonster
+
 ## ERT
 ![ERT](./pictures/ERT_measurements.jpg)
 *Fig.4: Example of an ERT/IP survey*
 
+Sites: Bertrix and Colonster
+
 ## IP
 IP is often measured alongside ERT measurements, since time-domain IP (the one that we will use here) is measured directly after the resistivity measurements.
+
+Sites: Bertrix and Colonster
 
 ## Seismic
 ![SEISMIC](./pictures/SEIS_measurements.jpg)
 *Fig.5: Example of a seismic survey*
+
+Sites: Beusdael and Colonster
 
 # Project
 At the end of the semester, you will be asked to go on the field with one of the methods seen in class and availble in our laboratory. The available equipment is:
@@ -52,3 +62,13 @@ You will work in groupds of 4 on the "Project" area of *Fig.1*. There will be 2 
 You will be asked to interpret your dataset and show your prossess and conclusions in a short (10 minutes) group presentation. After every presentation, you will benefit from a feedback from the teaching team and you will need to write a short report on your investigation (10 pages maximum) taking into account our remarks.
 
 For the last class, we will take all your interpretations together and build a coherent geophysical model for the site.
+
+# Contacts
+
+## Professor: 
+- Frédéric Nguyen (f.nguyen@uliege.be)
+## Teaching assistants:
+- Tom Debouny (tom.debouny@uliege.be)
+- Hadrien Michel (hadrien.michel@uliege.be)
+## Github Maintenance:
+- Hadrien Michel (hadrien.michel@uliege.be)
