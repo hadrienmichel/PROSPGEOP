@@ -2,9 +2,9 @@
 
 ---
 # PROSPGEOP
-This repository contains all the codes for the practicals of the class "Prospection Géophysique" from Pr. NGUYEN (ULiège). (The different codes are availble in Jupyter Notebook form, there is thus no need to download anything since everything can run inside the web browser through the Binder app.)
+This repository contains all the codes for the practicals of the class "Prospection Géophysique" from Pr. NGUYEN (ULiège). 
 
-During those practicals, you will see different geophysical methods, how to interpret them individually and integrate this interpretation inside a global geophysical model. The different geophysical methods are:
+During those practicals, you will see different geophysical methods, how to interpret them individually and integrate this interpretation inside a global geophysical model. The different studied geophysical methods are:
 - MAG (Magnetic)
 - EMI (ElectroMagnetic Induction)
 - ERT (Electrical Resistivity Tomography)
@@ -19,7 +19,7 @@ For those practicals, we will see several case studies. Nonetheless, one site wi
 # Practicals in short
 ## MAG
 ![MAG](./pictures/MAG_measurements.jpg)
-*Fig.2: Example of an EMI survey*
+*Fig.2: Example of an MAG survey*
 
 Magnetic surveys are often conducted to rapidely map magneticaly succeptible anomalies in a (relatively) large area. As so, interpretation of magnetic data is very often made using profiles or maps. Typical applications of such method are:
 - Mining prospection
@@ -29,7 +29,7 @@ Magnetic surveys are often conducted to rapidely map magneticaly succeptible ano
 
 Sites: Onoz? and Colonster
 
-## EMI
+## [EMI](./EMI/README.md)
 ![EMI](./pictures/EMI_measurements.jpg)
 *Fig.3: Example of an EMI survey*
 
