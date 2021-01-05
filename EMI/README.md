@@ -62,7 +62,7 @@ data.to_csv('./data/exemple_trier.dat', sep='\t', index=False)
 
 On obtiens dès lors des distributions beaucoup plus homogènes, sans outliers visible (*Fig. 3*)
 
-![Histogrammes initiaux](./pictures/Histogram_Physics_Range.PNG)  
+![Histogrammes initiaux](./pictures/Histogram_Physics_Range.png)  
 *Fig. 3* Histogrammes après le tri des données
 
 ### Visualiser les données:
