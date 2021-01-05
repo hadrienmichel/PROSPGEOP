@@ -24,7 +24,7 @@ Pour analyser les valeurs, nous allons utiliser des histogrammes. En effet, ils 
 - La conductivité montre des valeurs parfois négatives, ce qui est physiquement impossible.
 - Certaines valeurs sont largement en dehors de la distribution.
 
-![Histogrammes initiaux](./pictures/Histogram_Init.PNG)  
+![Histogrammes initiaux](./pictures/Histogram_Init.png)  
 *Fig. 2* Histogrammes initiaux pour le jeux de données exemple. On y voit de nombreux outliers.
 
 Il faut donc supprimer les valeurs négatives dans un premier temps. Ensuite, on pourra enlever les valeurs extrêmes. Pour cela, nous allons utiliser le code python [suivant](./SortingEMI.py)
