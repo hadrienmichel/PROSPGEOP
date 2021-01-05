@@ -2,7 +2,6 @@
 
 # Aquisition de données sur le terrain
 
-
 # Analyse et intérprétation de données
 Ici, nous allons voir comment procéder a l'analyse d'un jeux de données électromagnétique. Le format des données utilisé est tel que sorti de l'appareil disponible au labvoratoire de géophysique appliquées de l'Université de Liège: [CMD-Mini Explorer de GF Instruments](http://www.gfinstruments.cz/index.php?menu=gi&cont=cmd_ov) (en anglais).
 ## 1) Analyse du jeux de données
@@ -66,5 +65,56 @@ On obtiens dès lors des distributions beaucoup plus homogènes, sans outliers v
 *Fig. 3* Histogrammes après le tri des données
 
 ### Visualiser les données:
-Pour visualiser le jeux de données, nous allons utiliser [QGIS](https://www.qgis.org/fr/site/).
+Pour visualiser le jeux de données, nous allons utiliser [QGIS](https://www.qgis.org/fr/site/). QGIS est un logiciel de SIG open-source.
+Nous conseillons de choisir la version LTR (Long-term-realses) étant donné qu'elle est plus stable et qu'il n'est pas nécéssaire de disposer des fonctionnalités les plus récentes pour réaliser les exercices des travaux pratique.
+
+**Note importante**: QGIS, bien que très utile et complet est parfois instable. Penser a sauvegarder votre progression régulièrement pour éviter de perdre tout votre travail. 
+
+#### Installation de QGIS et des fonds de cartes:
+----
+Pour installer QGIS, [télécharger (https://www.qgis.org/fr/site/forusers/download.html)](https://www.qgis.org/fr/site/forusers/download.html) la version correspondante a votre OS et suivez la procédure d'installation. Une fois QGIS installé, suivez les démarches suivantes pour avoir le fond de carte de la région wallone (depuis les serveurs de WalOnMap).
+- Dans l'explorateur (à gauche), clique droit sur `WMS/WMTS` &rarr; `Nouvelle connexion`
+- Dans la fenêtre qui apparait, inscrire le nom et l'URL du serveur désiré.  
+
+Voici une liste des serveurs WMS utiles:  
+| Noms  | URL  |
+|-------|------|
+| Ortophotos 2019 Wallonie [(info)](https://geoportail.wallonie.be/catalogue/a4c49df8-8e51-4ec2-9be0-9186cb499236.html)  | https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_2019/MapServer/WMSServer?request=GetCapabilities&service=WMS |
+| Carte Géologique Wallonie [(info)](https://geoportail.wallonie.be/catalogue/5bb1c85c-abe1-46b3-9af6-489ab95cd0cb.html) |  https://geoservices.wallonie.be/arcgis/services/SOL_SOUS_SOL/CARTE_GEOLOGIQUE_SIMPLE/MapServer/WMSServer?request=GetCapabilities&service=WMS |
+
+Les services WMS ne seront utiles que comme fonds de carte. Aucunes opérations de transformations n'est possible sur ces dernières.
+
+#### Importer des données EM dans QGIS:
+----
+Avant tout, créer un nouveau projet vide. Changez le système de coordonées du projet pour correspondre aux coordonnées utilisées en belgique. Pour faire celà, aller dans `Projet` &rarr; `Propriétés...`. Dans la fenêtre qui s'ouvre, sélectionner `SCR` dans la colonne de gauche.  
+Ensuite, dans filtres, rentrer `EPSG:31370`. La liste des systèmes vous présentera l'option `Belge 1972/Belgian Lambert 1972`. Sélectionner l'option puis cliquer sur `Appliquer`. Le système de projection est désormais adapté au sol belge en minimisant les distorsions. Pour d'autres pays/régions, d'autres systèmes sont plus adapté ([https://epsg.io/](https://epsg.io/)).
+Une fois le SCR défini, vous pouvez ajouter le jeux de données. 
+- `Couche` &rarr; `Ajouter une couche` &rarr; `Ajouter une couche de texte délimité...`
+- Dans la fenêtre qui s'affiche, sélectionner le fichier que vous souhaitez importer.
+- Dans `Format du fichier`, sélectionner `délimiteur personnalisés` &rarr; `Tab`. La prévisualisation s'est mise a jour et affiche le tableau correctement.
+- Dans `Définition de la géométrie`, vérifier que les champs suivant sont bien correspondant:
+    - Champ X = Longitude
+    - Champ Y = Latitude
+    - Champ Z = Altitude
+    - SCR de la géométrie: EPSG:4326 - WGS 84
+- Si tous les champs sont correct, cliquer sur `Ajouter`. Une fenêtre s'ouvre pour convertir le jeux de données en coordonnées internationales au format régional. Sélectionner `OK` pour afficher le jeux de données.
+
+Le jeux de données est ajouté dans QGIS. Pour vérifié qu'il est bien situé sur la carte, ajouter le fond de carte `Orthophotos 2019`.
+
+Une fois le jeux de données importer, il faut en convertir le format pour qu'il soit utilisable par QGIS. Pour faire cela, cliquer droit sur le nom de la couche de données et sélectionner `Exporter` &rarr; `Sauvegarder les entités sous...`. Dans la fenêtre qui s'ouvre, sélectionner l'emplacement de sauvegarde du nouveau fichier. Pour le champ `SCR`, sélectionner `SCR du projet: ...`. Ainsi, les données seront sauvegardées dans le bon système de coordonnées et pourront être utilisées plus aisément.
+
+#### Analyser les données spatialement:
+----
+Maintenant que les données sont importées dans QGIS, on peut les analysées avec leurs variations dans l'espace. Pour faire cela, il faut changer l'aspect des points: 
+- Clique droit sur le nom de la couche &rarr; `Propriétés` &rarr; `Symbologie`
+- Choisir le style de symbologie `Gradué`
+- Sélectionner la valeur pour laquelle faire l'affichage et changer la palette de couleur pour faire resortir les extrêmes. La palette `Spectral` est souvent utilisée pour la conductivité/résistivité alors que la palette `Grays` est plus fréquente pour la ratio en phase.
+
+Sur base de ce qui est visible tel quel, on peut déjà définir des tendances spatiales.
+
+#### Interpolation des points et réalisations de cartes:
+----
+Pour avoir une vue d'ensemble plus complète du jeux de donnée, il est possible de réaliser une interpolation spatiale. Pour cela, nous allons utiliser l'outil `Interpolation TIN` qui se trouve dans la boite à outils. Cette outil permet de réaliser l'interpolation de points vers une couche raster (une image) qui recouvre l'emprise complète de la couche. La procédure est la suivante:
+- Dans `Boîte à outils de de traitement` aller a `Interpolation` &rarr;  `Interpolation TIN`
+
 ## 2) Intérprétation du jeux de données
