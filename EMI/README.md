@@ -16,6 +16,10 @@ Ce résultat d'inversion est rarement utilisé car peut précis et fiable. En ef
 ![Exemple de fichier de données brut](./pictures/Fichier.PNG)  
 *Fig. 1* Exemple de fichier de données brut
 
+Les différentes conductivitées et ratio en phase du signal correspondent aux différentes boucles de mesures. Elle reprsésentent donc des volumes d'investigations différents. Ces volumes d'investigations peuvent être approximé par la loi suivante:  
+<img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
+et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">
+
 ### Trier les données
 Avant de procéder à l'interprétation du jeux de donnée, il faut vérifier que le jeux de données en question est de bonne qualité. Pour faire cela, on peut faire de simples histogrames pour les différents paramètres mesuré. Normalement, le comportement des données devrait être relativement homogène (on ne s'attends pas a avoir des valeurs extrêmes qui soient unique).
 
@@ -144,8 +148,14 @@ Dans la colonne de gauche, différents éléments peuvent être sélectionner po
 |![AddShapeNodes](./pictures/QGIS/AddShapeNodes.png)|Ajouter une forme a base de noeuds|![AddHTML](./pictures/QGIS/AddHTML.png)|Ajouter un bloc HTML|
 |![AddTable](./pictures/QGIS/AddTable.png)|Ajouter une table d'attributs| | |
 
-Un exemple de carte est donné en *Fig. 4*. Pour la générée, il faut d'abord ajouter une carte au layout. Ensuite, nous ajoutons une légende, une flèche du nord et une échelle. Pour chaque élément ajouté, différentes options vous serons proposées dans le menu à droite de la fenêtre.
+Un exemple de carte est donné en *Fig. 4*. Pour la générée, il faut d'abord ajouter une carte au layout. Ensuite, nous ajoutons une légende, une flèche du nord et une échelle. Pour chaque élément ajouté, différentes options vous serons proposées dans le menu à droite de la fenêtre. La carte peut ensuite être exportée en différent formats (PNG, SVG, PDF, etc.) en allant dans `Mise en page` &rarr; `Exporter au format ...`.
 ![Exemple de carte](./pictures/QGIS/MapTest.png)  
 *Fig. 4* Exemple de carte produite par QGIS
 
 ## 2) Intérprétation du jeux de données
+Les cartes générées doivent être analysées. L'idée générale dans l'interprétation de données EM est de déterminer des zones d'intéret. Ces zones d'intéret sont marquées par des contrastes marquées. Ainsi, sur la carte en *Fig. 4*, on peut voir aisément trois zones se distinguant:
+- Une zone de grande conductivité électrique au centre, qui semble se prolongée vers l'est
+- Une zone résistive à l'ouest
+- Le reste de la zone couverte avec l'EM, présentant une conductivité moyenne
+
+Une fois les zones d'intéret déteriminées, il faut émettre des hypothèses sur l'origine des anomalies. Pour faiore cela, on s'aide du contexte global dans lequel les mesures ont été prises. Ainsi, pour le cas en *Fig. 4*, il s'agit d'une décharge publique, avec des stockages de déchets divers. Connaissant cela, il semble raisonable de penser que la zone fort conductrice caractérise une masse de déchets ménagé et métaliques. La zone intermédiare contiendrai des déchets ménagers mais leur contenu métalique est moins élevé. Finalement, la zone la plus résisitve peut correspondre à un dépot d'inertes non-métaliques. Une autre hypothèse pouvant éventuellement expliquer l'anomalie résitve serait la présence du bedrock natif de la décharge à une profondeur plus faible qu'ailleur.
