@@ -68,7 +68,10 @@ On obtiens dès lors des distributions beaucoup plus homogènes, sans outliers v
 Pour visualiser le jeux de données, nous allons utiliser [QGIS](https://www.qgis.org/fr/site/). QGIS est un logiciel de SIG open-source.
 Nous conseillons de choisir la version LTR (Long-term-realses) étant donné qu'elle est plus stable et qu'il n'est pas nécéssaire de disposer des fonctionnalités les plus récentes pour réaliser les exercices des travaux pratique.
 
+----
 **Note importante**: QGIS, bien que très utile et complet est parfois instable. Penser a sauvegarder votre progression régulièrement pour éviter de perdre tout votre travail. 
+----
+----
 
 #### Installation de QGIS et des fonds de cartes:
 ----
@@ -116,5 +119,33 @@ Sur base de ce qui est visible tel quel, on peut déjà définir des tendances s
 ----
 Pour avoir une vue d'ensemble plus complète du jeux de donnée, il est possible de réaliser une interpolation spatiale. Pour cela, nous allons utiliser l'outil `Interpolation TIN` qui se trouve dans la boite à outils. Cette outil permet de réaliser l'interpolation de points vers une couche raster (une image) qui recouvre l'emprise complète de la couche. La procédure est la suivante:
 - Dans `Boîte à outils de de traitement` aller a `Interpolation` &rarr;  `Interpolation TIN`
+- Dans la fenêtre qui s'ouvre, sélectionner la couche a interpoler et l'attribut. Confirmé la sélection en appuyant sur `+`.
+- La méthode d'interpolation `linéaire` est suffisante dans notre cas.
+- Pour l'emprise, cliquer sur `...` et sélectionner `Utiliser l'emprise de la couche...` &rarr; sélectionner le nom de la couche à interpoler.
+- Dans Taille du raster résultat, il faut que le nombre de lignes/colonnes soit suffisant pour avoir une image lissée a l'échelle de visionnage.  
+N.B.: Si le nombre de lignes/colonnes indique 1, c'est que le jeux de données/projet n'est pas dans le bon système de projection).
+- Sélectionner ensuite le fichier dans lequel enregistrer le résultat de l'interpolation en cliquant sur `...` &rarr; `Enregistrer vers un fichier...` et placer le nouveau fichier dans votre répertoire à l'endroit approprié avec un nom précisant la nature du résulat.
+- Cliquer sur `Exécuter`. Le processus d'interpolation est long. Une fois le résultat calculé, il sera affiché sur votre carte.
+
+#### Création de cartes:
+----
+La dernière étape avant l'interprétation en tant que tel est la réalisation de cartes. Pour faire cela, sélectionner `Projet` &rarr; `Nouvelle mise en page`. Donner un titre a la configuration que vous allez creer. Une nouvelle fenêtre s'ouvre où vous pouvez ajouter différents éléments.
+
+Dans la colonne de gauche, différents éléments peuvent être sélectionner pour ajouter à la carte. Les éléments sont:
+| Symbole | Action | Symbole | Action |
+|:-------:|:-------|:-------:|:-------|
+|![Move](./pictures/QGIS/Move.png)|Déplacer la mise en page|![Zoom](./pictures/QGIS/Zoom.png)|Zoomer|
+|![Select](./pictures/QGIS/EditSelection.png)|Sélectionner/Déplacer un objet|![MoveMap](./pictures/QGIS/MoveMap.png)|Déplacer le contenu de l'objet (carte)|
+|![EditNodes](./pictures/QGIS/EditNodes.png)|Editer les noeuds de l'objet|![AddMap](./pictures/QGIS/AddMap.png)|Ajouter une nouvelle carte|
+|![Add3DMap](./pictures/QGIS/Add3D.png)|Ajouter une nouvelle carte 3D|![AddImage](./pictures/QGIS/AddImage.png)|Ajouter une image|
+|![AddText](./pictures/QGIS/AddText.png)|Ajouter une zone de texte|![AddLegend](./pictures/QGIS/AddLegend.png)|Ajouter une légende|
+|![AddScale](./pictures/QGIS/AddScale.png)|Ajouter une échelle|![AddNorth](./pictures/QGIS/AddNorth.png)|Ajouter une flèche indiquant le Nord|
+|![AddShape](./pictures/QGIS/AddShape.png)|Ajouter une forme|![AddArrow](./pictures/QGIS/AddArrow.png)|Ajouter une flèche|
+|![AddShapeNodes](./pictures/QGIS/AddShapeNodes.png)|Ajouter une forme a base de noeuds|![AddHTML](./pictures/QGIS/AddHTML.png)|Ajouter un bloc HTML|
+|![AddTable](./pictures/QGIS/AddTable.png)|Ajouter une table d'attributs| | |
+
+Un exemple de carte est donné en *Fig. 4*. Pour la générée, il faut d'abord ajouter une carte au layout. Ensuite, nous ajoutons une légende, une flèche du nord et une échelle. Pour chaque élément ajouté, différentes options vous serons proposées dans le menu à droite de la fenêtre.
+![Exemple de carte](./pictures/QGIS/MapTest.png)  
+*Fig. 4* Exemple de carte produite par QGIS
 
 ## 2) Intérprétation du jeux de données
