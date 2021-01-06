@@ -18,7 +18,8 @@ Ce résultat d'inversion est rarement utilisé car peut précis et fiable. En ef
 
 Les différentes conductivitées et ratio en phase du signal correspondent aux différentes boucles de mesures. Elle reprsésentent donc des volumes d'investigations différents. Ces volumes d'investigations peuvent être approximé par la loi suivante:  
 <img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
-et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">
+et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">  
+où *s* est l'espacement entre les boucles d'injections et de mesure. La configuration "High" correspond a des boucles placées horizontalement (champ magnetique perpendiculaire à la surface) et la configuration "Low" correspond  a des boucles placées verticalements (champ magnétique parralèle à la surface).*
 
 ### Trier les données
 Avant de procéder à l'interprétation du jeux de donnée, il faut vérifier que le jeux de données en question est de bonne qualité. Pour faire cela, on peut faire de simples histogrames pour les différents paramètres mesuré. Normalement, le comportement des données devrait être relativement homogène (on ne s'attends pas a avoir des valeurs extrêmes qui soient unique).
