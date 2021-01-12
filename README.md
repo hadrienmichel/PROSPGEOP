@@ -29,7 +29,7 @@ Magnetic surveys are often conducted to rapidely map magneticaly succeptible ano
 
 Sites: Onoz? and Colonster
 
-## [EMI](./EMI/README.md)
+## [EMI](./EMI/README_EMI.md)
 ![EMI](./pictures/EMI_measurements.jpg)
 *Fig.3: Example of an EMI survey*
 

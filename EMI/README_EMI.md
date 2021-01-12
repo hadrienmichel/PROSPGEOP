@@ -1,9 +1,21 @@
 # Rappel théorique
 
 # Aquisition de données sur le terrain
+Le mode d'acquisition sur le terrain dépendra de l'équipement utilisé. En effet, les appareils de mesures EM peuvent être opérer soit seul soit a deux. 
+
+Dans le cas d'appareils opèré seul, il s'agit d'un tube d'une longueur pouvant aller jusqu'à 6 mètres de long. Dans ce cas, l'utilisateur va marcher avec ou trainer la sonde EM à un niveau constant au dessus du sol. La position de l'opérateur/sonde est connue en permanance soit par des marqueurs sur le terrain, soit a l'aide d'un GPS suivant la position précise de la sonde en continu. C'est la méthode d'acquisition la plus classique. Elle présente l'avantage d'être simple a mettre en oeuvre et de sondé plusieurs profondeurs simultanément, grace a la présence de plusieurs boucles de réception au sein du tube. Dans le cas où la sonde est trainée au niveau du sol, elle peut être attelée à un véhicule motorisé pour rendre la mesure plus facile encore.
+
+Dans le cas des appareils nécéssitant plusieurs opérateurs, chaque opérateur tiendra une boucle et les deux boucles sont connectées par un cable pouvant faire jusqu'à 40m. Cette méthode permet de sonder beaucoup plus profondément, mais est peut pratique a mettre en oeuvre. Elle est donc rarement utilisée, si ce n'est pour des cas particuliers où l'information en profondeur est plus importante que l'information spatiale.
+
+Dans chaque cas, l'orientation des boucles d'injection et de mesures aura de l'importance. En effet, en fonction de ce paramètre, l'appareil sondera plus ou moins profondément. Les profondeurs d'investigations peuvent être approximé par la loi suivante:  
+<img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
+et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">  
+où *s* est l'espacement entre les boucles d'injections et de mesure. La configuration "High" correspond a des boucles placées horizontalement (champ magnetique perpendiculaire à la surface) et la configuration "Low" correspond  a des boucles placées verticalements (champ magnétique parralèle à la surface).
+
+Il est également possible de faire des mesures électromagnétique aéroportées. L'avantage de cet méthode est qu'elle permet rapidement de couvrir de très larges étendues avec une information relativement profonde (de l'ordre de 100 mètres). Cependant, ces mesures représentent un coût très élevé.
 
 # Analyse et intérprétation de données
-Ici, nous allons voir comment procéder a l'analyse d'un jeux de données électromagnétique. Le format des données utilisé est tel que sorti de l'appareil disponible au labvoratoire de géophysique appliquées de l'Université de Liège: [CMD-Mini Explorer de GF Instruments](http://www.gfinstruments.cz/index.php?menu=gi&cont=cmd_ov) (en anglais).
+Ici, nous allons voir comment procéder a l'analyse d'un jeux de données électromagnétique. Le format des données utilisé est tel que sorti de l'appareil disponible au laboratoire de géophysique appliquées de l'Université de Liège: [CMD-Mini Explorer de GF Instruments](http://www.gfinstruments.cz/index.php?menu=gi&cont=cmd_ov) (en anglais).
 ## 1) Analyse du jeux de données
 ### Ouvrir le jeux de données
 Les jeux de données EM sont présenté sous forme de fichiers texte ayant une tabulation comme séparateur ayant pour extension \*.dat. Ces fichiers peuvent être ouvert dans un tableur (Excel, Calc, Sheet) (*Fig. 1*). Selon l'appareil de mesure, le nombre de colonnes peut varier. Il y aura toujours les colonnes *Latitude*, *Longitude*, *Altitude* et *Time*. Les autres colonnes représentent les données mesurées:
@@ -15,11 +27,6 @@ Ce résultat d'inversion est rarement utilisé car peut précis et fiable. En ef
 
 ![Exemple de fichier de données brut](./pictures/Fichier.PNG)  
 *Fig. 1* Exemple de fichier de données brut
-
-Les différentes conductivitées et ratio en phase du signal correspondent aux différentes boucles de mesures. Elle reprsésentent donc des volumes d'investigations différents. Ces volumes d'investigations peuvent être approximé par la loi suivante:  
-<img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
-et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">  
-où *s* est l'espacement entre les boucles d'injections et de mesure. La configuration "High" correspond a des boucles placées horizontalement (champ magnetique perpendiculaire à la surface) et la configuration "Low" correspond  a des boucles placées verticalements (champ magnétique parralèle à la surface).*
 
 ### Trier les données
 Avant de procéder à l'interprétation du jeux de donnée, il faut vérifier que le jeux de données en question est de bonne qualité. Pour faire cela, on peut faire de simples histogrames pour les différents paramètres mesuré. Normalement, le comportement des données devrait être relativement homogène (on ne s'attends pas a avoir des valeurs extrêmes qui soient unique).
@@ -159,4 +166,4 @@ Les cartes générées doivent être analysées. L'idée générale dans l'inter
 - Une zone résistive à l'ouest
 - Le reste de la zone couverte avec l'EM, présentant une conductivité moyenne
 
-Une fois les zones d'intéret déteriminées, il faut émettre des hypothèses sur l'origine des anomalies. Pour faiore cela, on s'aide du contexte global dans lequel les mesures ont été prises. Ainsi, pour le cas en *Fig. 4*, il s'agit d'une décharge publique, avec des stockages de déchets divers. Connaissant cela, il semble raisonable de penser que la zone fort conductrice caractérise une masse de déchets ménagé et métaliques. La zone intermédiare contiendrai des déchets ménagers mais leur contenu métalique est moins élevé. Finalement, la zone la plus résisitve peut correspondre à un dépot d'inertes non-métaliques. Une autre hypothèse pouvant éventuellement expliquer l'anomalie résitve serait la présence du bedrock natif de la décharge à une profondeur plus faible qu'ailleur.
+Une fois les zones d'intéret déteriminées, il faut émettre des hypothèses sur l'origine des anomalies. Pour faiore cela, on s'aide du contexte global dans lequel les mesures ont été prises. Ainsi, pour le cas en *Fig. 4*, il s'agit d'une décharge publique, avec des stockages de déchets divers. Connaissant cela, il semble raisonable de penser que la zone fort conductrice caractérise une masse de déchets ménagé et métaliques. La zone intermédiare contiendrai des déchets ménagers mais leur contenu métalique est moins élevé. Finalement, la zone la plus résisitve peut correspondre à un dépot d'inertes non-métaliques. Une autre hypothèse pouvant éventuellement expliquer l'anomalie résitve serait la présence du bedrock natif de la décharge à une profondeur plus faible qu'ailleur. Cette hypothèse est renforcée par la position a la limite de la décharge de la zone en question.
