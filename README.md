@@ -2,111 +2,111 @@
 
 ---
 # PROSPGEOP
-This repository contains all the codes for the practicals of the class "Prospection Géophysique" from Pr. NGUYEN (ULiège). 
+Ce répertoire contient les codes nécéssaire aux travaux pratiques du cours de Prospection Géophysique du Pr. NGUYEN (ULiège). 
 
-During those practicals, you will see different geophysical methods, how to interpret them individually and integrate this interpretation inside a global geophysical model. The different studied geophysical methods are:
-- MAG (Magnetic)
-- EMI (ElectroMagnetic Induction)
-- ERT (Electrical Resistivity Tomography)
-- IP (Induced Polarisation)
-- Seismic Refraction
+Durant les travaux pratiques, vous aller voir différentes méthodes géophysisques, comment les intérprètées individuellement et l'intégration des différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
+- MAG (Magnétique)
+- EMI (Induction électromagnétique)
+- ERT (Tomographie de résistivité électrique)
+- IP (Polarisation induite)
+- SIS (Sismique réfraction)
 
-For those practicals, we will see several case studies. Nonetheless, one site will follow us during this whole semester: Colonster. On this site, you will see how the different datasets can completre one-another.
+Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site nous suivra tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
 ![Colonster](./pictures/MapLocation.png)
-*Fig.1: Colonster site location*
+*Fig.1: Localisation du site de Colonster*
 
 ---
 # Practicals in short
 ## MAG
 ![MAG](./pictures/MAG_measurements.jpg)
-*Fig.2: Example of an MAG survey*
+*Fig.2: Exemple de prises de mesures MAG*
 
-Magnetic surveys are often conducted to rapidely map magneticaly succeptible anomalies in a (relatively) large area. As so, interpretation of magnetic data is very often made using profiles or maps. Typical applications of such method are:
-- Mining prospection
-- Archeology
+Les études magnétiques sont souvent effectués pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
+- Prospection minière
+- Archéologie
 
-> During this practicals, you will learn how to convert raw MAG data into maps that can be interpreted in terms of anomalies and emit hypothesis on the nature of the anomalies observed given the geological and geophysical context.
+> Au cours de ces travaux pratiques, vous apprendrez à convertir des données MAG brutes en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
-Sites: Onoz? and Colonster
+Sites: Décharge et Colonster
 
 ## [EMI](./EMI/README_EMI.md)
 ![EMI](./pictures/EMI_measurements.jpg)
-*Fig.3: Example of an EMI survey*
+*Fig.3: Exemple de prises de mesures EMI*
 
-As for MAG surveyx, EMI is often used to rapidely cover large areas. EMI is typically applied to: 
-- Mining prospection
-- Archeology
-- Water management
+Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement de vastes zones. L'EMI est généralement appliqué à : 
+- La prospection minière
+- Archéologie
+- Gestion de l'eau
 
-> During this practicals, you will learn how to convert raw EMI data into maps that can be interpreted in terms of anomalies and emit hypothesis on the nature of the anomalies observed given the geological and geophysical context.
+> Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
-Sites: Westhoek and Colonster
+Sites: Westhoek et Colonster
 
 ## ERT
 ![ERT](./pictures/ERT_measurements.jpg)
-*Fig.4: Example of an ERT/IP survey*
+*Fig.4: Exemple de prises de mesures ERT/IP*
 
-ERT is typically applied to:
-- Mining prospection
-- Water management
-- Civil engineering
+L'ERT est généralement appliqué à :
+- Prospection minière
+- Gestion de l'eau
+- Génie civil
 
-> During this practicals, you will learn:
-> - How to analyze raw ERT data
-> - How to get a model of the subsurface from ERT data
-> - How to interpret resisivity models
+> Au cours de ces exercices pratiques, vous apprendrez :
+> - Comment analyser les données brutes de l'ERT
+> - Comment obtenir un modèle du sous-sol à partir des données de l'ERT
+> - Comment interpréter les modèles de résistivité
 
-Sites: Bertrix and Colonster
+Sites: Bertrix et Colonster
 
 ## IP
-IP is often measured alongside ERT measurements, since time-domain IP (the one that we will use here) is measured directly after the resistivity measurements.
-IP is typically applied to:
-- Mining prospection
-- Water management
-- Civil engineering
+L'IP est souvent mesuré en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesuré directement après les mesures de résistivité.
+L'IP est généralement appliqué à :
+- La prospection minière
+- Gestion de l'eau
+- Génie civil
 
-> During this practicals, you will learn:
-> - How to analyze raw IP data and detect erroneous data
-> - How to get a model of the subsurface from IP data
-> - How to interpret chargeability models
+> Au cours de ces exercices pratiques, vous apprendrez :
+> - Comment analyser les données IP brutes et détecter les données erronées
+> - Comment obtenir un modèle du sous-sol à partir de données IP
+> - Comment interpréter les modèles de chargeabilité
 
-Sites: Spa and Colonster
+Sites: Spa et Colonster
 
-## Seismic
+## SIS
 ![SEISMIC](./pictures/SEIS_measurements.jpg)
-*Fig.5: Example of a seismic survey*
-Seismic is typically used for:
-- Civil engineering
-- Mining prospection
+*Fig.5: Exemple de prises de mesures sismiques*
+La sismique est généralement utilisée pour :
+- Génie civil
+- Prospection minière
 
-> During this practicals, you will learn:
-> - How to analyze raw seismic data
-> - How to pick the first arrival of a seismic wave
-> - How to get a model of the subsurface hodochrones
-> - How to interpret ground velocity models
+> Au cours de ces exercices pratiques, vous apprendrez :
+> - Comment analyser des données sismiques brutes
+> - Comment repérer la première arrivée d'une onde sismique
+> - Comment obtenir un modèle du sous-sol sur base des hodochrones
+> - Comment interpréter les modèles de vitesse du sol
 
-Sites: Beusdael? and Colonster
+Sites: Beusdael? et Colonster
 
 ---
 # Project
-At the end of the semester, you will be asked to go on the field with one of the methods seen in class and availble in our laboratory. The available equipment is:
-- EMI (CMD Mini-Explorer from GF Instruments)
-- ERT/IP (ABEM LS from ABEM)
-- Seismic (??? from ???)
+À la fin du semestre, vous serez invité à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
+- EMI (CMD Mini-Explorer de GF Instruments)
+- ERT/IP (ABEM LS de l'ABEM)
+- Sismique (DAQLink4 de Seismic Source Co.)
 
-You will work in groupds of 4 on the "Project" area of *Fig.1*. There will be 2 teams working with EMI, 4 teams with ERT/IP and 3 teams with seismics.
+Vous travaillerez par groupes de 4. Il y aura 2 équipes travaillant avec EMI, 4 équipes avec ERT/IP et 3 équipes avec la sismique.
 
-You will be asked to interpret your dataset and show your prossess and conclusions in a short (10 minutes) group presentation. After every presentation, you will benefit from a feedback from the teaching team and you will need to write a short report on your investigation (10 pages maximum) taking into account our remarks.
+Il vous sera demandé d'interpréter votre ensemble de données et de montrer vos processus et conclusions dans une courte présentation de groupe (10 minutes). Après chaque présentation, vous bénéficierez d'un retour de la part de l'équipe pédagogique et vous devrez rédiger un court rapport sur votre étude (10 pages maximum) en tenant compte de nos remarques.
 
-For the last class, we will take all your interpretations together and build a coherent geophysical model for the site.
+Pour le dernier cours, nous prendrons en compte toutes vos interprétations et construirons un modèle géophysique cohérent pour le site.
 
 ---
 # Contacts
-Always send an e-mail before comming in our offices for questions. We will inform you on our availabilies. Use the links below to send e-mails:
-## Professor: 
+Envoyez toujours un e-mail avant de venir dans nos bureaux pour des questions. Nous vous informerons de nos disponibilités. Utilisez les liens ci-dessous pour envoyer des courriels :
+## Professeur: 
 - Frédéric Nguyen ([f.nguyen@uliege.be](mailto:f.nguyen@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
-## Teaching assistants:
+## Assistants:
 - Tom Debouny ([tom.debouny@uliege.be](mailto:tom.debouny@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
 - Hadrien Michel ([hadrien.michel@uliege.be](mailto:hadrien.michel@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
-## Github Maintenance:
+## Maintenance Github:
 - Hadrien Michel ([hadrien.michel@uliege.be](mailto:hadrien.michel@uliege.be?subject=[GEOL0021-7]%20Github%20repository%20maintenance))
