@@ -74,6 +74,7 @@ Sites: Spa et Colonster
 
 ## SIS
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
+
 *Fig.5: Exemple de prises de mesures sismiques*
 La sismique est généralement utilisée pour :
 - Génie civil
