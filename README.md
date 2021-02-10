@@ -73,7 +73,7 @@ L'IP est généralement appliqué à :
 Sites: Spa et Colonster
 
 ## SIS
-![SEISMIC](./pictures/SEIS_measurements.jpg)
+![SEISMIC](./pictures/SES_measurements_Fred.gif)
 *Fig.5: Exemple de prises de mesures sismiques*
 La sismique est généralement utilisée pour :
 - Génie civil
