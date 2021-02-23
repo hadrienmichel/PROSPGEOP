@@ -17,7 +17,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 
 ---
 # Practicals in short
-## MAG
+## [MAG](./EMI/README_EMI.md)
 ![MAG](./pictures/MAG_measurements.jpg)
 *Fig.2: Exemple de prises de mesures MAG*
 
@@ -42,7 +42,7 @@ Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement d
 
 Sites: Westhoek et Colonster
 
-## ERT
+## [ERT](./ERT/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
 *Fig.4: Exemple de prises de mesures ERT/IP*
 
@@ -58,7 +58,7 @@ L'ERT est généralement appliqué à :
 
 Sites: Bertrix et Colonster
 
-## IP
+## [IP](./ERT/README_ERTIP.md)
 L'IP est souvent mesuré en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesuré directement après les mesures de résistivité.
 L'IP est généralement appliqué à :
 - La prospection minière
@@ -72,10 +72,11 @@ L'IP est généralement appliqué à :
 
 Sites: Spa et Colonster
 
-## SIS
+## [SIS](./Seismic/README_SIS.md)
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
 
 *Fig.5: Exemple de prises de mesures sismiques*
+
 La sismique est généralement utilisée pour :
 - Génie civil
 - Prospection minière
