@@ -12,13 +12,15 @@ Durant les travaux pratiques, vous aller voir différentes méthodes géophysisq
 - SIS (Sismique réfraction)
 
 Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site nous suivra tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
-![Colonster](./pictures/MapLocation.png)
+![Colonster](./pictures/MapLocalisation.jpg)
+
 *Fig.1: Localisation du site de Colonster*
 
 ---
 # Practicals in short
 ## [MAG](./EMI/README_EMI.md)
 ![MAG](./pictures/MAG_measurements.jpg)
+
 *Fig.2: Exemple de prises de mesures MAG*
 
 Les études magnétiques sont souvent effectués pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
@@ -31,6 +33,7 @@ Sites: Décharge et Colonster
 
 ## [EMI](./EMI/README_EMI.md)
 ![EMI](./pictures/EMI_measurements.jpg)
+
 *Fig.3: Exemple de prises de mesures EMI*
 
 Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement de vastes zones. L'EMI est généralement appliqué à : 
@@ -44,6 +47,7 @@ Sites: Westhoek et Colonster
 
 ## [ERT](./ERT/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
+
 *Fig.4: Exemple de prises de mesures ERT/IP*
 
 L'ERT est généralement appliqué à :

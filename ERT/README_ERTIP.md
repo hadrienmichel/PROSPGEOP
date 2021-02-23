@@ -82,4 +82,4 @@ La profondeur d'investigation peut être estimée a l'aide de l'index de profond
 Pour afficher le DOI, il faut aller dans la fenêtre d'affichage et charger les deux fichiers du DOI: `File` &rarr; `Read DOI files` &rarr; `Read DOI pair of inversion files`. Ensuite, sélectionner `Display sections` &rarr; `Display region of investigation`. Le DOI s'affiche (*Fig. 6*).
 
 ![DOI](./pictures/DOI.png)  
-*Figure 5: Profondeur d'investigation*
+*Figure 6: Profondeur d'investigation*
