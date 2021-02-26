@@ -96,6 +96,7 @@ Voici une liste des serveurs WMS utiles:
 |-------|------|
 | Ortophotos 2019 Wallonie [(info)](https://geoportail.wallonie.be/catalogue/a4c49df8-8e51-4ec2-9be0-9186cb499236.html)  | https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_2019/MapServer/WMSServer?request=GetCapabilities&service=WMS |
 | Carte Géologique Wallonie [(info)](https://geoportail.wallonie.be/catalogue/5bb1c85c-abe1-46b3-9af6-489ab95cd0cb.html) |  https://geoservices.wallonie.be/arcgis/services/SOL_SOUS_SOL/CARTE_GEOLOGIQUE_SIMPLE/MapServer/WMSServer?request=GetCapabilities&service=WMS |
+| Fonds de carte IGN [(info)](https://www.ngi.be/website/fr/online-resources/cartoweb-be/) | https://wms.ngi.be/cartoweb/service?request=GetCapabilities&service=WMS |
 
 Les services WMS ne seront utiles que comme fonds de carte. Aucunes opérations de transformations n'est possible sur ces dernières.
 
