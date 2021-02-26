@@ -99,6 +99,8 @@ Voici une liste des serveurs WMS utiles:
 
 Les services WMS ne seront utiles que comme fonds de carte. Aucunes opérations de transformations n'est possible sur ces dernières.
 
+Un tutoriel complet pour QGIS peut être téléchargé à l'adresse suivante [https://orbi.uliege.be/handle/2268/190559](https://orbi.uliege.be/handle/2268/190559).
+
 #### Importer des données EM dans QGIS:
 ----
 Avant tout, créer un nouveau projet vide. Changez le système de coordonées du projet pour correspondre aux coordonnées utilisées en belgique. Pour faire celà, aller dans `Projet` &rarr; `Propriétés...`. Dans la fenêtre qui s'ouvre, sélectionner `SCR` dans la colonne de gauche.  
