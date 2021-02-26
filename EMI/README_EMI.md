@@ -1,5 +1,3 @@
-# Rappel théorique
-
 # Aquisition de données sur le terrain
 Le mode d'acquisition sur le terrain dépendra de l'équipement utilisé. En effet, les appareils de mesures EM peuvent être opérer soit seul soit a deux. 
 
