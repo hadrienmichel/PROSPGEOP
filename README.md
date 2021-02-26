@@ -18,7 +18,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 
 ---
 # Practicals in short
-## [MAG](./EMI/README_EMI.md)
+## [MAG](./MAG/README_MAG.md)
 ![MAG](./pictures/MAG_measurements.jpg)
 
 *Fig.2: Exemple de prises de mesures MAG*
