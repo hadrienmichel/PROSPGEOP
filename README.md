@@ -45,7 +45,7 @@ Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement d
 
 Sites: Westhoek et Colonster
 
-## [ERT](./ERT/README_ERTIP.md)
+## [ERT](./ERT_IP/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
 
 *Fig.4: Exemple de prises de mesures ERT/IP*
@@ -62,7 +62,7 @@ L'ERT est généralement appliqué à :
 
 Sites: Bertrix et Colonster
 
-## [IP](./ERT/README_ERTIP.md)
+## [IP](./ERT_IP/README_ERTIP.md)
 L'IP est souvent mesuré en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesuré directement après les mesures de résistivité.
 L'IP est généralement appliqué à :
 - La prospection minière
