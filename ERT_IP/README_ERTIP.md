@@ -5,6 +5,38 @@ Dans un premier temps, on enfonce les électrodes dans le sol suffisement pour o
 
 # Analyse des données
 
+## 1) Analyses des données brutes:
+Il est de bonne pratique de réaliser des histogrammes des données pour avoir une première idée de la qualité des données ainsi que du contenu du jeu de donnée. Pour faire cela, nous allons charger le jeu de données comme base de données *pandas* dans python et réaliser des histogrammes pour la résistivité mesurée ainsi que pour la chargeabilité. Le script suivant vous permet de faire cette manipulation pour un fichier `.dat` contenant des données au format RES2DINV (voir ci-dessous). 
+
+```python
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot
+# Importer le jeu de données via pandas:
+#   Si le jeux de données contient ERT et IP et que le jeu contient des estimations d'erreur,
+#   les paramètres a entrée sont ceux utilisé ci-dessous.
+data = pd.read_csv('./data/B52_Gradient7.dat', delimiter='\t', header=None, skiprows=15, 
+    names= ['Nb. Electrodes', 'A(x)','A(y)','B(x)','B(y)','M(x)','M(y)',
+    'N(x)','N(y)','R (Ohm.m)','Res. Error (Ohm.m)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
+    skipfooter=5, engine='python')
+# Si le jeux de données contient moins de données, il faut ajuster les paramètres skiprows et names en fonction.
+nbInit = len(data.index)
+print('Initial number of values: {}'.format(nbInit))
+# Montrer les histogrammes:
+# 1) Résistivité: 
+binsR = np.logspace(start=np.log(min(data['R (Ohm.m)'])), stop=np.log(np.quantile(data['R (Ohm.m)'],0.9)),num=20)
+hist1 = data.hist(column=['R (Ohm.m)'], bins=binsR, density=True)
+# 2) IP:
+hist2 = data.hist(column=['IP (mV/V)'], density=True)
+pyplot.show()
+```
+
+Sur base de l'histogramme, il est déjà possible d'anticiper le nombre et le type d'anomalies qui sera observée dans le modèle inversé.
+
+## 2) Modèles d'erreur:
+Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces erreurs peuvent venir de plusieurs sources: précision de la machine, bruit électrique ambiant, etc. Une première estimation de l'erreur est réalisée automatiquement par l'ABEM lors des mesures sur le terrain. Cependant, cette erreur ne représente qu'une (faible) partie de l'erreur totale réalisée. 
+
+La meilleure manière de calculer l'erreur réalisée sur une mesure est d'utiliser le théorème de réciprocité. En théorie, une mesure de résistivité avec injection sur le dipole AB et mesure sur le dipole MN devrait être équivalente a une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesures, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
 # Inversion des données
 L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de faire cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser le logiciel RES2DINV. Télécharger l'archive contenant l'exécutable d'installation au lien suivant: [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip). Ensuite, décompresser l'archive et installer le logiciel en suivant la procédure d'installation.
@@ -83,3 +115,9 @@ Pour afficher le DOI, il faut aller dans la fenêtre d'affichage et charger les 
 
 ![DOI](./pictures/DOI.png)  
 *Figure 6: Profondeur d'investigation*
+
+# Visualisation des données
+Pour visualiser des résultats d'incversion plus complexe, nous allons utiliser un logiciel de visualitation 3D appelé [Paraview](https://www.paraview.org/). Ce logiciel permet de simplement visualiser un bloc modèle 3D et de réaliser des manipulations de base dessus.
+
+Les fichiers représentant les modèles d'inversions sont donné sous le format `.vtk`. Ces fichiers contiennent la géométrie ainsi que les valeurs obtenues pour le modèle inverse. Il est donc possible d'analyser le "mesh" d'inversion en même temps que le résultat.
+

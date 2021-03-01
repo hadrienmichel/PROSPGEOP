@@ -17,7 +17,13 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 *Fig.1: Localisation du site de Colonster*
 
 ---
-# Practicals in short
+# Les travaux pratiques:
+
+> ## Logiciels utiles:
+> - Anaconda (Python): [https://www.anaconda.com/products/individual](https://www.anaconda.com/products/individual)
+> - Paraview: [https://www.paraview.org/download/](https://www.paraview.org/download/)
+> - RES2DINV (Windows seulement): [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip)
+
 ## [MAG](./MAG/README_MAG.md)
 ![MAG](./pictures/MAG_measurements.jpg)
 
@@ -94,7 +100,7 @@ La sismique est généralement utilisée pour :
 Sites: Beusdael? et Colonster
 
 ---
-# Project
+# Projet:
 À la fin du semestre, vous serez invité à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
 - EMI (CMD Mini-Explorer de GF Instruments)
 - ERT/IP (ABEM LS de l'ABEM)
@@ -107,7 +113,7 @@ Il vous sera demandé d'interpréter votre ensemble de données et de montrer vo
 Pour le dernier cours, nous prendrons en compte toutes vos interprétations et construirons un modèle géophysique cohérent pour le site.
 
 ---
-# Contacts
+# Contacts:
 Envoyez toujours un e-mail avant de venir dans nos bureaux pour des questions. Nous vous informerons de nos disponibilités. Utilisez les liens ci-dessous pour envoyer des courriels :
 ## Professeur: 
 - Frédéric Nguyen ([f.nguyen@uliege.be](mailto:f.nguyen@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
