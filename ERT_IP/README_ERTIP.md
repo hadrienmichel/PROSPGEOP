@@ -123,13 +123,20 @@ Les fichiers représentant les modèles d'inversions sont donné sous le format 
 
 Dans un premier temps, nous allons charger un modèle dans la fenêtre de paraview. Pour faire cele, il suffit de glisser le fichier `.vtk` dans la zone `Pipline Browser`. Une fois le fichier charger, les propriétés de l'objet vont s'afficher en dessous dans le volet `Properties`. Cliquer sur `Apply` pour afficher le modèle.
 
-Pour manipuler l'objet, il suffit de cliquer sur la fenêtre et de faire tourner le mesh. Il peut cependant parfois être dificile d'avoir une orientation spécifique. Pour cela, différentes options sont présente dans la barres d'outils `Camera Controls` (voir *Fig.7*).
+Pour manipuler l'objet, il suffit de cliquer sur la fenêtre et de faire tourner le mesh. Il peut cependant parfois être dificile d'avoir une orientation spécifique. Pour cela, différentes options sont présente dans la barres d'outils `Camera Controls` (voir *Fig. 7*).
 
 ![Importer dans paraview et bouger l'objet](./pictures/ParaviewOpenView.gif)  
 *Figure 7: Import dans paraview et mouvements*
 
 Il est possible de changer la données visualisée (Inversion en résistivité, IP ou sensibilité par exemple). Pour faire cela, il faut utiliser la boite a outils `Active Variable Controls`. Une fois une donnée sélectionnée, il est possible de changer l'échelle de visualisation qui lui est appliquée. Un exemple est montré en Figure 
-Dans le volet de droite, il est possible de changer l'échelle de couleurs.
+Dans le volet de droite, il est possible de changer l'échelle de couleurs (*Fig. 8*).
 
 ![Changer l'echelle de couleur dans paraview](./pictures/ParaviewColorScale.gif)  
-*Figure 7: Import dans paraview et mouvements*
+*Figure 8: Changer l'échelle de couleur dans paraview*
+
+Ensuite, il est possible de faire des manipualtions plus avancées de type "Clip", "Slice" et "Threshold". Ces manipulations vont permettre d'obesrver l'intérieur du modèle.
+
+![Clip et Threshold dans paraview](./pictures/ParaviewClipThreshold.gif)  
+*Figure 9: Clip et Threshold dans paraview*
+
+# A vous de jouer!
