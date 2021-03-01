@@ -1,7 +1,7 @@
 # Aquisition de données sur le terrain
 Il existe de nombreux appereils permettant l'aquisition de données de résistivité électrique et/ou de chargeabilité. Au laboratoire de Géophysique appliquées de l'Université de Liège, nous avons un [ABEM Terrameter LS (page en anglais)](https://www.guidelinegeo.com/product/abem-terrameter-ls-2/). En pratique, l'aquisition de données est relativement similaire quel que soit l'appareil.
 
-Dans un premier temps, on enfonce les électrodes dans le sol suffisement pour obtenir un bon contact entre l'électrode et le sol. Ces électrodes sont connectées à un cable multi-brin qui est lui-même connecté au résistivimètre. 
+Dans un premier temps, on enfonce les électrodes dans le sol suffisement pour obtenir un bon contact entre l'électrode et le sol. Ces électrodes sont connectées à un cable multi-brin qui est lui-même connecté au résistivimètre. Ensuite, le résistivimètre va injecter du courant sur un jeux de deux électrodes (A et B) et msurer le potentiel généré sur deux autres éléctrodes (M et N). Cette opération est répétée un grand nombre de fois afin de couvrir plusieurs positions horizontalement et en profondeur. La mesure de chargeabilité se fait directement après la mesure de résistivité. En effet, après avoir charger le sol lors de la mesure de résistivité, ce dernier vas se décharger progressivement, créant un potentiel décroissant (exponentielle) sur les électrodes de mesures. Pour plus de détails, se réfèrer au cours théorique et au rappels.
 
 # Analyse des données
 
