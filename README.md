@@ -96,11 +96,9 @@ La sismique est généralement utilisée pour :
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
-Vous travaillerez par groupes de 3. Il y aura 3 équipes travaillant avec EMI, 3 équipes avec ERT/IP et 3 équipes avec la sismique.
+Vous travaillerez par groupes de 3. Il y aura 2 équipes travaillant avec EMI, 3 équipes avec ERT/IP et 3 équipes avec la sismique.
 
-Il vous sera demandé d'interpréter votre ensemble de données et de montrer vos processus et conclusions dans une courte présentation de groupe (10 minutes). Après chaque présentation, vous bénéficierez d'un retour de la part de l'équipe pédagogique et vous devrez rédiger un court rapport sur votre étude (10 pages maximum) en tenant compte de nos remarques.
-
-Pour le dernier cours, nous prendrons en compte toutes vos interprétations et construirons un modèle géophysique cohérent pour le site.
+Il vous sera demandé d'interpréter votre ensemble de données et de rédiger un court rapport sur votre étude (10 pages maximum).
 
 ---
 # Contacts:
