@@ -24,37 +24,10 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 > - Paraview: [https://www.paraview.org/download/](https://www.paraview.org/download/)
 > - RES2DINV (Windows seulement): [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip)
 
-## [MAG](./MAG/README_MAG.md)
-![MAG](./pictures/MAG_measurements.jpg)
-
-*Fig.2: Exemple de prises de mesures MAG*
-
-Les études magnétiques sont souvent effectués pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
-- Prospection minière
-- Archéologie
-
-> Au cours de ces travaux pratiques, vous apprendrez à convertir des données MAG brutes en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
-Sites: Décharge et Colonster
-
-## [EMI](./EMI/README_EMI.md)
-![EMI](./pictures/EMI_measurements.jpg)
-
-*Fig.3: Exemple de prises de mesures EMI*
-
-Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement de vastes zones. L'EMI est généralement appliqué à : 
-- La prospection minière
-- Archéologie
-- Gestion de l'eau
-
-> Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
-Sites: Westhoek et Colonster
-
 ## [ERT](./ERT_IP/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
 
-*Fig.4: Exemple de prises de mesures ERT/IP*
+*Fig.2: Exemple de prises de mesures ERT/IP*
 
 L'ERT est généralement appliqué à :
 - Prospection minière
@@ -82,6 +55,33 @@ L'IP est généralement appliqué à :
 
 Sites: Spa et Colonster
 
+## [MAG](./MAG/README_MAG.md)
+![MAG](./pictures/MAG_measurements.jpg)
+
+*Fig.3: Exemple de prises de mesures MAG*
+
+Les études magnétiques sont souvent effectués pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
+- Prospection minière
+- Archéologie
+
+> Au cours de ces travaux pratiques, vous apprendrez à convertir des données MAG brutes en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
+
+Sites: Décharge et Colonster
+
+## [EMI](./EMI/README_EMI.md)
+![EMI](./pictures/EMI_measurements.jpg)
+
+*Fig.4: Exemple de prises de mesures EMI*
+
+Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement de vastes zones. L'EMI est généralement appliqué à : 
+- La prospection minière
+- Archéologie
+- Gestion de l'eau
+
+> Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
+
+Sites: Westhoek et Colonster
+
 ## [SIS](./Seismic/README_SIS.md)
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
 
@@ -106,7 +106,7 @@ Sites: Beusdael? et Colonster
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
-Vous travaillerez par groupes de 4. Il y aura 2 équipes travaillant avec EMI, 4 équipes avec ERT/IP et 3 équipes avec la sismique.
+Vous travaillerez par groupes de 3. Il y aura 3 équipes travaillant avec EMI, 3 équipes avec ERT/IP et 3 équipes avec la sismique.
 
 Il vous sera demandé d'interpréter votre ensemble de données et de montrer vos processus et conclusions dans une courte présentation de groupe (10 minutes). Après chaque présentation, vous bénéficierez d'un retour de la part de l'équipe pédagogique et vous devrez rédiger un court rapport sur votre étude (10 pages maximum) en tenant compte de nos remarques.
 
