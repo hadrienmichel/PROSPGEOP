@@ -39,8 +39,6 @@ L'ERT est généralement appliqué à :
 > - Comment obtenir un modèle du sous-sol à partir des données de l'ERT
 > - Comment interpréter les modèles de résistivité
 
-Sites: Bertrix et Colonster
-
 ## [IP](./ERT_IP/README_ERTIP.md)
 L'IP est souvent mesuré en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesuré directement après les mesures de résistivité.
 L'IP est généralement appliqué à :
@@ -53,8 +51,6 @@ L'IP est généralement appliqué à :
 > - Comment obtenir un modèle du sous-sol à partir de données IP
 > - Comment interpréter les modèles de chargeabilité
 
-Sites: Spa et Colonster
-
 ## [MAG](./MAG/README_MAG.md)
 ![MAG](./pictures/MAG_measurements.jpg)
 
@@ -65,8 +61,6 @@ Les études magnétiques sont souvent effectués pour cartographier rapidement l
 - Archéologie
 
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données MAG brutes en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
-Sites: Décharge et Colonster
 
 ## [EMI](./EMI/README_EMI.md)
 ![EMI](./pictures/EMI_measurements.jpg)
@@ -79,8 +73,6 @@ Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement d
 - Gestion de l'eau
 
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
-Sites: Westhoek et Colonster
 
 ## [SIS](./Seismic/README_SIS.md)
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
@@ -96,8 +88,6 @@ La sismique est généralement utilisée pour :
 > - Comment repérer la première arrivée d'une onde sismique
 > - Comment obtenir un modèle du sous-sol sur base des hodochrones
 > - Comment interpréter les modèles de vitesse du sol
-
-Sites: Beusdael? et Colonster
 
 ---
 # Projet:
