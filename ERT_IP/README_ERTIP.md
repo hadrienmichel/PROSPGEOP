@@ -134,7 +134,7 @@ Dans le volet de droite, il est possible de changer l'échelle de couleurs (*Fig
 ![Changer l'echelle de couleur dans paraview](./pictures/ParaviewColorScale.gif)  
 *Figure 8: Changer l'échelle de couleur dans paraview*
 
-Ensuite, il est possible de faire des manipualtions plus avancées de type "Clip", "Slice" et "Threshold". Ces manipulations vont permettre d'observer l'intérieur du modèle.
+Ensuite, il est possible de faire des manipulations plus avancées de type "Clip", "Slice" et "Threshold". Ces manipulations vont permettre d'observer l'intérieur du modèle.
 
 ![Clip et Threshold dans paraview](./pictures/ParaviewClipThreshold.gif)  
 *Figure 9: Clip et Threshold dans paraview*
