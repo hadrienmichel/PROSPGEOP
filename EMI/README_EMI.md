@@ -8,7 +8,7 @@ Dans le cas des appareils nécéssitant plusieurs opérateurs, chaque opérateur
 Dans chaque cas, l'orientation des boucles d'injection et de mesure aura de l'importance. En effet, en fonction de ce paramètre, l'appareil sondera plus ou moins profondément. La profondeur d'investigation peut être approximée par la loi suivante:  
 <img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
 et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">  
-où *s* est l'espacement entre les boucles d'injection et de mesure. La configuration "High" correspond à des boucles placées horizontalement (champ magnetique perpendiculaire à la surface) et la configuration "Low" correspond à des boucles placées verticalement (champ magnétique parralèle à la surface).
+où *s* est l'espacement entre les boucles d'injection et de mesure. La configuration "High" correspond à des boucles placées horizontalement (champ magnetique perpendiculaire à la surface) et la configuration "Low" correspond à des boucles placées verticalement (champ magnétique parrallèle à la surface).
 
 Il est également possible de faire des mesures électromagnétiques aéroportées. L'avantage de cette méthode est qu'elle permet de rapidement couvrir de très larges étendues avec une information relativement profonde (de l'ordre de 100 mètres). Cependant, ces mesures représentent un coût très élevé.
 
