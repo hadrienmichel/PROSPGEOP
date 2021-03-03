@@ -4,7 +4,7 @@
 # PROSPGEOP
 Ce répertoire contient les codes nécéssaire aux travaux pratiques du cours de Prospection Géophysique du Pr. NGUYEN (ULiège). 
 
-Durant les travaux pratiques, vous aller voir différentes méthodes géophysisques, comment les intérprèter individuellement et comment intégrer les différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
+Durant les travaux pratiques, vous aller voir différentes méthodes géophysiques, comment les intérprèter individuellement et comment intégrer les différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
 - MAG (Magnétique)
 - EMI (Induction électromagnétique)
 - ERT (Tomographie de résistivité électrique)
