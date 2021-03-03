@@ -4,14 +4,14 @@
 # PROSPGEOP
 Ce répertoire contient les codes nécéssaire aux travaux pratiques du cours de Prospection Géophysique du Pr. NGUYEN (ULiège). 
 
-Durant les travaux pratiques, vous aller voir différentes méthodes géophysisques, comment les intérprèter individuellement et l'intégration des différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
+Durant les travaux pratiques, vous aller voir différentes méthodes géophysisques, comment les intérprèter individuellement et comment intégrer les différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
 - MAG (Magnétique)
 - EMI (Induction électromagnétique)
 - ERT (Tomographie de résistivité électrique)
 - IP (Polarisation induite)
 - SIS (Sismique réfraction)
 
-Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site nous suivra tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
+Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site servira de fil rouge tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
 ![Colonster](./pictures/MapLocalisation.jpg)
 
 *Fig.1: Localisation du site de Colonster*
@@ -29,7 +29,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 
 *Fig.2: Exemple de prises de mesures ERT/IP*
 
-L'ERT est généralement appliqué à :
+L'ERT est généralement appliquée à :
 - Prospection minière
 - Gestion de l'eau
 - Génie civil
@@ -38,10 +38,11 @@ L'ERT est généralement appliqué à :
 > - Comment analyser les données brutes de l'ERT
 > - Comment obtenir un modèle du sous-sol à partir des données de l'ERT
 > - Comment interpréter les modèles de résistivité
+> - Comment évaluer la fiabilité des modèles obtenus
 
 ## [IP](./ERT_IP/README_ERTIP.md)
-L'IP est souvent mesuré en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesuré directement après les mesures de résistivité.
-L'IP est généralement appliqué à :
+L'IP est souvent mesurée en même temps que l'ERT, puisque l'IP dans le domaine temporel (celui que nous utiliserons ici) est mesurée directement après les mesures de résistivité.
+L'IP est généralement appliquée à :
 - La prospection minière
 - Gestion de l'eau
 - Génie civil
@@ -50,13 +51,14 @@ L'IP est généralement appliqué à :
 > - Comment analyser les données IP brutes et détecter les données erronées
 > - Comment obtenir un modèle du sous-sol à partir de données IP
 > - Comment interpréter les modèles de chargeabilité
+> - Comment évaluer la fiabilité des modèles obtenus
 
 ## [MAG](./MAG/README_MAG.md)
 ![MAG](./pictures/MAG_measurements.jpg)
 
 *Fig.3: Exemple de prises de mesures MAG*
 
-Les études magnétiques sont souvent effectués pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
+Les études magnétiques sont souvent effectuées pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
 - Prospection minière
 - Archéologie
 
@@ -67,7 +69,7 @@ Les études magnétiques sont souvent effectués pour cartographier rapidement l
 
 *Fig.4: Exemple de prises de mesures EMI*
 
-Comme pour les études MAG, l'EMI est souvent utilisé pour couvrir rapidement de vastes zones. L'EMI est généralement appliqué à : 
+Comme pour les études MAG, l'induction électromagnétique est souvent utilisée pour couvrir rapidement de vastes zones. L'EMI est généralement appliquée à : 
 - La prospection minière
 - Archéologie
 - Gestion de l'eau
@@ -91,7 +93,7 @@ La sismique est généralement utilisée pour :
 
 ---
 # Projet:
-À la fin du semestre, vous serez invité à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
+À la fin du semestre, vous serez invités à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
 - EMI (CMD Mini-Explorer de GF Instruments)
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
