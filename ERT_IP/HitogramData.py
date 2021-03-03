@@ -6,15 +6,16 @@ from matplotlib import pyplot
 #   les paramètres a entrée sont ceux utilisé ci-dessous.
 data = pd.read_csv('./data/B52_Gradient7.dat', delimiter='\t', header=None, skiprows=15, 
     names= ['Nb. Electrodes', 'A(x)','A(y)','B(x)','B(y)','M(x)','M(y)',
-    'N(x)','N(y)','R (Ohm.m)','Res. Error (Ohm.m)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
+    'N(x)','N(y)','R (Ohm)','Res. Error (Ohm)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
     skipfooter=5, engine='python')
 # Si le jeux de données contient moins de données, il faut ajuster les paramètres skiprows et names en fonction.
 nbInit = len(data.index)
 print('Initial number of values: {}'.format(nbInit))
+print(data.describe())
 # Montrer les histogrammes:
-# 1) Résistivité: 
-binsR = np.logspace(start=np.log(min(data['R (Ohm.m)'])), stop=np.log(np.quantile(data['R (Ohm.m)'],0.9)),num=20)
-hist1 = data.hist(column=['R (Ohm.m)'], bins=binsR, density=True)
+# 1) Résistance: 
+binsR = np.logspace(start=np.log(min(data['R (Ohm)'])), stop=np.log(np.quantile(data['R (Ohm)'],0.9)),num=20)
+hist1 = data.hist(column=['R (Ohm)'], bins=binsR, density=True)
 # 2) IP:
 hist2 = data.hist(column=['IP (mV/V)'], density=True)
 pyplot.show()

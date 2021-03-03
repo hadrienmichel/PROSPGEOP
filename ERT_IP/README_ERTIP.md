@@ -22,6 +22,7 @@ data = pd.read_csv('./data/B52_Gradient7.dat', delimiter='\t', header=None, skip
 # Si le jeux de données contient moins de données, il faut ajuster les paramètres skiprows et names en fonction.
 nbInit = len(data.index)
 print('Initial number of values: {}'.format(nbInit))
+print(data.describe())
 # Montrer les histogrammes:
 # 1) Résistance: 
 binsR = np.logspace(start=np.log(min(data['R (Ohm)'])), stop=np.log(np.quantile(data['R (Ohm)'],0.9)),num=20)
