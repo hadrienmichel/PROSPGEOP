@@ -109,7 +109,7 @@ La matrice de sensibilité est calculée en même temps que l'inversion (il s'ag
 *Figure 5: Sensibilité normalisée de l'inversion*
 
 ### 2) Profondeur d'investigation
-La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut revenir dans l'écran d'inversion et selectionner `Inversion` &rarr; `Calculate region of investigation index`. Les paramètres par défaut qui sont proposés sont adéquats pour la majorité des cas. L'inversion dans ce cas-ci prend plus de temps et sera sauvée dans 2 fichiers `.INV` qui sont référencés dans un fichier `.txt`.
+La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut revenir dans l'écran d'inversion et selectionner `Inversion` &rarr; `Calculate region of investigation index`. Les paramètres par défaut qui sont proposés sont généralement appropriés. L'inversion dans ce cas-ci prend plus de temps et sera sauvée dans 2 fichiers `.INV` qui sont référencés dans un fichier `.txt`.
 
 Pour afficher le DOI, il faut aller dans la fenêtre d'affichage et charger les deux fichiers du DOI: `File` &rarr; `Read DOI files` &rarr; `Read DOI pair of inversion files`. Ensuite, sélectionner `Display sections` &rarr; `Display region of investigation`. Le DOI s'affiche (*Fig. 6*).
 
