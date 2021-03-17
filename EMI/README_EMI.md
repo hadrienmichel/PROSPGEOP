@@ -39,12 +39,15 @@ Pour analyser les valeurs, nous allons utiliser des histogrammes. En effet, ils 
 Dans un premier temps, il faut donc procéder à la suppression des valeurs négatives. Ensuite, on pourra enlever les valeurs aberrantes. Pour cela, nous allons utiliser le code python [suivant](./SortingEMI.py)
 
 ```python
-import numpy as np # Pour les opérations matématiques de base
-import pandas as pd # Pour la gestion des données
-from matplotlib import pyplot # Pour l'affichage graphique
-from scipy import stats # Pour les indicateurs statistiques
+# Dans ce script, nous allons trier un jeux de données fourni: "exemple.dat"
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot
+from scipy import stats
+from pathlib import Path
 # Lire le fichier de données
-data = pd.read_csv('./data/exemple.dat', delimiter='\t', header=0, index_col=False)
+filename = Path('./data/exemple.dat') # Changer le fichier a lire et le trajet ICI
+data = pd.read_csv(filename, delimiter='\t', header=0, index_col=False)
 nbInit = len(data.index)
 print('Initial number of values: {}'.format(nbInit))
 # Montrer les histograms initiaux:
@@ -66,7 +69,9 @@ print('Number of in-range values: {}'.format(nbInit))
 hist = data.hist(column=['Cond.1[mS/m]','Inph.1[ppt]','Cond.2[mS/m]','Inph.2[ppt]','Cond.3[mS/m]','Inph.3[ppt]'])
 pyplot.show()
 # Sauver les données au format csv pour QGIS (séparateur=tabulation):
-data.to_csv('./data/exemple_trier.dat', sep='\t', index=False)
+filenameSave = filename.parents[0] / (filename.stem + '_sorted' + filename.suffix)
+data.to_csv(filenameSave, sep='\t', index=False)
+print('File saved successfully with the changes !')
 ```
 
 On obtient dès lors des distributions beaucoup plus homogènes, sans outliers visibles (*Fig. 3*)
