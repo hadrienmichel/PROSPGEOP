@@ -15,7 +15,6 @@ import os
 import re
 import numpy as np
 import pygimli as pg
-from pygimli.frameworks import BlockModelling, MethodManager1d
 
 def getH(H0:float=0.0, DipUp:float=0.0, DipDown:float=0.0, x:float=0.0):
     y0 = x*np.tan(DipUp)
@@ -25,8 +24,8 @@ def getH(H0:float=0.0, DipUp:float=0.0, DipDown:float=0.0, x:float=0.0):
 
 nbLayersDef = 2
 class Snell():
-    def __init__(self,nbLayers:int=nbLayersDef,V_p:np.ndarray=np.asarray([1200,2000]),
-        ThickLeft:np.ndarray=np.asarray([5]),DipAngles:np.ndarray=np.asarray([0])):
+    def __init__(self,nbLayers:int=nbLayersDef,V_p:np.ndarray=None,
+        ThickLeft:np.ndarray=None,DipAngles:np.ndarray=None):
         '''SNELL is a class that will model the Snell-Descartes seismic refraction traveltimes
         for a given model described in input.
 
@@ -40,9 +39,18 @@ class Snell():
         All units are un SI (meters and seconds). Angles are in radians.
         '''
         self.nbLayers = nbLayers
-        self.V_p = V_p
-        self.ThickLeft = ThickLeft
-        self.DipAngles = DipAngles
+        if V_p is not None:
+            self.V_p = V_p
+        else:
+            self.V_p = np.linspace(1000,3000,num=self.nbLayers)
+        if ThickLeft is not None:
+            self.ThickLeft = ThickLeft
+        else:
+            self.ThickLeft = np.ones((self.nbLayers-1,))*5
+        if DipAngles is not None:
+            self.DipAngles = DipAngles
+        else:
+            self.DipAngles = np.zeros((self.nbLayers-1,))
     
     def Model(self,SourceX:float=0.0,ReceiversX:np.ndarray=np.linspace(start=0.0, stop=100.0, num=101)) -> np.ndarray:
         '''MODEL is a method that computes the forward model for the given SNELL class.
@@ -134,37 +142,61 @@ class Snell():
         for s in Sources:
             idx = np.where(Measurements[:,0].astype(int)==s)
             Receivers = Measurements[idx,1].astype(int)
-            sX = Sensors[s-1,0].flatten()
+            sX = float(Sensors[s-1,0].flatten())
             rX = Sensors[Receivers-1,0].flatten()
             t = self.Model(SourceX=sX, ReceiversX=rX)
             TravelTimes[idx] = t
         if Graphs:
             self.ShowModel(Sensors[Sources-1,0],Sensors[:,0])          
         return TravelTimes
+    
+    def plotHodochrones(self, Sensors:np.ndarray, Measurements:np.ndarray, Synthetic:np.ndarray=None):
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        Sources = np.unique(Measurements[:,0].astype(int))
+        for s in Sources:
+            idx = np.where(Measurements[:,0].astype(int)==s)
+            Receivers = Measurements[idx,1].astype(int)
+            sX = Sensors[s-1,0].flatten()
+            rX = Sensors[Receivers-1,0].flatten()
+            data = Measurements[idx,2].flatten()
+            ax.plot(rX,data,'d',label='Source at {} m (measured)'.format(float(sX)))
+            if Synthetic is not None:
+                ax.plot(rX,Synthetic[idx],'dk',label='Source at {} m (synthetic)'.format(float(sX)))
+        ax.set_xlabel('Distance [m]')
+        ax.set_ylabel('Travel Time [sec]')
+        ax.set_title('Hodochrones')
+        ax.legend(loc='upper center',
+            ncol=2, fancybox=True, shadow=True)
+        ax.grid()
+        fig.show()
 
-class SnellFOP(pg.Modelling):
+class SnellFOP(pg.core.ModellingBase): # How to build this???
     def __init__(self, sensorsX, MeasurementsArray, nlay=2, verbose=False):
-        super().__init__()
+        mesh = pg.meshtools.createMesh1DBlock(nlay,2) # Thicknesses, Vp and Dip
+        super().__init__(mesh)
         self.x = sensorsX
         self.array = MeasurementsArray
+        self.nlay = nlay
+        self.nc = (nlay-1)*2 + nlay
         
-    
     def response(self, model):
-        nbLayers = model[0]
-        V_p = model[1]
-        ThickLeft = model[3]
-        DipLeft = model[4]
-        Sensors = self.x[0]
-        Measurements = self.x[1]
-        return Snell(nbLayers,V_p,ThickLeft,DipLeft).Simulate(Sensors,Measurements)
+        nbLayers = self.nlay
+        V_p = np.asarray(model[nbLayers-1:2*nbLayers-1])
+        ThickLeft = np.asarray(model[:nbLayers-1])
+        DipLeft = np.asarray(model[2*nbLayers-1:-1])
+        Sensors = self.x
+        Measurements = self.array
+        return pg.Vector(Snell(nbLayers,V_p,ThickLeft,DipLeft).Simulate(Sensors,Measurements))
     
-    def createStartModel(self, dataVals):
-        return pg.Vector([[2],[1600, 2600],[5],[0.0]])
-
-if __name__=="__main__":
-    # 0) Initialization:
-    Graphs = True # Show graphs (True) or not (False)
-    Automated = True # Automatic hodochrones fitting (True) or manual fitting (False)
+    def startModel(self, dataVals=None):
+        ThickLeft = np.ones((self.nlay-1,))*5.0
+        V_p = np.linspace(1000,3000,num=self.nlay)
+        DipLeft = np.zeros((self.nlay,))
+        modelInit = np.concatenate((ThickLeft, V_p, DipLeft))
+        return pg.Vector(modelInit) # Thicknesses, Velocities, Dipping
+    
+def InversionSnell():
     # 1) Load a file with the first arrival:
     root = Tk()
     filename = askfilename(filetypes = (("First-Arrival", "*.sgt"), ("All types", "*.*")))
@@ -206,54 +238,56 @@ if __name__=="__main__":
     Sources = Sensors[np.unique(Measurements[:,0].astype(int))-1,0]
     Receivers = Sensors[np.unique(Measurements[:,1].astype(int))-1,0]
     print("Dataset has {} sources and {} receivers.".format(len(Sources),len(Receivers)))
-    if Graphs:
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        minX = min(Sources.min(),Receivers.min())
-        maxX = max(Sources.max(),Receivers.max())
-        meanX = (minX+maxX) / 2
-        ax.plot([minX, maxX], [0, 0], 'k') # Draw the soil limit
-        ax.plot(Receivers, np.zeros_like(Receivers), 'kv', label='Receivers')
-        ax.plot(Sources, np.zeros_like(Sources), 'kD',label='Source')
-        ax.set_ylim([-5, 5])
-        ax.invert_yaxis()
-        ax.set_xlabel('Distance [m]')
-        ax.set_ylabel('Depth [m]')
-        ax.set_title('Acquisition setup')
-        ax.grid()
-        ax.legend(loc='upper center',
-            ncol=2, fancybox=True, shadow=True)
-        fig.show()
-    if Automated:
-        pass # Inversion of the data to fit the Snell-Descarte model
-    else:
-        pass # Manual picking of the graphs
-
-    ModelTest = Snell(nbLayers=3,V_p=np.asarray([1600,2200,2800]),ThickLeft=np.asarray([5, 10]),DipAngles=np.asarray([0,0]))
-    TravelTimes = ModelTest.Simulate(Sensors,Measurements,Graphs=True)
-    HodoFlatUp = ModelTest.Model()
-    HodoFlatCenter = ModelTest.Model(SourceX=50.0)
-    HodoFlatDown = ModelTest.Model(SourceX=100.0)
-    ModelTest = Snell(nbLayers=3,V_p=np.asarray([1600,2200,2800]),ThickLeft=np.asarray([5, 10]),DipAngles=np.asarray([-0.02,0.01]))
-    HodoDipUp = ModelTest.Model()
-    HodoDipCenter = ModelTest.Model(SourceX=50.0)
-    HodoDipDown = ModelTest.Model(SourceX=100.0)
-    plt.figure()
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoFlatUp,'c',label='Flat (Upward)')
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoFlatCenter,'c--',label='Flat (Center)')
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoFlatDown,'c',label='Flat (Downward)')
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoDipUp,'y',label='Dipping (Upward)')
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoDipCenter,'y--',label='Dipping (Center)')
-    plt.plot(np.linspace(start=0.0, stop=100.0, num=101),HodoDipDown,'y',label='Dipping (Downward)')
-    plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.15),
-          ncol=2, fancybox=True, shadow=True)
-    plt.xlabel('Distance [m]')
-    plt.ylabel('Time [sec]')
-    plt.grid()
+    ############################################################################################
+    ###                                                                                      ###
+    ###                                       Inversion                                      ###
+    ###                                                                                      ###
+    ############################################################################################
+    #
+    # Parameters:
+    # -----------
+    nlay = 3 
+    error = 1e-5 # AbsoluteError associated to the picking
+    lam = 0 # DO NOT CHANGE THIS! (Well regularized model)
+    #
+    # Inversion:
+    # ----------
+    data = Measurements[:,-1]
+    fop = SnellFOP(Sensors, Measurements, nlay = nlay)
+    # Velocities for all layers and dipping for the nlay-1 interfaces and thicknesses for all but the half-space
+    regionArray = np.concatenate(((np.ones((nlay-1,))*0).astype(int), (np.ones((nlay,))*1).astype(int), (np.ones((nlay,))*2).astype(int)))
+    limits = [[0.1, 100], [500, 5000], [-0.2, 0.2]]
+    for nbRegion, regionType in enumerate(limits):
+        fop.region(nbRegion).setLowerBound(regionType[0])
+        fop.region(nbRegion).setUpperBound(regionType[1])
+    inv = pg.core.Inversion(data, fop)
+    inv.setLambda(lam)
+    inv.setRecalcJacobian(True)
+    inv.setVerbose(True)
+    inv.setError(error)
+    inv.setDeltaPhiAbortPercent(0.1)
+    model = inv.run()
+    print('Results of the inversion:\n')
+    print(model)
+    #
+    # Post Processing:
+    # ----------------
+    V_p = np.asarray(model[nlay-1:2*nlay-1])
+    ThickLeft = np.asarray(model[:nlay-1])
+    DipLeft = np.asarray(model[2*nlay-1:])
+    ModelContainer = Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft)
+    DataSim = ModelContainer.Simulate(Sensors, Measurements)
+    DataReal = Measurements[:,2]
+    rms = np.sqrt(np.square(DataReal-DataSim).sum())
+    print('RMSE = {} seconds'.format(float(rms)))
+    return Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft), Sensors, Measurements
+    
+if __name__=="__main__":
+    InvModel, Sensors, Measurements = InversionSnell()
+    Snell(nbLayers=3,V_p=[1000,2000,4000],ThickLeft=[8,3]).Simulate(Sensors,Measurements)
+    sX = Sensors[np.unique(Measurements[:,0]).astype(int)-1,0]
+    rX = Sensors[:,0]
+    InvModel.ShowModel(sX,rX)
+    DataSimulated = InvModel.Simulate(Sensors, Measurements)
+    InvModel.plotHodochrones(Sensors,Measurements,Synthetic=DataSimulated)
     plt.show()
-    ModelTest.ShowModel()
-    plt.show()
-
-    test = SnellFOP([Sensors, Measurements])
-    print(test.createStartModel(Measurements[:,-1]))
-    print(test.response(test.createStartModel(Measurements[:,-1])))
