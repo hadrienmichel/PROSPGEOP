@@ -279,11 +279,11 @@ def InversionSnell(Sensors, Measurements, nlay=3):
     DataSim = ModelContainer.Simulate(Sensors, Measurements)
     DataReal = Measurements[:,2]
     rms = np.sqrt(np.square(DataReal-DataSim).mean())
-    print('Results of the inversion:\n')
+    print('\n\n\nResults of the inversion:\n')
     print('\t - Thicknesses [m]: {}'.format(ThickLeft))
     print('\t - Velocities [m/s]: {}'.format(V_p))
-    print('\t - Dipping angles [rad]: {}'.format(DipLeft[:-1]))
-    print('RMSE = {} seconds'.format(float(rms)))
+    print('\t - Dipping angles [rad]: {}\n'.format(DipLeft[:-1]))
+    print('RMSE = {} seconds\n'.format(float(rms)))
     return Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft)
     
 if __name__=="__main__":
