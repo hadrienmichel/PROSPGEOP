@@ -42,7 +42,13 @@ Une fois ce ficiher chargé, une nouvelle fenêtre s'ouvre. Il est vivement cons
 ---
 
 ## Piquer les premières arrivées:
-# TODO
+Dans un ensemble de traces sismiques, il est important de bien pouvoir distinguer les différents éléments du signal. Ainsi, il est aisé de détecter différentes parties dans les traces:
+- Première arrivé: c'est l'instant auquel arrive la première onde (la plus rapide). Il s'agit du temps de parcourt de l'onde réfractée qui nous intéresse dans le cadre de ce travaux pratique.
+- Onde sonore: elle est facilement distingueable dans un train d'onde sismique parce que sa vitesse est constante (environ 300m/s) et sont amplitude est forte.
+- Ondes de surfaces: ce train d'ondes présente une forte amplitude et voyage plus lentement que les ondes de compression (P). Ces ondes se dispersent avec la distance, c'est-à-dire que leur présence dans le temps sera plus importante plus le géophone est éloigné de la source.
+- Bruit: il s'agit de variations brutes dans le signal qui ont une fréquence variable. Leur présence est problématique est peut parfois cacher le signal sismique (présence de sources de bruit sismique a proximité du site d'aquistion). Cette partie du signal doit être diminuée au maximum pour permettre une interprétation efficace du signal sismique. Malheureusement, pour diminuer le bruit, il faut procéder à ce que l'on appel le stacking. Cette procédure additionne des signaux similaires pris a des temps différents. Le bruit étant aléatoire, son influence n'est pas la même dans tous les signaux et la valeur moyenne du bruit est nulle (normalement). Sur un site peu bruité, il faudra stacker 2 à 5 fois alors que sur un site bruité, il peut être nécéssaire de stacker jusqu'à 100 fois voir plus pour avoir un signal de qualité.
+
+Une bonne pratique pour piquer les premières arrivées est de d'abord zoomer le graphique sur le temps avant l'arrivée de l'onde sonore. Ainsi, le temps sélectionné sera plus précis. Ensuite, pour naviguer dans la fenêtre, il faut utiliser la souris aisni que les flèches du clavier. Avec les flèches haut et bas, vous pouvez passer à la trace suivante/précédente alors qu'avec la souris, vous pouvez sélectionner le temps de première arrivée en cliquant. Une fois le temps sélectionné pour tous les géophones où le signal est suffisement clair, quitter la fenêtre et passer au signal suivant.
 
 ## Sauvergarder les premières arrivées:
 Une fois le picking des différents fichiers réalisé, les temps sélectionnés seront sauvegarder dans un nouveau fichier `FirstArrival.sgt`. Ce fichier suit le standard "Unified Data Format" et se présente sous la forme suivante:
@@ -72,7 +78,7 @@ La première section reprends les positions des géophones (et des sources éven
 # Interprétation des données
 Une fois le temps de première arrivée sélectionné, nous pouvons interprèter le jeu de donnée. Pour cela, nous allons utiliser deux approches qui sont adaptées dans des cas différents.
 - Modèle de Snell-Descartes
-- Tomographie de temps de parcourt (travel-time tomography)
+- Tomographie des temps de première arrivée (travel-time tomography)
 
 Dans les deux cas, le jeux de données sera inversé à l'aide du module d'inversion de PyGimli.
 ## 1) Modèle de Snell-Descartes
@@ -84,7 +90,7 @@ Pour résaliser une inversion du jeux de données avec cette approche, lancez le
 
 Le modèle final obtenu est présenté sous forme d'un graphique avec les interfaces ainsi que les vitesses des ondes P dans les différentes couches.
 
-## 2) Tomographie de temps de parcourt (travel-time tomography)
+## 2) Tomographie des temps de première arrivé (travel-time tomography)
 Dans ce cas-ci, il est possible d'obtenir des modèles beaucoup plus détaillés avec des structures complexes. Elle résout le modèle direct par éléments finis au lieu d'utiliser une approche simplifiée du modèle. Par conséquent, le résultats peuvent ici rendre compte de détails impossible a obtenir avec l'approche précédante. Cependant, cette approche nécéssite plus de données pour pouvoir être efficacement appliquée. En effet, il s'agit ici d'une inversion sur un problème mal posé, qui si mal contraint, peut ammener à des résultats absurdes.
 
 Pour résaliser une inversion du jeux de données avec cette approche, lancez le code [`TravelTimeTomography.py`](./Codes/TravelTimeTomography.py) et suivez les instructions a l'écran.
