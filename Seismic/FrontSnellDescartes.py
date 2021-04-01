@@ -15,6 +15,7 @@ import os
 import re
 import numpy as np
 import pygimli as pg
+import time
 
 def getH(H0:float=0.0, DipUp:float=0.0, DipDown:float=0.0, x:float=0.0):
     y0 = x*np.tan(DipUp)
@@ -162,7 +163,7 @@ class Snell():
             data = Measurements[idx,2].flatten()
             ax.plot(rX,data,'d',label='Source at {} m (measured)'.format(float(sX)))
             if Synthetic is not None:
-                ax.plot(rX,Synthetic[idx],'dk',label='Source at {} m (synthetic)'.format(float(sX)))
+                ax.plot(rX,Synthetic[idx],'+k',label='Source at {} m (synthetic)'.format(float(sX)))
         ax.set_xlabel('Distance [m]')
         ax.set_ylabel('Travel Time [sec]')
         ax.set_title('Hodochrones')
@@ -195,8 +196,8 @@ class SnellFOP(pg.core.ModellingBase): # How to build this???
         DipLeft = np.zeros((self.nlay,))
         modelInit = np.concatenate((ThickLeft, V_p, DipLeft))
         return pg.Vector(modelInit) # Thicknesses, Velocities, Dipping
-    
-def InversionSnell():
+
+def readSGT():
     # 1) Load a file with the first arrival:
     root = Tk()
     filename = askfilename(filetypes = (("First-Arrival", "*.sgt"), ("All types", "*.*")))
@@ -228,6 +229,9 @@ def InversionSnell():
         elif idxMeas < nbMeasurements:
             Measurements[idxMeas,:] = re.split(r'\t+', line)
             idxMeas += 1
+    return Sensors, Measurements
+    
+def InversionSnell(Sensors, Measurements, nlay=3):
     if np.count_nonzero(Sensors[:,1]) > 0:
         print("This dataset cannot be interpreted with the Snell refraction model!")
         print("Use PyGIMLI for the inversion of the traveltime tomography...")
@@ -246,9 +250,7 @@ def InversionSnell():
     #
     # Parameters:
     # -----------
-    nlay = 3 
     error = 1e-5 # AbsoluteError associated to the picking
-    lam = 0 # DO NOT CHANGE THIS! (Well regularized model)
     #
     # Inversion:
     # ----------
@@ -261,14 +263,12 @@ def InversionSnell():
         fop.region(nbRegion).setLowerBound(regionType[0])
         fop.region(nbRegion).setUpperBound(regionType[1])
     inv = pg.core.Inversion(data, fop)
-    inv.setLambda(lam)
+    inv.setLambda(0)
     inv.setRecalcJacobian(True)
     inv.setVerbose(True)
     inv.setError(error)
-    inv.setDeltaPhiAbortPercent(0.1)
+    inv.setDeltaPhiAbortPercent(0.001)
     model = inv.run()
-    print('Results of the inversion:\n')
-    print(model)
     #
     # Post Processing:
     # ----------------
@@ -278,12 +278,26 @@ def InversionSnell():
     ModelContainer = Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft)
     DataSim = ModelContainer.Simulate(Sensors, Measurements)
     DataReal = Measurements[:,2]
-    rms = np.sqrt(np.square(DataReal-DataSim).sum())
+    rms = np.sqrt(np.square(DataReal-DataSim).mean())
+    print('Results of the inversion:\n')
+    print('\t - Thicknesses [m]: {}'.format(ThickLeft))
+    print('\t - Velocities [m/s]: {}'.format(V_p))
+    print('\t - Dipping angles [rad]: {}'.format(DipLeft[:-1]))
     print('RMSE = {} seconds'.format(float(rms)))
-    return Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft), Sensors, Measurements
+    return Snell(nbLayers=nlay,V_p=V_p, ThickLeft=ThickLeft, DipAngles=DipLeft)
     
 if __name__=="__main__":
-    InvModel, Sensors, Measurements = InversionSnell()
+    Sensors, Measurements = readSGT()
+    Snell().plotHodochrones(Sensors, Measurements)
+    nblay = 0
+    while nblay<=1:
+        try:
+            nblay = int(input('\n\n\t\tInsert the number of layers for the model (nlay > 1) : \t'))
+        except:
+            nblay = 0
+    print('\n\nBeginning inversion:')
+    time.sleep(1)
+    InvModel = InversionSnell(Sensors, Measurements,nblay)
     Snell(nbLayers=3,V_p=[1000,2000,4000],ThickLeft=[8,3]).Simulate(Sensors,Measurements)
     sX = Sensors[np.unique(Measurements[:,0]).astype(int)-1,0]
     rX = Sensors[:,0]
