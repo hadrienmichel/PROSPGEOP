@@ -10,7 +10,7 @@ conda config --add channels conda-forge
 conda install -c gimli pygimli
 conda install obspy
 ```
-Ensuite, il vous suffit de lancer les codes télécharges au point 1 pour réaliser les exercices.
+Ensuite, il vous suffit de lancer les codes téléchargés au point 1 pour réaliser les exercices.
 
 # Acquisition des données sur le terrain
 Les données de sismique réfraction peuvent être acquise de plusieurs manières sur le terrain. En général, on disposera les géophones en ligne avec un espacement régulier, bien qu'aucune règle ne contraigne cela. Ensuite, les géophones sont connecté a une station de mesure grâce a un cable multi-brins. 

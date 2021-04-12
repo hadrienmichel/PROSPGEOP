@@ -9,6 +9,7 @@ from tkinter.filedialog import askopenfilename as askfilename
 import os
 import re
 import numpy as np
+import time
 
 if __name__=="__main__": # Only execute the script if called directly (it is not a function nor a module)
     root = Tk()
@@ -60,7 +61,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
         beginTime = float(st[0].stats.seg2["DELAY"])
         deltaT = float(st[0].stats.seg2["SAMPLE_INTERVAL"])
         nbPoints = st[0].stats.npts
-        time = np.arange(beginTime, beginTime+nbPoints*deltaT, deltaT)
+        timeSEG2 = np.arange(beginTime, beginTime+nbPoints*deltaT, deltaT)
         # Picking the traces:
         Picks = [None]*len(st)
         # Create the interactive Figure:
@@ -95,9 +96,17 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
                 changedSelect = True    
             return 0
 
+        # Excluding zoom solution adapted from: https://stackoverflow.com/questions/48446351/distinguish-button-press-event-from-drag-and-zoom-clicks-in-matplotlib
+        MAX_CLICK_LENGTH = 0.5 # Max time to consider a click and not a drag.
+        timeOnClick = 0
+
         def on_press(event):
-            global Picks, changedSelect
-            if event.button == 1: # Left-click only
+            global timeOnClick
+            timeOnClick = time.time()
+
+        def on_release(event):
+            global Picks, changedSelect, timeOnClick# Only clicks inside this axis are valid.
+            if event.button == 1 and ((time.time() - timeOnClick) < MAX_CLICK_LENGTH): # If left click and not dragging accross the pannel
                 Picks[currSelect] = MousePosition
                 changedSelect = True
             return 0
@@ -106,7 +115,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
             global changedSelect, First
             # Change plot to go at the correct position:
             axZoom.clear()
-            axZoom.plot(time,st[currSelect].data,color='k')
+            axZoom.plot(timeSEG2,st[currSelect].data,color='k')
             axZoom.autoscale(axis='y')
             z = axZoom.get_ylim()
             axZoom.plot([MousePosition, MousePosition],z,color='r')
@@ -132,9 +141,9 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
                     data = tr.data 
                     data = data/(max(data)-min(data))+i
                     if i == currSelect:
-                        axMain.plot(time,data,color='r')
+                        axMain.plot(timeSEG2,data,color='r')
                     else:
-                        axMain.plot(time,data,color='k')
+                        axMain.plot(timeSEG2,data,color='k')
                     if Picks[i] is not None:
                         axMain.plot([Picks[i], Picks[i]], [i-0.5, i+0.5],color='g')
                     i += 1
@@ -148,6 +157,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
         plt.connect('motion_notify_event', changeMouse)
         plt.connect('key_press_event', on_key)
         plt.connect('button_press_event',on_press)
+        plt.connect('button_release_event',on_release)
         ani = animation.FuncAnimation(figureMain,AnimationZoom,interval=1)
 
         plt.show()
