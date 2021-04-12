@@ -163,7 +163,7 @@ class Snell():
             data = Measurements[idx,2].flatten()
             ax.plot(rX,data,'d',label='Source at {} m (measured)'.format(float(sX)))
             if Synthetic is not None:
-                ax.plot(rX,Synthetic[idx],'+k',label='Source at {} m (synthetic)'.format(float(sX)))
+                ax.plot(rX,Synthetic[idx],':+k',label='Source at {} m (synthetic)'.format(float(sX)))
         ax.set_xlabel('Distance [m]')
         ax.set_ylabel('Travel Time [sec]')
         ax.set_title('Hodochrones')
@@ -193,7 +193,7 @@ class SnellFOP(pg.core.ModellingBase): # How to build this???
     def startModel(self, dataVals=None):
         ThickLeft = np.ones((self.nlay-1,))*5.0
         V_p = np.linspace(1000,3000,num=self.nlay)
-        DipLeft = np.zeros((self.nlay,))
+        DipLeft = np.ones((self.nlay,))*0.001
         modelInit = np.concatenate((ThickLeft, V_p, DipLeft))
         return pg.Vector(modelInit) # Thicknesses, Velocities, Dipping
 
@@ -258,7 +258,7 @@ def InversionSnell(Sensors, Measurements, nlay=3):
     fop = SnellFOP(Sensors, Measurements, nlay = nlay)
     # Velocities for all layers and dipping for the nlay-1 interfaces and thicknesses for all but the half-space
     regionArray = np.concatenate(((np.ones((nlay-1,))*0).astype(int), (np.ones((nlay,))*1).astype(int), (np.ones((nlay,))*2).astype(int)))
-    limits = [[0.1, 100], [500, 5000], [-0.2, 0.2]]
+    limits = [[0.1, 100], [500, 5000], [-0.25, 0.25]]
     for nbRegion, regionType in enumerate(limits):
         fop.region(nbRegion).setLowerBound(regionType[0])
         fop.region(nbRegion).setUpperBound(regionType[1])

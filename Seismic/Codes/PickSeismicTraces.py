@@ -19,6 +19,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
     head_tail = os.path.split(filename)
     path = head_tail[0]
     filename_geom = head_tail[1]
+    nameSave = filename_geom[:-9]
     # Retreive the datafiles names:
     SEG2Files = []
     SourcePosition = []
@@ -115,14 +116,18 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
             global changedSelect, First
             # Change plot to go at the correct position:
             axZoom.clear()
-            axZoom.plot(timeSEG2,st[currSelect].data,color='k')
+            idx = np.greater_equal(timeSEG2,MousePosition-150*deltaT) & np.less_equal(timeSEG2,MousePosition+150*deltaT)
+            timeZoom = timeSEG2[idx]
+            axZoom.plot(timeZoom,st[currSelect].data[idx],color='k')
+            axZoom.set_xlim(left=MousePosition-150*deltaT,right=MousePosition+150*deltaT)
             axZoom.autoscale(axis='y')
             z = axZoom.get_ylim()
             axZoom.plot([MousePosition, MousePosition],z,color='r')
-            axZoom.set_xlim(left=MousePosition-150*deltaT,right=MousePosition+150*deltaT)
+            if Picks[currSelect] is not None:
+                axZoom.plot([Picks[currSelect], Picks[currSelect]], z,color='g')
             axZoom.set_frame_on(False)
             axZoom.tick_params(
-                axis='both',          # changes apply to the x-axis
+                axis='both',       # changes apply to the x-axis
                 which='both',      # both major and minor ticks are affected
                 bottom=False,      # ticks along the bottom edge are off
                 top=False,         # ticks along the top edge are off
@@ -184,7 +189,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
         pick[1] = NewId[OldId.index(pick[1])]
 
     # Saving the picks in a sgt file (for interpretation in PyGimli)
-    f = open(os.path.join(path,"FirstArrival.sgt"),'w')# Create a new file called FirstArrival.sgt in the data directory
+    f = open(os.path.join(path,nameSave+'.sgt'),'w')# Create a new file called FirstArrival.sgt in the data directory
     nbSensors = len(Sensors)
     f.write('%d # shot/geophone points\n' % nbSensors)
     f.write('#x\ty\n')
