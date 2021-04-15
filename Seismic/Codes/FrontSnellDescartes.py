@@ -193,7 +193,11 @@ class SnellFOP(pg.core.ModellingBase): # How to build this???
     def startModel(self, dataVals=None):
         ThickLeft = np.ones((self.nlay-1,))*5.0
         V_p = np.linspace(1000,3000,num=self.nlay)
-        DipLeft = np.ones((self.nlay,))*0.001
+        sourcesX = self.x[np.unique(self.array[:,0].astype(int))-1,0]
+        if len(sourcesX) > 1:
+            DipLeft = np.ones((self.nlay,))*0.001
+        else:
+            DipLeft = np.zeros((self.nlay,))
         modelInit = np.concatenate((ThickLeft, V_p, DipLeft))
         return pg.Vector(modelInit) # Thicknesses, Velocities, Dipping
 
@@ -236,8 +240,6 @@ def InversionSnell(Sensors, Measurements, nlay=3):
         print("This dataset cannot be interpreted with the Snell refraction model!")
         print("Use PyGIMLI for the inversion of the traveltime tomography...")
         raise Exception("Dataset has topography!")
-    # File has been read!
-    print("First arrival times read succesfully!")
     # Get the number of sources in the system:
     Sources = Sensors[np.unique(Measurements[:,0].astype(int))-1,0]
     Receivers = Sensors[np.unique(Measurements[:,1].astype(int))-1,0]
@@ -288,6 +290,8 @@ def InversionSnell(Sensors, Measurements, nlay=3):
     
 if __name__=="__main__":
     Sensors, Measurements = readSGT()
+    # File has been read!
+    print("First arrival times read succesfully!")
     Snell().plotHodochrones(Sensors, Measurements)
     nblay = 0
     while nblay<=1:

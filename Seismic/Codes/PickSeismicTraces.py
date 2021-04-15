@@ -199,5 +199,5 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
     f.write('%d # measurements\n' % nbMeas)
     f.write('#s\tg\tt\n')
     for i in range(nbMeas):
-        f.write('%d\t%d\t%f\n' % (PicksSave[i][0]+1, PicksSave[i][1]+1, PicksSave[i][2]))
+        f.write('%d\t%d\t%f\n' % (PicksSave[i][0]+1, PicksSave[i][1]+1, max(0,PicksSave[i][2])))
     f.close()

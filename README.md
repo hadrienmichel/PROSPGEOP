@@ -23,6 +23,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 > - Anaconda (Python): [https://www.anaconda.com/products/individual](https://www.anaconda.com/products/individual)
 > - Paraview: [https://www.paraview.org/download/](https://www.paraview.org/download/)
 > - RES2DINV (Windows seulement): [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip)
+> - QGIS: [https://www.qgis.org/fr/site/forusers/download.html](https://www.qgis.org/fr/site/forusers/download.html)
 
 ## [ERT](./ERT_IP/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
@@ -98,9 +99,7 @@ La sismique est généralement utilisée pour :
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
-Vous travaillerez par groupes de 3. Il y aura 2 équipes travaillant avec EMI, 3 équipes avec ERT/IP et 3 équipes avec la sismique.
-
-Il vous sera demandé d'interpréter votre ensemble de données et de rédiger un court rapport sur votre étude (10 pages maximum).
+Vous travaillerez par groupes de 3.
 
 ---
 # Contacts:

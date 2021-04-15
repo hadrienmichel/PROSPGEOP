@@ -37,6 +37,8 @@ RECEIVERS
 ```
 Une fois ce ficiher chargé, une nouvelle fenêtre s'ouvre. Il est vivement conseillé de mettre cette fenêtre en mode plein écran avant toute chose. En effet, cette fenêtre vous permettra de piquer les premières arrivées pour le premier des fichiers référencé dans le fichier '\*.geometry'. Plus la fenêtre est grande, plus le détails sur la première arrivée sera bien capturée.
 
+La fenêtre est divisée en 2 partie. Sur la partie gauche, vous avez 
+
 ---
 ### NB: Cette fenêtre peut être lente. Merci d'être patient pendant l'utilisation!
 ---
