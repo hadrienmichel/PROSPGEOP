@@ -40,7 +40,7 @@ Une fois ce ficiher chargé, une nouvelle fenêtre s'ouvre. Il est vivement cons
 
 La fenêtre est divisée en 2 partie (*Fig.1*). Sur la partie gauche, vous avez les différentes traces sismiques. La trace rouge est la trace en cours d'analyse. Un zoom sur le trace en cours d'analyse est montré sur la partie droite de la figure.
 
-![Fenêtre de picking des premières arrivées](./pictures/Picking01.png)  
+![Fenêtre de picking des premières arrivées](./pictures/Picking01.PNG)  
 *Figure 1: Fenêtre de picking des premières arrivées*
 
 ---
