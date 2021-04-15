@@ -20,37 +20,46 @@ Une fois le dispositif mis en place, il faut une source sismique pour générer 
 # Détection des premières arrivées
 Pour la sismique réfraction, le propriété qui nous intéresse dans le signal sismique est le temps lors de la première arrivée. Il nous faut donc sélectionner ce temps de première arrivée hors des traces sismiques. Pour cela, divers algorithmes existe, cependant, a fin pédagogique, nous allons piquer manuellement les premières arrivées. Ceci permettra de mieux distinguer les potentiels problèmes liés aux méthodes sismiques.
 
-Pour piquer un signal sismique, nous allons utiliser le code [`PickSeismicTraces.py`](./Codes/PickSeismicTraces.py) que vous avez téléchargé. Ce code prends en entrée un fichier '\*.geometry'. Le fichier geometry renseigne les différents fichiers a piquer (aller, retour, etc.) avec la position de leur source. Ensuite, la liste des positions (x,y) des géophones est donnée. Il s'agit ici des positions (x,y) locales le long d'une droite (x) avec la topographie (y) et non des coordonnées globales. Un [exemple](./Data/testFile.geometry) de fichier '\*.geometry' est montré ci-dessous:
+Pour piquer un signal sismique, nous allons utiliser le code [`PickSeismicTraces.py`](./Codes/PickSeismicTraces.py) que vous avez téléchargé. Ce code prends en entrée un fichier '\*.geometry' (fichier text avec tabulations comme séparateur). Le fichier '\*.geometry' renseigne les différents fichiers a piquer (aller, retour, etc.) avec la position de leur source. Ensuite, la liste des positions (x,y) des géophones est donnée. Il s'agit ici des positions (x,y) locales le long d'une droite (x) avec la topographie (y) et non des coordonnées globales. Un [exemple](./Data/Hermalle/Hermalle.geometry) de fichier '\*.geometry' est montré ci-dessous:
 ```txt
 SOURCES
-testFile.sg2	141	0
-testFile2.sg2	129	0
+geophone1.sg2	0	0
+geophone24.sg2	57.5	0
 RECEIVERS
 0	0
-3	0
+2.5	0
+5	0
 .
 .
 .
-135	0
-138	0
-141	0
+52.5	0
+55	0
+57.5	0
 ```
 Une fois ce ficiher chargé, une nouvelle fenêtre s'ouvre. Il est vivement conseillé de mettre cette fenêtre en mode plein écran avant toute chose. En effet, cette fenêtre vous permettra de piquer les premières arrivées pour le premier des fichiers référencé dans le fichier '\*.geometry'. Plus la fenêtre est grande, plus le détails sur la première arrivée sera bien capturée.
 
-La fenêtre est divisée en 2 partie. Sur la partie gauche, vous avez 
+La fenêtre est divisée en 2 partie (*Fig.1*). Sur la partie gauche, vous avez les différentes traces sismiques. La trace rouge est la trace en cours d'analyse. Un zoom sur le trace en cours d'analyse est montré sur la partie droite de la figure.
+
+![Fenêtre de picking des premières arrivées](./pictures/Picking01.png)  
+*Figure 1: Fenêtre de picking des premières arrivées*
 
 ---
-### NB: Cette fenêtre peut être lente. Merci d'être patient pendant l'utilisation!
+### NB: Cette fenêtre peut être lente. Merci d'être patient pendant l'utilisation! 
 ---
 
 ## Piquer les premières arrivées:
-Dans un ensemble de traces sismiques, il est important de bien pouvoir distinguer les différents éléments du signal. Ainsi, il est aisé de détecter différentes parties dans les traces:
+Dans un ensemble de traces sismiques, il est important de bien pouvoir distinguer différents éléments du signal. Ainsi, il est aisé de détecter différentes parties dans les traces:
 - Première arrivé: c'est l'instant auquel arrive la première onde (la plus rapide). Il s'agit du temps de parcourt de l'onde réfractée qui nous intéresse dans le cadre de ce travaux pratique.
 - Onde sonore: elle est facilement distingueable dans un train d'onde sismique parce que sa vitesse est constante (environ 300m/s) et sont amplitude est forte.
 - Ondes de surfaces: ce train d'ondes présente une forte amplitude et voyage plus lentement que les ondes de compression (P). Ces ondes se dispersent avec la distance, c'est-à-dire que leur présence dans le temps sera plus importante plus le géophone est éloigné de la source.
 - Bruit: il s'agit de variations brutes dans le signal qui ont une fréquence variable. Leur présence est problématique est peut parfois cacher le signal sismique (présence de sources de bruit sismique a proximité du site d'aquistion). Cette partie du signal doit être diminuée au maximum pour permettre une interprétation efficace du signal sismique. Malheureusement, pour diminuer le bruit, il faut procéder à ce que l'on appel le stacking. Cette procédure additionne des signaux similaires pris a des temps différents. Le bruit étant aléatoire, son influence n'est pas la même dans tous les signaux et la valeur moyenne du bruit est nulle (normalement). Sur un site peu bruité, il faudra stacker 2 à 5 fois alors que sur un site bruité, il peut être nécéssaire de stacker jusqu'à 100 fois voir plus pour avoir un signal de qualité.
 
 Une bonne pratique pour piquer les premières arrivées est de d'abord zoomer le graphique sur le temps avant l'arrivée de l'onde sonore. Ainsi, le temps sélectionné sera plus précis. Ensuite, pour naviguer dans la fenêtre, il faut utiliser la souris aisni que les flèches du clavier. Avec les flèches haut et bas, vous pouvez passer à la trace suivante/précédente alors qu'avec la souris, vous pouvez sélectionner le temps de première arrivée en cliquant. Une fois le temps sélectionné pour tous les géophones où le signal est suffisement clair, quitter la fenêtre et passer au signal suivant.
+
+La première arrivée est marquée par la première perturbation dans le signal. Malheursement, cette première arrivée est rarement très clairement marquée comme nous pouvons le voir en *Fig.2*. Il est même possible que de temps en temps, il soit impossible de piquer correctement le temps de première arrivée.
+
+![Piquer les premières arrivées](./pictures/Picking.png)  
+*Figure 1: Piquer les premières arrivées: pas toujours facile*
 
 ## Sauvergarder les premières arrivées:
 Une fois le picking des différents fichiers réalisé, les temps sélectionnés seront sauvegarder dans un nouveau fichier `FirstArrival.sgt`. Ce fichier suit le standard "Unified Data Format" et se présente sous la forme suivante:
@@ -82,11 +91,13 @@ Une fois le temps de première arrivée sélectionné, nous pouvons interprèter
 - Modèle de Snell-Descartes
 - Tomographie des temps de première arrivée (travel-time tomography)
 
+Dans le cadre de ces travaux pratiques, seul la première méthode sera utilisée.
+
 Dans les deux cas, le jeux de données sera inversé à l'aide du module d'inversion de PyGimli.
 ## 1) Modèle de Snell-Descartes
 Ce modèle est extrèmement simple et approche la réalitée en utilisant une succession de couches pouvant être inclinées agissant comme réfracteurs (contraste de vitesse entre deux milieu). Ce modèle se base sur les lois de la physique des ondes et plus particulièrement sur la réfraction (angle critique de Snell).
 
-Ce modèle est adapté dans des cas simples, en l'abscence de topographie (ou toporgraphie faible). Il a cependant certaines limitations, particulièrement au niveau des type de couches qu'il est capable de détecter. Ainsi, une des premières hypothèses d'un tel modèle est la supperposition de couches de vitesses croissants avec la profondeur.
+Ce modèle est adapté dans des cas simples, en l'abscence de topographie (ou topographie faible). Il a cependant certaines limitations, particulièrement au niveau des type de couches qu'il est capable de détecter. Ainsi, une des premières hypothèses d'un tel modèle est la supperposition de couches de vitesses croissants avec la profondeur.
 
 Pour résaliser une inversion du jeux de données avec cette approche, lancez le code [`FrontSnellDescartes.py`](./Codes/FrontSnellDescartes.py) et suivez les instructions a l'écran.
 
