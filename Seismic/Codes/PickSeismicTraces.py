@@ -58,18 +58,16 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
         _, ext = os.path.splitext(name)
         if ext == '.segy' or ext == '.sgy':
             st = read(os.path.join(path,name), 'SEGY')
-            beginTime = float(st[0].stats.segy["DELAY"])
-            deltaT = float(st[0].stats.segy["SAMPLE_INTERVAL"])
+            beginTime = 0
         elif ext == '.seg2' or ext == '.sg2':
             st = read(os.path.join(path,name), 'SEG2')
             beginTime = float(st[0].stats.seg2["DELAY"])
-            deltaT = float(st[0].stats.seg2["SAMPLE_INTERVAL"])
         else:
             st = read(os.path.join(path,name), 'SEG2')
             beginTime = float(st[0].stats.seg2["DELAY"])
-            deltaT = float(st[0].stats.seg2["SAMPLE_INTERVAL"])
         if len(st) != len(ReceiversPosition): # If the number of geophones does not match between the loaded array and the gemoetry
             raise Exception('The file referenced in the geometry file does not match the geometry of the array!')
+        deltaT = float(st[0].stats.delta)
         # Computing the xAxes values
         nbPoints = st[0].stats.npts
         timeSEG2 = np.arange(beginTime, beginTime+nbPoints*deltaT, deltaT)
