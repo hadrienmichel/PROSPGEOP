@@ -55,7 +55,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
     PicksSave = [] # Storing the picks and their sensor Ids
     indexFile = 0
     for name  in SEG2Files:
-        _, ext = os.path.splittext(name)
+        _, ext = os.path.splitext(name)
         if ext == '.segy' or ext == '.sgy':
             st = read(os.path.join(path,name), 'SEGY')
         elif ext == '.seg2' or ext == '.sg2':
