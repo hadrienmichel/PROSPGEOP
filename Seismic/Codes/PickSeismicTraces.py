@@ -55,7 +55,13 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
     PicksSave = [] # Storing the picks and their sensor Ids
     indexFile = 0
     for name  in SEG2Files:
-        st = read(os.path.join(path,name), 'SEG2')
+        _, ext = os.path.splittext(name)
+        if ext == '.segy' or ext == '.sgy':
+            st = read(os.path.join(path,name), 'SEGY')
+        elif ext == '.seg2' or ext == '.sg2':
+            st = read(os.path.join(path,name), 'SEG2')
+        else:
+            st = read(os.path.join(path,name), 'SEG2')
         if len(st) != len(ReceiversPosition): # If the number of geophones does not match between the loaded array and the gemoetry
             raise Exception('The file referenced in the geometry file does not match the geometry of the array!')
         # Computing the xAxes values
