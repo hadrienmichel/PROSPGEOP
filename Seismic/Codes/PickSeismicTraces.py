@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename as askfilename
+from copy import deepcopy
 import os
 import re
 import numpy as np
@@ -46,7 +47,7 @@ if __name__=="__main__": # Only execute the script if called directly (it is not
                 CurrReceiver = [float(i) for i in re.split(r'\t+', line)]
                 ReceiversPosition.append(CurrReceiver)
     # Check if Sources in List of Receivers --> Constitute Sensors array for output file:
-    Sensors = ReceiversPosition
+    Sensors = deepcopy(ReceiversPosition)
     SourcesId = np.zeros((len(SourcePosition),))
     for source in SourcePosition:
         if not(ReceiversPosition.count(source) == 1): # If the source is not in the receivers array

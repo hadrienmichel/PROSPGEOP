@@ -53,7 +53,7 @@ class Snell():
         else:
             self.DipAngles = np.zeros((self.nbLayers-1,))
     
-    def Model(self,SourceX:float=0.0,ReceiversX:np.ndarray=np.linspace(start=0.0, stop=100.0, num=101)) -> np.ndarray:
+    def Model(self,SourceX:float=0.0,ReceiversX:np.ndarray=np.linspace(start=0.0, stop=115.0, num=24)) -> np.ndarray:
         '''MODEL is a method that computes the forward model for the given SNELL class.
 
         INPUTS:
@@ -68,7 +68,7 @@ class Snell():
 
         '''
         # if np.count_nonzero(self.DipAngles) > 0:
-        i_crit = np.arcsin(np.divide(self.V_p[:-1],self.V_p[1:]))
+        
         TravelTimes = np.zeros_like(ReceiversX)
         idx = 0
         for receiver in ReceiversX:
@@ -77,6 +77,10 @@ class Snell():
             xR = max(SourceX,receiver)
             Times = np.zeros((self.nbLayers,))
             for i in range(self.nbLayers):
+                # Correction from Reynolds:
+                #   - p.289 Travel-time calulations for a dipping refractor
+                #   - p.285 Multilayer case
+                i_crit = np.arcsin(np.divide(self.V_p[:-1],self.V_p[i])) 
                 dist = abs(receiver-SourceX)
                 j = 0
                 DipDown = 0
