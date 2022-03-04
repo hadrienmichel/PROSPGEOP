@@ -39,9 +39,16 @@ Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces err
 
 La meilleure manière de calculer l'erreur attenante à une mesure est d'utiliser le théorème de réciprocité. En théorie, la résistivité mesurée lors d'une injection sur le dipole AB et une mesure sur le dipole MN devrait être équivalente à celle obtenue lors d'une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesure, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
-# Inversion des données
-L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser le logiciel commercial RES2DINV. Télécharger l'archive contenant l'exécutable d'installation au lien suivant: [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip). Ensuite, décompresser l'archive et installer le logiciel en suivant la procédure d'installation.
+# Installation des logiciels
+L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser le logiciel commercial RES2DINV ainsi que la librairie open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation au lien suivant: [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip). Ensuite, décompresser l'archive et installer le logiciel en suivant la procédure d'installation.
 
+Pour l'installation de pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes:
+```
+conda create -n bert -c gimli -c conda-forge pybert
+conda activate bert # Pour activer l'environnement
+spyder # Pour lancer spyder dans le nouvel environnement bert
+```
+# Inversion des données (RES2DINV)
 Lors du lancement de RES2DINV, une fenêtre s'affiche pour demander une clef de licence. Nous allons ici utiliser la version de démonstration de RES2DINV et n'avons donc pas besoin de license. 
 
 RES2DINV prend en entrer un fichier de données `.dat`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.dat`](./data/HOD_DD.dat) pour faire les différentes manipulations. 
@@ -83,7 +90,7 @@ Une nouvelle fenêtre s'ouvre. Dans cette fenêtre, vous pouvez charger un fichi
 
 Avant l'affichage, il est demandé de rentrer les différents paramètres d'affichage. Les paramètres par défaut sont en général suffisants.
 
-# Interprétation des résultats
+## Interprétation des résultats
 La première chose à regarder avant d'analyser le résultat est à quel point le résultat de l'inversion permet de reproduire les données mesurées sur le terrain. Une valeur unique est donnée pour cela: l'erreur absolue à l'itération courante (en %). De manière générale, cette erreur doit être la plus petite possible, sans cependant aller trop bas (une valeur raisonable se situe aux environs de 5%). 
 
 Si on observe que les données ne peuvent pas être raisonablement reproduites après les 4 itérations de la version démo, il est possible que du bruit soit toujours présent dans le jeu de données. Il est possible d'alors utiliser la fonctionnalité `Edit Data` &rarr; `RMS error statistics` pour analyser l'impact de données individuelles. Une nouvelle fenêtre s'ouvre (*Fig.4*) alors et il est possible de sélectionner le seuil d'erreur individuel acceptable à l'aide des flêches gauche et droite du clavier.
@@ -117,7 +124,53 @@ Pour afficher le DOI, il faut aller dans la fenêtre d'affichage et charger les 
 ![DOI](./pictures/DOI.png)  
 *Figure 6: Profondeur d'investigation*
 
-# Visualisation des données
+# Inversion (pyBERT)
+Pour réaliser l'inversion avec pyBERT/pyGIMLi, il faudra utiliser spyder dans l'environnement python "bert" (voir instructions d'installation).
+
+Dans un script, insèrer les lignes de code suivantes (voir code: [inversionPyBERT.py](./inversionPyBERT.py)):
+
+```python
+import pybert as pb
+
+# Read the datafile
+tdip=pb.TDIPdata(filename='./data/B52_DDN6.ohm', verbose=True)
+data = tdip.data # Extract the data container
+mgr = pb.ERTManager(data = tdip.data) # Build a pyBERT manager
+
+# Show the data
+tdip.showRhoa()
+
+# Build an inversion mesh
+## Parameters list:
+##      - paraDepth [m]: depth of the model
+##      - quality [/]: quality of the mesh (higher is better)
+##      - paraMaxCellSize [m²]: maximum size of a cell in the mesh
+##      - paraDX [/]: discretization close to the electrodes
+mesh = mgr.createMesh(data, paraDepth = 15, quality = 33.6,
+                      paraMaxCellSize = 2, paraDX = 0.6)
+
+# Inversion for resistivity:
+## Parameters list:
+##      - mesh: mesh build using createMesh (see above)
+##      - lam: lambda factor, to optimize for the dataset
+##      - robustData: use robust norm on the data?
+##      - verbose: display informations on the inversion?
+tdip.invertRhoa(mesh=mesh,lam = 10, robustData= False,
+                verbose = True)
+
+# Display the results:
+tdip.showResistivity(cMap='jet')
+
+# Invert chargeability:
+## Parameters list:
+##      - lam: lambda factor, to optimize for the dataset
+##      - ma: chargeabilty data (mrad)
+tdip.invertMa(lam = 10, ma = tdip.data('ip')*0.001)
+
+# Display the results:
+tdip.showChargeability(cMap='jet')
+```
+# Visualisation des données (PARAVIEW)
 Pour visualiser des résultats d'inversion plus complexes, nous allons utiliser un logiciel de visualitation 3D appelé [Paraview](https://www.paraview.org/). Ce logiciel permet de simplement visualiser un bloc modèle 3D et de réaliser des manipulations de base dessus.
 
 Les fichiers représentant les modèles d'inversions sont donnés sous le format `.vtk`. Ces fichiers contiennent la géométrie ainsi que les valeurs obtenues pour le modèle inverse. Il est donc possible d'analyser le "mesh" d'inversion en même temps que le résultat.

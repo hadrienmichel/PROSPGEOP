@@ -5,7 +5,6 @@
 Ce répertoire contient les codes nécéssaire aux travaux pratiques du cours de Prospection Géophysique du Pr. NGUYEN (ULiège). 
 
 Durant les travaux pratiques, vous aller voir différentes méthodes géophysiques, comment les intérprèter individuellement et comment intégrer les différentes interprétations dans un modèle global reprenant l'ensemble des méthodes applicables sur un site. Les différentes méthodes vues sont:
-- MAG (Magnétique)
 - EMI (Induction électromagnétique)
 - ERT (Tomographie de résistivité électrique)
 - IP (Polarisation induite)
@@ -24,6 +23,8 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 > - Paraview: [https://www.paraview.org/download/](https://www.paraview.org/download/)
 > - RES2DINV (Windows seulement): [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip)
 > - QGIS: [https://www.qgis.org/fr/site/forusers/download.html](https://www.qgis.org/fr/site/forusers/download.html)
+> 
+> Il vous sera également demander d'installer certains packages python et de créer des environnement spécifiques pour certaines tâches dans les TP.
 
 ## [ERT](./ERT_IP/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
@@ -54,29 +55,6 @@ L'IP est généralement appliquée à :
 > - Comment interpréter les modèles de chargeabilité
 > - Comment évaluer la fiabilité des modèles obtenus
 
-## [MAG](./MAG/README_MAG.md)
-![MAG](./pictures/MAG_measurements.jpg)
-
-*Fig.3: Exemple de prises de mesures MAG*
-
-Les études magnétiques sont souvent effectuées pour cartographier rapidement les anomalies magnétiques dans une zone (relativement) étendue. Ainsi, l'interprétation des données magnétiques se fait très souvent à l'aide de profils ou de cartes. Les applications typiques de cette méthode sont les suivantes :
-- Prospection minière
-- Archéologie
-
-> Au cours de ces travaux pratiques, vous apprendrez à convertir des données MAG brutes en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
-## [EMI](./EMI/README_EMI.md)
-![EMI](./pictures/EMI_measurements.jpg)
-
-*Fig.4: Exemple de prises de mesures EMI*
-
-Comme pour les études MAG, l'induction électromagnétique est souvent utilisée pour couvrir rapidement de vastes zones. L'EMI est généralement appliquée à : 
-- La prospection minière
-- Archéologie
-- Gestion de l'eau
-
-> Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
-
 ## [SIS](./Seismic/README_SIS.md)
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
 
@@ -92,6 +70,18 @@ La sismique est généralement utilisée pour :
 > - Comment obtenir un modèle du sous-sol sur base des hodochrones
 > - Comment interpréter les modèles de vitesse du sol
 
+## [EMI](./EMI/README_EMI.md)
+![EMI](./pictures/EMI_measurements.jpg)
+
+*Fig.4: Exemple de prises de mesures EMI*
+
+Comme pour les études MAG, l'induction électromagnétique est souvent utilisée pour couvrir rapidement de vastes zones. L'EMI est généralement appliquée à : 
+- La prospection minière
+- Archéologie
+- Gestion de l'eau
+
+> Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
+
 ---
 # Projet:
 À la fin du semestre, vous serez invités à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
@@ -99,7 +89,7 @@ La sismique est généralement utilisée pour :
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
-Vous travaillerez par groupes de 3.
+Vous travaillerez par groupes de 4.
 
 ---
 # Contacts:
