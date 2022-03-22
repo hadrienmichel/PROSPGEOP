@@ -1,16 +1,25 @@
 # Avant les travaux pratiques:
 Pour ces travaux pratiques, nous allons avoir besoin de programmes Python. Il vous est donc demandé d'installer les différents programmes nécéssaires pour ce cours. Pour cela, suivez la procédure suivante:
- - Téléchargez les codes via le lien suivant ([https://downgit.github.io/#/home?url=https://github.com/hadrienmichel/PROSPGEOP/tree/master/Seismic/Codes](https://downgit.github.io/#/home?url=https://github.com/hadrienmichel/PROSPGEOP/tree/master/Seismic/Codes))
- - Installez [PyGimli](https://www.pygimli.org/)
- - Installez [ObsPy](https://github.com/obspy/obspy/wiki)
 
-Vous pouvez réaliser les 2 derniers points en utilisant les commandes suivantes dans l'invite de commande (MacOS ou Linux) ou dans `Anaconda Prompt` (Windows)
-```bash
-conda config --add channels conda-forge
-conda install -c gimli pygimli
-conda install obspy
+Téléchargez le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) au lien suivant: [https://github.com/hadrienmichel/SardineReborn/archive/refs/tags/v0.1.2.zip](https://github.com/hadrienmichel/SardineReborn/archive/refs/tags/v0.1.2.zip). Dézipper l'archive téléchargée et localisez le répertoire (C:/my-directory).
+
+Lancez `Anaconda prompt` et rentrez les commandes suivantes (le fichier `seismic.yml` doit être dans le répertoire):
+``` 
+cd "C:/my-directory"
+conda env create -f seismic.yml
 ```
-Ensuite, il vous suffit de lancer les codes téléchargés au point 1 pour réaliser les exercices.
+Ceci crée un nouvel environement (appelé `seismic`) avec les dépendances du projet.
+
+Activez l'environement:
+```
+conda activate seismic
+```
+Dans l'environement, vous pouvez rentrer la commande suivante:
+```
+python Interface.pyw
+```
+
+Le code se lance dans une nouvelle fenêtre.
 
 # Acquisition des données sur le terrain
 Les données de sismique réfraction peuvent être acquises de plusieurs manières sur le terrain. En général, on disposera les géophones en ligne avec un espacement régulier, bien qu'aucune règle ne l'impose explicitement. Ensuite, les géophones sont connectés à une station de mesure grâce à un cable multi-brins. 
@@ -20,7 +29,7 @@ Une fois le dispositif mis en place, il faut une source sismique pour générer 
 # Détection des premières arrivées
 Pour la sismique réfraction, la propriété qui nous intéresse dans le signal sismique est le temps de première arrivée. Il nous faut donc sélectionner ce temps de première arrivée au sein des traces sismiques. Pour cela, divers algorithmes existent, cependant, cependant pour des fins pédagogiques, nous allons pointer manuellement les premières arrivées. Ceci permettra de mieux distinguer les potentiels problèmes liés aux méthodes sismiques.
 
-Pour pointer un signal sismique (picking), nous allons utiliser le code [`PickSeismicTraces.py`](./Codes/PickSeismicTraces.py) précédemment téléchargé. Ce code prend en entrée un fichier '\*.geometry' (fichier texte avec tabulations comme séparateur). Le fichier '\*.geometry' renseigne les différents fichiers à piquer (aller, retour, etc.) avec la position de leur source. Ensuite, la liste des positions (x,y) des géophones est donnée. Il s'agit ici des positions (x,y) locales le long d'une droite (x) avec la topographie (y) et non des coordonnées globales. Un [exemple](./Data/Hermalle/Hermalle.geometry) de fichier '\*.geometry' est montré ci-dessous:
+Pour pointer un signal sismique (picking), nous allons utiliser le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) précédemment téléchargé. Ce code prend en entrée un fichier `\*.geometry` (fichier texte avec tabulations comme séparateur). Le fichier `\*.geometry` renseigne les différents fichiers à piquer (aller, retour, etc.) avec la position de leur source. Ensuite, la liste des positions (x,y) des géophones est donnée. Il s'agit ici des positions (x,y) locales le long d'une droite (x) avec la topographie (y) et non des coordonnées globales. Un [exemple](./Data/Hermalle/Hermalle.geometry) de fichier `\*.geometry` est montré ci-dessous:
 ```txt
 SOURCES
 geophone1.sg2	0	0
@@ -36,16 +45,20 @@ RECEIVERS
 55	0
 57.5	0
 ```
-Une fois ce ficher chargé, une nouvelle fenêtre s'ouvre. Il est vivement conseillé de mettre cette fenêtre en mode plein écran avant toute chose. En effet, cette fenêtre vous permettra de piquer les premières arrivées pour le premier des fichiers référencés dans le fichier '\*.geometry'. Plus la fenêtre est grande, plus le détails sur la première arrivée sera bien capturé.
-
-La fenêtre est divisée en 2 partie (*Fig.1*). Sur la partie gauche, vous avez les différentes traces sismiques. La trace rouge est la trace en cours d'analyse. Un zoom sur le trace en cours d'analyse est montré sur la partie droite de la figure.
-
-![Fenêtre de picking des premières arrivées](./pictures/Picking01.PNG)  
-*Figure 1: Fenêtre de picking des premières arrivées*
+Pour charger le fichier, utiliser le menu `File` et sélectionner l'option `Open geometry file` (ou le raccourci clavier `CTRL+O`). Une fois le fichier chargé, le signal s'ouvre dans la fenêtre `Picking` du logiciel. 
 
 ---
 ### NB: Cette fenêtre peut être lente. Merci d'être patient pendant l'utilisation! 
 ---
+
+La fenêtre est divisée en 2 partie (*Fig.1*). Sur la partie gauche, vous avez les différentes traces sismiques. La trace rouge est la trace en cours d'analyse. Un zoom sur le trace en cours d'analyse est montré sur la partie droite de la figure.
+
+![Fenêtre de picking des premières arrivées](./pictures/pickingTab.PNG)  
+*Figure 1: Fenêtre de picking des premières arrivées*
+
+Il est possible de sélectionner le fichier sur lequel le picking est réaliser dans le menu au dessus. La sélection du signal a piquer est faite via le sélecteur `Trace number x`. Pour sélectionner une première arrivée, faites un clic gauche a l'emplacement voulu. Par défaut, chaque première arrivée sera accompagnée d'une erreur de 3%. L'erreur peut être sélectionnée manuellement pour mieux correspondre à la réalité du signal. Pour celà, faite un clic droit à la distance voulue de la première arrivée.
+
+Une fois le picking réaliser,  sélectionner le bouton `Set picking` pour fixer votre sélection (et regagner des performances graphiques). Si vous souhaitez recommancer a 0 le picking, utiliser le bouton `Reset picking`.
 
 ## Piquer les premières arrivées:
 Dans un ensemble de traces sismiques, il est important de bien pouvoir distinguer différents éléments du signal. Ainsi, il est aisé de détecter différentes parties dans les traces:
@@ -59,10 +72,11 @@ Une bonne pratique pour piquer les premières arrivées est de d'abord zoomer su
 La première arrivée est marquée par la première perturbation dans le signal. Malheuresement, cette première arrivée est rarement très clairement marquée comme nous pouvons le voir en *Fig.2*. Il est même possible que de temps en temps, il soit impossible de piquer correctement le temps de première arrivée.
 
 ![Piquer les premières arrivées](./pictures/Picking.png)  
-*Figure 1: Piquer les premières arrivées: pas toujours facile*
+*Figure 2: Piquer les premières arrivées: pas toujours facile*
 
 ## Sauvergarder les premières arrivées:
-Une fois le picking des différents fichiers réalisé, les temps sélectionnés seront sauvegardé dans un nouveau fichier `FirstArrival.sgt`. Ce fichier suit le standard "Unified Data Format" et se présente sous la forme suivante:
+
+Pour sauver la sélection dans un fichier `*.sgt`, utiliser le menu `File` et l'option `Save current picking` (raccourci clavier: `CTRL+P`). Ce fichier suit le standard "Unified Data Format" et se présente sous la forme suivante:
 ```txt
 24 # shot/geophone points
 #x	y
@@ -88,7 +102,7 @@ La première section reprend les positions des géophones (et des sources évent
 
 # Interprétation des données
 Une fois le temps de première arrivée sélectionné, nous pouvons interprèter le jeu de données. Pour cela, nous allons utiliser deux approches qui sont adaptées dans des cas différents.
-- Modèle de Snell-Descartes
+- Modèle de Snell-Descartes (Mota)
 - Tomographie des temps de première arrivée (travel-time tomography)
 
 Dans le cadre de ces travaux pratiques, seul la première méthode sera utilisée.
@@ -99,15 +113,21 @@ Ce modèle est extrèmement simple et utilise un modèle conceptuel approchant l
 
 Ce modèle est adapté dans des cas simples, en l'abscence de topographie (ou topographie faible). Il a cependant certaines limitations, particulièrement au niveau des types de couches qu'il est capable de détecter. Ainsi, une des premières hypothèses d'un tel modèle est la superposition de couches de vitesses croissantes avec la profondeur.
 
-Pour réaliser une inversion du jeu de données avec cette approche, lancez le code [`FrontSnellDescartes.py`](./Codes/FrontSnellDescartes.py) et suivez les instructions à l'écran.
+Pour réaliser une inversion du jeu de données avec cette approche, utilisez la fenêtre `Model` (*Fig.3*) et suivez les instructions à l'écran.
 
 Le modèle final obtenu est présenté sous forme d'un graphique avec les interfaces ainsi que les vitesses des ondes P dans les différentes couches.
+
+![Piquer les premières arrivées](./pictures/modellingTab.PNG)  
+*Figure 3: Modèle de Snell-Descartes (Mota)*
 
 ## 2) Tomographie des temps de première arrivé (travel-time tomography)
 Dans ce cas-ci, il est possible d'obtenir des modèles beaucoup plus détaillés avec des structures complexes. Elle résout le modèle direct par éléments finis au lieu d'utiliser une approche simplifiée du modèle. Par conséquent, le résultats peuvent ici rendre compte de détails impossible à obtenir avec l'approche précédente. Cependant, cette approche nécéssite plus de données pour pouvoir être efficacement appliquée. En effet, il s'agit ici d'une inversion sur un problème mal posé, qui, si mal contraint, peut mener à des résultats absurdes.
 
-Pour réaliser une inversion du jeux de données avec cette approche, lancez le code [`TravelTimeTomography.py`](./Codes/TravelTimeTomography.py) et suivez les instructions à l'écran.
+Pour réaliser une inversion du jeux de données avec cette approche, utilisez la fenêtre `Inversion` (*Fig.4*) et suivez les instructions à l'écran.
 
-Le modèle final obtenu est présenté sous forme d'une image de la distribution des vitesses sismiques dans le sol. Comme pour l'inversion en [ERT/IP](../ERT_IP/README_ERTIP.md) une image de la sensibilité du modèle est égamelent fournie.
+![Piquer les premières arrivées](./pictures/inversionTabFinal.PNG)  
+*Figure 4: Module d'inversion des données*
+
+Le modèle final obtenu est présenté sous forme d'une image de la distribution des vitesses sismiques dans le sol. Une analyse de l'erreur obtenue sur le résultat est présenté en parralèle.
 
 
