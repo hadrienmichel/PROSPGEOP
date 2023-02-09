@@ -4,6 +4,10 @@ To do:
 - Load data from csv
 - Plot maps
 - Give ability to zoom, change colorscale
+## Gravity
+To do:
+- Forward model
+- Corrections example
 ## EMI
 To do:
 - Load data from csv
