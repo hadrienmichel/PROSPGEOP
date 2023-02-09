@@ -83,6 +83,19 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
+## [Grav](./GRAV/README_GRAV.md)
+![EMI](./pictures/EMI_measurements.jpg)
+
+*Fig.4: Exemple de prises de mesures EMI*
+
+La Gravimétrie a de nombreux domaines d'utilisation possible: 
+- La prospection minière
+- La détection de vide/ failles
+- La gestion de l'eau ou des sources géothermiques
+- Tout ce qui implique un changement de densité du milieu  
+
+> Au cours de ces travaux pratiques, vous apprendrez à appliquer toutes les corrections nécessaires aux données brutes pour une interprétation adéquate des résulats obtenus. De plus, vous apprendrez à générer un modèle direct et à voir l'impact d'une modification de celui-ci sur les données obtenues. 
+
 ---
 # Projet:
 À la fin du semestre, vous serez invités à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
@@ -90,7 +103,7 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 - ERT/IP (ABEM LS de l'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
-Vous travaillerez par groupes de 4.
+Vous travaillerez par groupes de 3 ou 4.
 
 ---
 # Contacts:
