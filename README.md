@@ -9,6 +9,7 @@ Durant les travaux pratiques, vous aller voir différentes méthodes géophysiqu
 - ERT (Tomographie de résistivité électrique)
 - IP (Polarisation induite)
 - SIS (Sismique réfraction)
+- GRAV (Gravimétrie)
 
 Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site servira de fil rouge tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
 ![Colonster](./pictures/MapLocalisation.jpg)
