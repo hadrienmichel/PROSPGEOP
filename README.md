@@ -83,7 +83,7 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
-## [GRAVI](./GRAVI/README_GRAV.md)
+## [GRAVI](./GRAVI/README_GRAVI.md)
 ![GRAVI](./pictures/GRAV_measurements.jpg)
 
 *Fig.4: Exemple de prise de mesures gravimétriques*
