@@ -100,7 +100,7 @@ La gravimétrie a de nombreux domaines d'utilisation possible:
 # Projet:
 À la fin du semestre, vous serez invités à vous rendre sur le terrain avec l'une des méthodes vues en classe et disponibles dans notre laboratoire. L'équipement disponible est :
 - EMI (CMD Mini-Explorer de GF Instruments)
-- ERT/IP (ABEM LS de l'ABEM)
+- ERT/IP (ABEM LS d'ABEM)
 - Sismique (DAQLink4 de Seismic Source Co.)
 
 Vous travaillerez par groupes de 3 ou 4.
