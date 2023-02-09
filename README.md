@@ -9,7 +9,7 @@ Durant les travaux pratiques, vous aller voir différentes méthodes géophysiqu
 - ERT (Tomographie de résistivité électrique)
 - IP (Polarisation induite)
 - SIS (Sismique réfraction)
-- GRAV (Gravimétrie)
+- GRAVI (Gravimétrie)
 
 Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, un site servira de fil rouge tout au long de ce semestre : Colonster. Sur ce site, vous verrez comment les différents ensembles de données peuvent se compléter les uns les autres.
 ![Colonster](./pictures/MapLocalisation.jpg)
@@ -83,8 +83,8 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
-## [Grav](./GRAV/README_GRAV.md)
-![EMI](./pictures/GRAV_measurements.jpg)
+## [GRAVI](./GRAVI/README_GRAV.md)
+![GRAVI](./pictures/GRAV_measurements.jpg)
 
 *Fig.4: Exemple de prise de mesures gravimétriques*
 
