@@ -84,9 +84,9 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 > Au cours de ces travaux pratiques, vous apprendrez à convertir des données brutes EMI en cartes pouvant être interprétées en termes d'anomalies et à émettre des hypothèses sur la nature des anomalies observées compte tenu du contexte géologique et géophysique.
 
 ## [Grav](./GRAV/README_GRAV.md)
-![EMI](./pictures/EMI_measurements.jpg)
+![EMI](./pictures/GRAV_measurements.jpg)
 
-*Fig.4: Exemple de prises de mesures EMI*
+*Fig.4: Exemple de prises de mesures gravimétriques*
 
 La gravimétrie a de nombreux domaines d'utilisation possible: 
 - La prospection minière
