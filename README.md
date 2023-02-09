@@ -88,7 +88,7 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 
 *Fig.4: Exemple de prises de mesures EMI*
 
-La Gravimétrie a de nombreux domaines d'utilisation possible: 
+La gravimétrie a de nombreux domaines d'utilisation possible: 
 - La prospection minière
 - La détection de vide/ failles
 - La gestion de l'eau ou des sources géothermiques
