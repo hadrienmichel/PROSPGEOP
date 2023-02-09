@@ -30,7 +30,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 ## [ERT](./ERT_IP/README_ERTIP.md)
 ![ERT](./pictures/ERT_measurements.jpg)
 
-*Fig.2: Exemple de prises de mesures ERT/IP*
+*Fig.2: Exemple de prise de mesures ERT/IP*
 
 L'ERT est généralement appliquée à :
 - Prospection minière
@@ -59,7 +59,7 @@ L'IP est généralement appliquée à :
 ## [SIS](./Seismic/README_SIS.md)
 ![SEISMIC](./pictures/SIS_measurements_Fred.gif)
 
-*Fig.5: Exemple de prises de mesures sismiques*
+*Fig.5: Exemple de prise de mesures sismiques*
 
 La sismique est généralement utilisée pour :
 - Génie civil
@@ -74,7 +74,7 @@ La sismique est généralement utilisée pour :
 ## [EMI](./EMI/README_EMI.md)
 ![EMI](./pictures/EMI_measurements.jpg)
 
-*Fig.4: Exemple de prises de mesures EMI*
+*Fig.4: Exemple de prise de mesures EMI*
 
 Comme pour les études MAG, l'induction électromagnétique est souvent utilisée pour couvrir rapidement de vastes zones. L'EMI est généralement appliquée à : 
 - La prospection minière
@@ -86,7 +86,7 @@ Comme pour les études MAG, l'induction électromagnétique est souvent utilisé
 ## [Grav](./GRAV/README_GRAV.md)
 ![EMI](./pictures/GRAV_measurements.jpg)
 
-*Fig.4: Exemple de prises de mesures gravimétriques*
+*Fig.4: Exemple de prise de mesures gravimétriques*
 
 La gravimétrie a de nombreux domaines d'utilisation possible: 
 - La prospection minière
