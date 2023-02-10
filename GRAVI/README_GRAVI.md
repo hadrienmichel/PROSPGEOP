@@ -116,4 +116,4 @@ ax2.set_xlim((-20, 20))
 pg.wait()
 ```
 
-Il est intéressant de s'attarder sur les différents types de résolutions de la solution pour le potentiel gravimétrique. Il est aussi important de jouer avec différents paramètres tels que la taille ou la profondeur de l'anomalie et la différence de densité entre l'anomalie et le milieu.
+Il est intéressant de s'attarder sur les différents types de résolutions de la solution pour le potentiel gravimétrique. Il est aussi important de modifier différents paramètres tels que la taille ou la profondeur de l'anomalie et la différence de densité entre l'anomalie et le milieu afin de comprendre leur impact. 
