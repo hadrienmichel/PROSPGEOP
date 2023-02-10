@@ -26,5 +26,8 @@ Cette correction tient compte de la masse supplémentaire au-dessus (ex: colline
 
 Pour prendre en compte l'effet des marées, la mesure est répétée à différents moments sur la même station (de base) afin de mesurer la dérive. La formule à appliquer est la suivante:
 
-<img src="https://render.githubusercontent.com/render/math?math=g_{corr}=g_{obs}-\frac{g_{base,2}-g_{base,1}}{t_{base,2}-t_{base,1}}\times(t_{obs}-t_{base,1})">
+![Eq_Deriv](./pictures/equation_derive.PNG)
+
+# La modélisation directe
+
 
