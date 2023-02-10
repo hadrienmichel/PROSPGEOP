@@ -20,5 +20,12 @@ Cette correction corrige la valeur de la correction de l'air libre pour prendre 
 
 ## La topographie
 
+Cette correction tient compte de la masse supplémentaire au-dessus (ex: collines), ou du déficit de masse (ex: vallées) en-dessous de l'altitude d'une mesure.
+
 ## L'effet des marées terrestres
+
+Pour prendre en compte l'effet des marées, la mesure est répétée à différents moments sur la même station (de base) afin de mesurer la dérive. La formule à appliquer est la suivante:e
+$$
+g_{corr} = g_{obs} - \frac{g_{base,2}-g_{base,1}}{t_{base,2}-t_{base,1}}*(t_{obs}-t_{base,1})
+$$
 
