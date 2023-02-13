@@ -40,13 +40,14 @@ Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces err
 La meilleure manière de calculer l'erreur attenante à une mesure est d'utiliser le théorème de réciprocité. En théorie, la résistivité mesurée lors d'une injection sur le dipole AB et une mesure sur le dipole MN devrait être équivalente à celle obtenue lors d'une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesure, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
 # Installation des logiciels
-L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser le logiciel commercial RES2DINV ainsi que la librairie open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation au lien suivant: [https://www.geotomosoft.com/Res2dinvx64_Setup.zip](https://www.geotomosoft.com/Res2dinvx64_Setup.zip). Ensuite, décompresser l'archive et installer le logiciel en suivant la procédure d'installation.
+L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser la librairie open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresser l'archive.
 
-Pour l'installation de pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes:
+Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes (attention que le fichier (`ERT.yml`) doit bien se trouver dans le fichier courant):
 ```
-conda create -n bert -c gimli -c conda-forge pybert
-conda activate bert # Pour activer l'environnement
-spyder # Pour lancer spyder dans le nouvel environnement bert
+cd "C:/my-directory"
+conda env create -f ERT.yml
+conda activate pg
+spyder # Pour lancer spyder dans le nouvel environnement
 ```
 # Inversion des données (RES2DINV)
 Lors du lancement de RES2DINV, une fenêtre s'affiche pour demander une clef de licence. Nous allons ici utiliser la version de démonstration de RES2DINV et n'avons donc pas besoin de license. 
