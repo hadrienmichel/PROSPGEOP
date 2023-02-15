@@ -4,7 +4,12 @@ Il existe de nombreux appareils permettant l'aquisition de données de gravimét
 
 # Installation 
 
-Pour ces travaux pratiques, c'est Excel qui sera utilisé dans un premier temps. Ensuite, il faudra passer à python où la librairie utilisée sera [pyGIMLI](https://www.pygimli.org/). Le même environnement que pour le TP ERT/IP peux être utilisé. Veuillez donc vous référer à l'installation [ERT-IP](../ERT_IP/README_ERTIP.md).
+Pour ces travaux pratiques, c'est Excel qui sera utilisé dans un premier temps. Ensuite, il faudra passer à python où la librairie utilisée sera [pyGIMLI](https://www.pygimli.org/). Le même environnement que pour le TP ERT/IP peux être utilisé. Veuillez donc vous référer à l'installation [ERT-IP](../ERT_IP/README_ERTIP.md). Il vous faudra peut-être réinstaller une interface dans l'environnement. Pour ce faire il suffit de taper dans votre invite de commande anaconda (`Anaconda prompt`)
+```
+spyderconda install spyder
+```
+
+
 
 # Les corrections
 
@@ -34,6 +39,8 @@ Pour prendre en compte l'effet des marées, la mesure est répétée à différe
 
 
 # La modélisation directe
+
+# L'anomalie dans un milieu homogène 
 
 Les modèles directs permettent de simuler la réponse gravimétrique en fonction de différentes hypothèses sur la géologie, la topographie et les propriétés physiques de la Terre. Cela permet aux géophysiciens de mieux comprendre les anomalies gravimétriques mesurées et de déterminer la position et la profondeur des structures géologiques sous-jacentes. La réalisation d'Un modèle direct avant une campagne de terrain permet donc de mieux comprendre les anomalies rencontrées mais aussi d'optimiser la collecte de données. Le modèle direct le plus simple est celui d'une anomalie cylindrique perpendiculaire à un profil, dans un milieu homogène. 
 
@@ -119,6 +126,8 @@ ax2.set_ylim((-9, 1))
 ax2.set_xlim((-20, 20))
 
 pg.wait()
-```
+
 
 Il est intéressant de s'attarder sur les différents types de résolutions de la solution pour le potentiel gravimétrique. Il est aussi important de modifier différents paramètres tels que la taille ou la profondeur de l'anomalie et la différence de densité entre l'anomalie et le milieu afin de comprendre leur impact. 
+
+## La maillage et la superposition 
