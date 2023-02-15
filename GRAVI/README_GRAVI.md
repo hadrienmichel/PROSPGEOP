@@ -49,7 +49,8 @@ La librairie [pyGIMLI](https://www.pygimli.org/) offre déjà un exemple permett
 ```python
 import numpy as np
 import pygimli as pg
-from pygimli.meshtools import createCircle, createWorld, createMesh
+from pygimli.meshtools import createCircle, createWorld, createMesh, createRectangle , createGrid
+import matplotlib.pyplot as plt
 
 from pygimli.physics.gravimetry import gradUCylinderHoriz, solveGravimetry
 
@@ -76,40 +77,20 @@ gz_p = solveGravimetry(circ, dRho, pnts, complete=False)
 world = createWorld(start=[-20, 0], end=[20, -10], marker=1)
 mesh = createMesh([world, circ])
 dRhoC = pg.solver.parseMapToCellArray([[1, 0.0], [2, dRho]], mesh)
+z=min(dRhoC)
 gc_m = solveGravimetry(mesh, dRhoC, pnts)
 
-###############################################################################
-# Finite Element solution for :math:`u`
-world = createWorld(start=[-200, 200], end=[200, -200], marker=1)
-
-# Add some nodes to the measurement points to increase the accuracy a bit
-[world.createNode(x_, 0.0,  1) for x_ in x]
 plc = world + circ
-mesh = createMesh(plc, quality=34)
-mesh = mesh.createP2()
-
-density = pg.solver.parseMapToCellArray([[1, 0.0], [2, dRho]], mesh)
-u = pg.solver.solve(mesh, a=1, f=density, bc={'Dirichlet': {-2:0, -1:0}})
-
-###############################################################################
-# Calculate gradient of gravimetric potential
-# :math:`\frac{\partial u}{\partial (x,z)}`
-dudz = np.zeros(len(pnts))
-
-for i, p in enumerate(pnts):
-    c = mesh.findCell(p)
-    g = c.grad(p, u)
-    dudz[i] = -g[1] * 4. * np.pi * pg.physics.constants.GmGal  # why 4 pi here?
 
 ###############################################################################
 # Finishing the plots
+fig = plt.figure()
 
 ax1 = pg.plt.subplot(2, 1, 1)
 ax1.plot(x, gz_a, '-b', marker='.', label='Analytical')
 ax1.plot(x, gz_p, label='Integration: Polygon ')
 ax1.plot(x, gc_m, label='Integration: Mesh')
-ax1.plot(x, dudz, label=r'FEM: $\frac{\partial u}{\partial z}$')
-
+# ax1.plot(x, dudz, label=r'FEM: $\frac{\partial u}{\partial z}$')
 ax2 = pg.plt.subplot(2, 1, 2)
 pg.show(plc, ax=ax2)
 ax2.plot(x, x*0,  'bv')
@@ -119,15 +100,70 @@ ax1.set_xlabel('$x$-coordinate [m]')
 ax1.grid()
 ax1.legend()
 
+
 ax2.set_aspect(1)
 ax2.set_xlabel('$x$-coordinate [m]')
 ax2.set_ylabel('$z$-coordinate [m]')
-ax2.set_ylim((-9, 1))
+ax2.set_ylim((-10, 0))
 ax2.set_xlim((-20, 20))
-
-pg.wait()
+```
 
 
 Il est intéressant de s'attarder sur les différents types de résolutions de la solution pour le potentiel gravimétrique. Il est aussi important de modifier différents paramètres tels que la taille ou la profondeur de l'anomalie et la différence de densité entre l'anomalie et le milieu afin de comprendre leur impact. 
 
 ## La maillage et la superposition 
+
+```python
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb 14 14:58:37 2023
+
+@author: tomde
+"""
+
+import numpy as np
+import pygimli as pg
+from pygimli.meshtools import createCircle, createWorld, createMesh, createRectangle , createGrid
+import matplotlib.pyplot as plt
+
+from pygimli.physics.gravimetry import gradUCylinderHoriz, solveGravimetry
+
+radius = 2.  # [m]
+depth = 5.  # [m]
+pos = [0., -depth]
+dRho = 100
+
+x = np.arange(-20, 20.1, .5)
+pnts = np.array([x, np.zeros(len(x))]).T
+
+
+x2 = np.arange(-20, 20.1, 1)
+y2 = np.arange(0, -10.1, -2)
+Grid = createGrid(x2,y2,marker=1)
+
+dRhoRec = pg.solver.parseMapToCellArray([[1, 0.0]], Grid)
+dRhoRec[60]=100
+dRhoRec[61]=100
+gc_rec = -solveGravimetry(Grid, dRhoRec, pnts)
+
+###############################################################################
+# Finishing the plots
+fig = plt.figure()
+ax1 = pg.plt.subplot(2, 1, 1)
+ax1.plot(x, gc_rec, label='Grid')
+ax2 = pg.plt.subplot(2, 1, 2)
+ax2.plot(x, x*0,  'bv')
+pg.show(Grid, dRhoRec, ax=ax2)
+pg.wait()
+
+ax1.set_ylabel(r'$\frac{\partial u}{\partial z}$ [mGal]')
+ax1.set_xlabel('$x$-coordinate [m]')
+ax1.grid()
+ax1.legend()
+
+ax2.set_aspect(1)
+ax2.set_xlabel('$x$-coordinate [m]')
+ax2.set_ylabel('$z$-coordinate [m]')
+ax2.set_ylim((-10, 0))
+ax2.set_xlim((-20, 20))
+```
