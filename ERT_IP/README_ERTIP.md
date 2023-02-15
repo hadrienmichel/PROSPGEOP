@@ -15,10 +15,10 @@ from matplotlib import pyplot
 # Importer le jeu de données via pandas:
 #   Si le jeux de données contient ERT et IP et que le jeu contient des estimations d'erreur,
 #   les paramètres a entrée sont ceux utilisé ci-dessous.
-data = pd.read_csv('./data/B52_Gradient7.dat', delimiter='\t', header=None, skiprows=15, 
-    names= ['Nb. Electrodes', 'A(x)','A(y)','B(x)','B(y)','M(x)','M(y)',
-    'N(x)','N(y)','R (Ohm)','Res. Error (Ohm)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
-    skipfooter=5, engine='python')
+data = pd.read_csv('./B52_DDN6_essai.ohm', 
+                   delimiter='\t', header=None, skiprows=36, 
+    names= ['a','b','m','n','R (Ohm)','Res. Error (Ohm)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
+    skipfooter=0, engine='python')
 # Si le jeux de données contient moins de données, il faut ajuster les paramètres skiprows et names en fonction.
 nbInit = len(data.index)
 print('Initial number of values: {}'.format(nbInit))
@@ -47,12 +47,12 @@ Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faud
 cd "C:/my-directory"
 conda env create -f ERT.yml
 conda activate pg
-spyder # Pour lancer spyder dans le nouvel environnement
+python inversion.py
 ```
-# Inversion des données (RES2DINV)
-Lors du lancement de RES2DINV, une fenêtre s'affiche pour demander une clef de licence. Nous allons ici utiliser la version de démonstration de RES2DINV et n'avons donc pas besoin de license. 
+# Inversion des données 
+L'environnement nouvellement créé utilise donc les librairies [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Une interface graphique vous permet une utilisation optimale sans forcément maîtriser le langage python.  
 
-RES2DINV prend en entrer un fichier de données `.dat`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.dat`](./data/HOD_DD.dat) pour faire les différentes manipulations. 
+L'interface `ERT-IP inversion` prend en entrée un fichier de données `.ohm`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.ohm`](./data/HOD_DD.ohm) à titre d'exemple pour réaliser les différentes manipulations. 
 
 ## 1) Charger les données
 Avant de charger les données dans RES2DINV, nous allons définir le modèle utilisé comme étant le modèle raffiné: `Inversion` &rarr; `Model Discretization` &rarr; `Use model refinement`. Là, cocher la sélection `Use model cells with widths of half the unit space` (Utiliser des cellules de largeur égale à la moitié de l'espacement d'electrodes). Cette option permet d'obtenir un modèle plus détaillé pour l'inversion.
