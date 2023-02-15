@@ -40,7 +40,7 @@ Pour prendre en compte l'effet des marées, la mesure est répétée à différe
 
 # La modélisation directe
 
-# L'anomalie dans un milieu homogène 
+## L'anomalie dans un milieu homogène 
 
 Les modèles directs permettent de simuler la réponse gravimétrique en fonction de différentes hypothèses sur la géologie, la topographie et les propriétés physiques de la Terre. Cela permet aux géophysiciens de mieux comprendre les anomalies gravimétriques mesurées et de déterminer la position et la profondeur des structures géologiques sous-jacentes. La réalisation d'Un modèle direct avant une campagne de terrain permet donc de mieux comprendre les anomalies rencontrées mais aussi d'optimiser la collecte de données. Le modèle direct le plus simple est celui d'une anomalie cylindrique perpendiculaire à un profil, dans un milieu homogène. 
 
