@@ -111,27 +111,16 @@ ax2.set_xlim((-20, 20))
 
 Il est intéressant de s'attarder sur les différents types de résolutions de la solution pour le potentiel gravimétrique. Il est aussi important de modifier différents paramètres tels que la taille ou la profondeur de l'anomalie et la différence de densité entre l'anomalie et le milieu afin de comprendre leur impact. 
 
-## La maillage et la superposition 
+## La maillage et le principe de superposition superposition 
 
+Pour représenter une sous-sol plus complexe, il est possible d'utiliser le principe de superposition et donc d'additionner les potentiels. Vous pouvez imaginer votre sous-sol comme un ensemble de carrés dont la position est fixée. Connaissant l'anomalie liée à un carré seul, il suffit de faire la somme des anomalies pour obtenir l'anomalie totale. C'est donc une discrétisation géométrique du système pour lequel nous sommes capables de calculer de manière analytique la solution individuelle de chaque anomalie. Le code suivant nous permet de réaliser cette discrétisation via un maillage carré. 
 ```python
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 14 14:58:37 2023
-
-@author: tomde
-"""
-
 import numpy as np
 import pygimli as pg
-from pygimli.meshtools import createCircle, createWorld, createMesh, createRectangle , createGrid
+from pygimli.meshtools import   createGrid
 import matplotlib.pyplot as plt
 
-from pygimli.physics.gravimetry import gradUCylinderHoriz, solveGravimetry
-
-radius = 2.  # [m]
-depth = 5.  # [m]
-pos = [0., -depth]
-dRho = 100
+from pygimli.physics.gravimetry import  solveGravimetry
 
 x = np.arange(-20, 20.1, .5)
 pnts = np.array([x, np.zeros(len(x))]).T
@@ -167,3 +156,4 @@ ax2.set_ylabel('$z$-coordinate [m]')
 ax2.set_ylim((-10, 0))
 ax2.set_xlim((-20, 20))
 ```
+Dans un premier temps deux anomalies proches sont placées dans un milieu homogène. Pour comprendre la solution obtenue et l'utilisation du principe de superposition, il semble opportun de modifier ces anomalies, tant en termes de position, qu'en termes de différence de masse volumique, qu'en nombre d'anomalies totales ou encore en termes de raffinement du maillage.
