@@ -9,8 +9,6 @@ Pour ces travaux pratiques, c'est Excel qui sera utilisé dans un premier temps.
 conda install spyder
 ```
 
-
-
 # Les corrections
 
 Le premier traitement de données à appliquer aux données de gravimétrie est l'éliminations des effets connus causés par des caractéristiques prévisibles qui ne font pas partie de la cible et influencent fortement les données brutes. Une fois toutes les corrections utiles appliquées et la suppression de tous les effets connus, l'anomalie restante est alors interprétée en termes de variations de densité sous la surface. Une réflexion préalable est nécessaire pour comprendre si ces corrections impliquent une addition ou une soustraction de l'anomalie. 
