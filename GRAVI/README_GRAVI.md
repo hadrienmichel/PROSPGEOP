@@ -13,9 +13,19 @@ conda install spyder
 
 Le premier traitement de données à appliquer aux données de gravimétrie est l'éliminations des effets connus causés par des caractéristiques prévisibles qui ne font pas partie de la cible et influencent fortement les données brutes. Une fois toutes les corrections utiles appliquées et la suppression de tous les effets connus, l'anomalie restante est alors interprétée en termes de variations de densité sous la surface. Une réflexion préalable est nécessaire pour comprendre si ces corrections impliquent une addition ou une soustraction de l'anomalie. 
 
+## L'effet des marées terrestres
+
+Les marées terrestres on un impact sur les mesures gravimétriques. Comme cet impact est connu et mesurable, la correction peut aisément être trouvée en ligne. 
+
+## La dérive
+
+La fatigue mécanique ou la température par exemple peuvent avoir un impact sur la mesure au fil du temps.Pour prendre en compte cette dérive, la mesure est répétée à différents moments sur la même station (de base) afin de mesurer la dérive. La formule à appliquer est la suivante:
+
+![Eq_Deriv](./pictures/equation_derive.PNG)
+
 ## La latitude
 
-La gravité est plus forte aux pôles qu'à l'équateur et ce même s'ils sont plus proches du centre de la Terre. Ceci est dû à la force centrifuge opposée à l'équateur. La gravité augmente donc plus vous vous déplacez au nord de votre station de référence. La correction à appliquer est de 0.0081 sin(2a) mGal/10m (où a est la latitude)
+La gravité est plus forte aux pôles qu'à l'équateur et ce même s'ils sont plus proches du centre de la Terre. Ceci est dû à la force centrifuge opposée à l'équateur. La gravité augmente donc plus vous vous déplacez au nord de votre station de référence. La correction à appliquer est de 0.0081 sin(2a) mGal/10m (où a est la latitude). 
 
 ## L'air libre 
 
@@ -28,13 +38,6 @@ Cette correction corrige la valeur de la correction de l'air libre pour prendre 
 ## La topographie
 
 Cette correction tient compte de la masse supplémentaire au-dessus (ex: collines), ou du déficit de masse (ex: vallées) en-dessous de l'altitude d'une mesure.
-
-## L'effet des marées terrestres
-
-Pour prendre en compte l'effet des marées, la mesure est répétée à différents moments sur la même station (de base) afin de mesurer la dérive. La formule à appliquer est la suivante:
-
-![Eq_Deriv](./pictures/equation_derive.PNG)
-
 
 # La modélisation directe
 
