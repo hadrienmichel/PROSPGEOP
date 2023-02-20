@@ -1,6 +1,6 @@
 # Aquisition de données sur le terrain
 
-Il existe de nombreux appareils permettant l'aquisition de données de gravimétrie. A l'heure actuelle, les instruments terrestres portables modernes comprennent des systèmes automatisés de nivellement et d'enregistrement de données mais leurs capteurs sont toujours essentiellement basés sur les variations d'une masse au bout un ressort qui découlent d'une modification de l'accélération gravitationnelle. Parfois les changements de la longueur du ressort sont tellement faibles qu'ils nécessitent une certaine forme d'amplification. les anomalies mesurées sont généralement entre 0.1 et 0.00001 Gal et s'expriment donc le plus souvent en mGal. Pour rappel 1 Gal équivaut à 1 cm/s<sup>2</sup>.
+Il existe de nombreux appareils permettant l'aquisition de données de gravimétrie. A l'heure actuelle, les instruments terrestres portables modernes comprennent des systèmes automatisés de nivellement et d'enregistrement de données mais leurs capteurs sont toujours essentiellement basés sur les variations d'une masse au bout d'un ressort qui découlent d'une modification de l'accélération gravitationnelle. Parfois les changements de longueur du ressort sont tellement faibles qu'ils nécessitent une certaine forme d'amplification. les anomalies mesurées sont généralement entre 0.1 et 0.00001 Gal et s'expriment donc le plus souvent en mGal. Pour rappel 1 Gal équivaut à 1 cm/s<sup>2</sup>.
 
 # Installation 
 
@@ -23,6 +23,8 @@ La fatigue mécanique ou la température par exemple peuvent avoir un impact sur
 
 ![Eq_Deriv](./pictures/equation_derive.PNG)
 
+Pour ne pas devoir toujours retourner à la station de base, qui peut parfois se trouver à une distance considérable, les mesures peuvent être répétées à des stations intermédiaires.
+
 ## La latitude
 
 La gravité est plus forte aux pôles qu'à l'équateur et ce même s'ils sont plus proches du centre de la Terre. Ceci est dû à la force centrifuge opposée à l'équateur. La gravité augmente donc plus vous vous déplacez au nord de votre station de référence. La correction à appliquer est de 0.0081 sin(2a) mGal/10m (où a est la latitude). 
@@ -43,7 +45,7 @@ Cette correction tient compte de la masse supplémentaire au-dessus (ex: colline
 
 ## L'anomalie dans un milieu homogène 
 
-Les modèles directs permettent de simuler la réponse gravimétrique en fonction de différentes hypothèses sur la géologie, la topographie et les propriétés physiques de la Terre. Cela permet aux géophysiciens de mieux comprendre les anomalies gravimétriques mesurées et de déterminer la position et la profondeur des structures géologiques sous-jacentes. La réalisation d'Un modèle direct avant une campagne de terrain permet donc de mieux comprendre les anomalies rencontrées mais aussi d'optimiser la collecte de données. Le modèle direct le plus simple est celui d'une anomalie cylindrique perpendiculaire à un profil, dans un milieu homogène. 
+Les modèles directs permettent de simuler la réponse gravimétrique en fonction de différentes hypothèses sur la géologie, la topographie et les propriétés physiques de la Terre. Cela permet aux géophysiciens de mieux comprendre les anomalies gravimétriques mesurées et de déterminer la position et la profondeur des structures géologiques sous-jacentes. La réalisation d'un modèle direct avant une campagne de terrain permet donc de mieux comprendre les anomalies rencontrées mais aussi d'optimiser la collecte de données. Le modèle direct le plus simple est celui d'une anomalie cylindrique perpendiculaire à un profil, dans un milieu homogène. 
 
 La librairie [pyGIMLI](https://www.pygimli.org/) offre déjà un exemple permettant la simulation de résulats obtenus à partir de ce type de modèle à l'aide du code :
 
@@ -122,15 +124,16 @@ from pygimli.meshtools import   createGrid
 import matplotlib.pyplot as plt
 
 from pygimli.physics.gravimetry import  solveGravimetry
-
+# Measurements points
 x = np.arange(-20, 20.1, .5)
 pnts = np.array([x, np.zeros(len(x))]).T
 
-
+# Meshing
 x2 = np.arange(-20, 20.1, 1)
 y2 = np.arange(0, -10.1, -2)
 Grid = createGrid(x2,y2,marker=1)
 
+# delta rho distribution
 dRhoRec = pg.solver.parseMapToCellArray([[1, 0.0]], Grid)
 dRhoRec[60]=100
 dRhoRec[61]=100
