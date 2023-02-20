@@ -40,7 +40,7 @@ Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces err
 La meilleure manière de calculer l'erreur attenante à une mesure est d'utiliser le théorème de réciprocité. En théorie, la résistivité mesurée lors d'une injection sur le dipole AB et une mesure sur le dipole MN devrait être équivalente à celle obtenue lors d'une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesure, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
 # Installation des logiciels
-L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser la librairie open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresser l'archive.
+L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser les librairies open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresser l'archive.
 
 Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes (attention que le fichier (`ERT.yml`) doit bien se trouver dans le fichier courant):
 ```
@@ -55,9 +55,26 @@ L'environnement nouvellement créé utilise donc les librairies [pyGIMLI](https:
 L'interface `ERT-IP inversion` prend en entrée un fichier de données `.ohm`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.ohm`](./data/HOD_DD.ohm) à titre d'exemple pour réaliser les différentes manipulations. 
 
 ## 1) Charger les données
-Avant de charger les données dans RES2DINV, nous allons définir le modèle utilisé comme étant le modèle raffiné: `Inversion` &rarr; `Model Discretization` &rarr; `Use model refinement`. Là, cocher la sélection `Use model cells with widths of half the unit space` (Utiliser des cellules de largeur égale à la moitié de l'espacement d'electrodes). Cette option permet d'obtenir un modèle plus détaillé pour l'inversion.
-Pour charger les données dans RES2DINV, sélectionner `File` &rarr; `Read data file`. Une fenêtre s'ouvre et vous demande de sélectionner le fichier à inverser. 
-Une fois le fichier ouvert, les caractéristiques du fichier s'affichent dans la fenêtre principale et un message vous signale que la lecture du fichier s'est bien déroulée.
+
+Pour charger les données dans L'interface `ERT-IP inversion`, sélectionner `File` &rarr; `Load data`. Une fenêtre s'ouvre et vous demande de sélectionner le fichier à inverser. 
+Une fois le fichier ouvert, les caractéristiques du fichier s'affichent dans la fenêtre principale (ainsi que dans l'invite de commande d'anaconda) et un message vous signale que la lecture du fichier s'est bien déroulée.
+
+## 2) Réaliser l'inversion
+
+Il est possible de contrôler et modifer beaucoup de paramètres d'inversion grâce à pygimli. Dans le cadre de cette introduction nous n'allons pas les voir. Ils sont cependant décrits complètement dans l'[API de pyGIMLi](https://www.pygimli.org/gimliapi/classGIMLI_1_1RInversion.html#a64e77df1cc633bbc711e2167401834a3).
+
+Si vous souhaitez observer la pseudosection pour faire une première analyse sur les données avant de lancer une inversion, ceci est possible en sélectionnant `File` &rarr; `Show pseudosection matrix`
+
+Pour réaliser une inversion avec les paramètres par défaut, sélectionner `Inversion` &rarr; `Run inversion`. L'inversion va alors automatiquement se lancer. Il est possible de suivre sa progression dans l'invite de commande d'anaconda. En plus du nombre d'itérations ou du RMS, il est possible d'observer l'évolution de plusieurs facteurs tel que le chi<sup>2</sup> (*Fig.3*). 
+
+![Fin de l'inversion](./pictures/Inversion_evolution.png)  
+*Figure 3: Evolution des paramètres d'évaluation de l'inversion*
+
+A la fin de l'inversion le résultat de celle-ci, c'est-à-dire la distribution de la résistivité calculée au sein du modèle, est affiché (*Fig.4*). 
+
+
+![Fin de l'inversion](./pictures/ResultInversionPy.png)  
+*Figure 4: Résultat de l'inversion*
 
 ## 2) Trier les données
 Pour trier les données, sélectionner `Edit` &rarr; `Exterminate bad data points`. Une nouvelle fenêtre s'ouvre (*Fig.1*). Dans cette fenêtre est affichée une version simplifiée de la pseudosection. Chaque point représente l'écart par rapport a la moyenne pour une pseudo profondeur donnée. L'idée est que, comme la géologie n'est pas chaotique, les données géophysiques ne le soient pas non plus. Il faut donc détecter les valeurs qui sortent clairement de la tendance. Dans le cas du jeu de données présenté en exemple, il n'y a pas de données particulièrement problématiques.
@@ -67,22 +84,6 @@ Pour trier les données, sélectionner `Edit` &rarr; `Exterminate bad data point
 
 Après avoir sélectionné les mauvais points, sélectionner `Exit` &rarr; `Quit edit window`. Si aucun point n'est enlevé, le jeu de données est conservé en mémoire tel quel. Dans le cas inverse, il est demandé de sauver le fichier pour pouvoir l'utiliser dans l'inversion. Il est recommandé d'utiliser un nom explicitant clairement l'objet du fichier (par exemple, `Hod_DDN6_ExterminateBadPoints.dat`, indiquant clairement l'action réalisée sur le jeu de données). Si le jeu de données est modifié, il est nécessaire de la recharger avant de procéder à la suite.
 
-## 3) Réaliser l'inversion
-Il est possible de changer beaucoup de paramètres d'inversion dans RES2DINV. Dans le cadre de cette introduction nous n'allons pas les voir. Ils sont cependant décrits complètement dans le [manuel de RES2DINV](https://www.geotomosoft.com/r2dimanu.zip).
-
-Pour réaliser une inversion avec les paramètres par défaut, sélectionner `Inversion` &rarr; `Carry out inversion`.
-
-Le programme va vous demander un emplacement pour sauvergader les résultats de l'inversion dans un fichier `.INV`.
-
-L'inversion va alors se lancer. Dans la fenêtre, un graphique avec la pseudosection va s'afficher en haut et la progression des calculs nécéssaire à l'inversion s'affiche en bas (*Fig.2*).
-
-![Début de l'inversion](./pictures/BeginInversion.png)  
-*Figure 2: Démarrage de l'inversion*
-
-A la fin de l'inversion (maximum 4 itérations dans la version démo de RES2DINV), la pseudo section mesurée, la pseudo section simulée ainsi que le résultat de l'inversion sont affichées (*Fig.3*). 
-
-![Fin de l'inversion](./pictures/EndInversion.png)  
-*Figure 3: Résultats de l'inversion*
 
 ## 4) Afficher les résultats
 Pour afficher les résultats détaillés, sélectionner `Display` &rarr; `Show inversion results`. 
