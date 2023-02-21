@@ -76,6 +76,8 @@ A la fin de l'inversion le résultat de celle-ci, c'est-à-dire la distribution 
 ![Fin de l'inversion](./pictures/ResultInversionPy.png)  
 *Figure 4: Résultat de l'inversion*
 
+
+!!! ATTENTION SUITE PAS ENCORE MISE A JOUR !!!!
 ## 2) Trier les données
 Pour trier les données, sélectionner `Edit` &rarr; `Exterminate bad data points`. Une nouvelle fenêtre s'ouvre (*Fig.1*). Dans cette fenêtre est affichée une version simplifiée de la pseudosection. Chaque point représente l'écart par rapport a la moyenne pour une pseudo profondeur donnée. L'idée est que, comme la géologie n'est pas chaotique, les données géophysiques ne le soient pas non plus. Il faut donc détecter les valeurs qui sortent clairement de la tendance. Dans le cas du jeu de données présenté en exemple, il n'y a pas de données particulièrement problématiques.
 
