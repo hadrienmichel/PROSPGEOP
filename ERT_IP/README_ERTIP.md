@@ -76,35 +76,26 @@ A la fin de l'inversion le résultat de celle-ci, c'est-à-dire la distribution 
 ![Fin de l'inversion](./pictures/ResultInversionPy.png)  
 *Figure 4: Résultat de l'inversion*
 
+## 3) Afficher les résultats
 
-!!! ATTENTION SUITE PAS ENCORE MISE A JOUR !!!!
-## 2) Trier les données
-Pour trier les données, sélectionner `Edit` &rarr; `Exterminate bad data points`. Une nouvelle fenêtre s'ouvre (*Fig.1*). Dans cette fenêtre est affichée une version simplifiée de la pseudosection. Chaque point représente l'écart par rapport a la moyenne pour une pseudo profondeur donnée. L'idée est que, comme la géologie n'est pas chaotique, les données géophysiques ne le soient pas non plus. Il faut donc détecter les valeurs qui sortent clairement de la tendance. Dans le cas du jeu de données présenté en exemple, il n'y a pas de données particulièrement problématiques.
+Pour afficher les résultats détaillés, sélectionnez `Post-inversion` &rarr; `Display results`.
 
-![Exemple de fichier de données brut](./pictures/Exterminate.png)  
-*Figure 1: Fenêtre de sélection des mauvais points de données*
+Une nouvelle fenêtre s'ouvre. Dans cette fenêtre tous les modèles disponibles à l'affichage sont proposés. Les modèles grisés indiquent que ces données ne sont pas disponibles. Par exemple, dans le cas qui nous occupe seul les modèles des valeurs de résistivité et la sensibilité sont affichables (*Fig.5*). Les modèles disponibles sont : résistivité, chargeabilité, chargeabilité normalisée, sensibilité et DOI normalisé. Vous pourrez choisir l'échelle de couleur ,`Colormap` et fixer la taille de cette échelle avec les valeurs minimum et maximum. La possibilité de choisir une échelle logarithmique vous est aussi offerte.Vous pourrez aussi jouer avec le titre des axes et leur police. Attention, même si certains modèles ne sont pas affichables veillez à quand même leur entrer des valeurs min et max, sinon cela entraîner un erreur dans l'exécution du code. 
 
-Après avoir sélectionné les mauvais points, sélectionner `Exit` &rarr; `Quit edit window`. Si aucun point n'est enlevé, le jeu de données est conservé en mémoire tel quel. Dans le cas inverse, il est demandé de sauver le fichier pour pouvoir l'utiliser dans l'inversion. Il est recommandé d'utiliser un nom explicitant clairement l'objet du fichier (par exemple, `Hod_DDN6_ExterminateBadPoints.dat`, indiquant clairement l'action réalisée sur le jeu de données). Si le jeu de données est modifié, il est nécessaire de la recharger avant de procéder à la suite.
-
-
-## 4) Afficher les résultats
-Pour afficher les résultats détaillés, sélectionner `Display` &rarr; `Show inversion results`. 
-
-Une nouvelle fenêtre s'ouvre. Dans cette fenêtre, vous pouvez charger un fichier d'inversion (`File` &rarr; `Read file with inversion results`), export the model for visualization in other softwares (`File` &rarr; `Model export`) ou afficher le modèle inverse (`Display sections` &rarr; `Model display`). Pour cette dernière option, il est possible de choisir les sections à afficher. Par défaut, le programme affiche la pseudo section réelle et calculée, aisni que le résultat de l'inversion pour la résistivité électrique. Si le jeu de données inversé contient également des données de chargeabilité, il faut choisir ce qui est montré via l'option `Model display` &rarr; `Choose resistivity or IP display`.
-
-Avant l'affichage, il est demandé de rentrer les différents paramètres d'affichage. Les paramètres par défaut sont en général suffisants.
+![Fin de l'inversion](./pictures/display_results.png)  
+*Figure 5: Fenêtre de choix des modèles à afficher*
 
 ## Interprétation des résultats
 La première chose à regarder avant d'analyser le résultat est à quel point le résultat de l'inversion permet de reproduire les données mesurées sur le terrain. Une valeur unique est donnée pour cela: l'erreur absolue à l'itération courante (en %). De manière générale, cette erreur doit être la plus petite possible, sans cependant aller trop bas (une valeur raisonable se situe aux environs de 5%). 
 
-Si on observe que les données ne peuvent pas être raisonablement reproduites après les 4 itérations de la version démo, il est possible que du bruit soit toujours présent dans le jeu de données. Il est possible d'alors utiliser la fonctionnalité `Edit Data` &rarr; `RMS error statistics` pour analyser l'impact de données individuelles. Une nouvelle fenêtre s'ouvre (*Fig.4*) alors et il est possible de sélectionner le seuil d'erreur individuel acceptable à l'aide des flêches gauche et droite du clavier.
+Si on observe que les données ne peuvent pas être raisonablement reproduites après les 4 itérations de la version démo, il est possible que du bruit soit toujours présent dans le jeu de données. Il est possible d'alors utiliser la fonctionnalité `Post-inversion` &rarr; `Trim data` &rarr; `Apparent resistivity` (ou `Apparent chargeability` si ce sont les données de chargeabilité qui vous intéressent) pour analyser l'impact de données individuelles. Une nouvelle fenêtre s'ouvre (*Fig.6*) alors et il est possible de sélectionner le seuil d'erreur individuel acceptable à l'aide des flêches gauche et droite du clavier.
 
-![Statistiques sur les RMS](./pictures/RMSErrorRemove.jpeg)  
-*Figure 4: Filtarge des données par RMS individuel*
+![Statistiques sur les RMS](./pictures/TrimInversion.png)  
+*Figure 6: Filtarge des données par RMS individuel*
 
-Si des données sont enlevées, il faut sauvegarder le jeu de données et recommencer l'inversion. 
+Si des données sont enlevées, il faut sauvegarder le jeu de données dans un nouveau fichier et recommencer l'inversion. 
 
-Une fois le fit des données assuré, il faut interpréter l'image résultante de l'inversion. Pour interpréter les données, il est bon de se remémorer les différents éléments vus lors de la partie pétrophysique du cours. Ainsi, au vu du context du profil (position, géologie, etc.) il est possible d'émètre des hypothèses sur la composition du sous-sol sur base de l'image.
+Une fois le fit des données assuré, il faut interpréter l'image résultante de l'inversion. Pour interpréter les données, il est bon de se remémorer les différents éléments vus lors de la partie pétrophysique du cours. Ainsi, au vu du context du profil (position, géologie, etc.) il est possible d'émettre des hypothèses sur la composition du sous-sol sur base de l'image.
 
 ## Artefacts d'inversion, sensibilité et profondeur d'investigation
 
@@ -115,65 +106,18 @@ Il faut donc être prudent lors de l'interprétation de résultats d'inversion. 
 Deux de ces outils sont vus au cours de ces travaux pratiques:
 
 ### 1) Sensibilité
-La matrice de sensibilité est calculée en même temps que l'inversion (il s'agit d'une matrice nécéssaire au calcul de l'inversion). On peut l'afficher en sélectionnant `Display section` &rarr; `Sensitivity displays` &rarr; `Display blocks sensitivity`. La sensibilité de l'inversion s'affiche (*Fig.5*).
 
-![Sensibilité](./pictures/Sensitivity.png)  
-*Figure 5: Sensibilité normalisée de l'inversion*
+La matrice de sensibilité est calculée en même temps que l'inversion (il s'agit d'une matrice nécéssaire au calcul de l'inversion). On peut l'afficher en sélectionnant `Post-inversion` &rarr; `Display results` &rarr; `Show coverage model`. La sensibilité de l'inversion s'affiche (*Fig.6*). Il convient d’interpréter précautionneusement les parties du modèle présentant des valeurs de sensibilité faibles ce qui se traduit par un impact faible des paramètres du modèle sur les données simulées. Un désavantage de cet outil est le choix subjectif de la valeur limite, sous laquelle les parties du modèle ne sont plus considérées suffisamment représentatives. Un choix possible est de fixer ce seuil où le gradient le plus fort de la sensibilité est observé. 
+
+![Sensibilité](./pictures/Coverage.png)  
+*Figure 5: Modèle de sensibilité de l'inversion*
 
 ### 2) Profondeur d'investigation
-La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut revenir dans l'écran d'inversion et selectionner `Inversion` &rarr; `Calculate region of investigation index`. Les paramètres par défaut qui sont proposés sont généralement appropriés. L'inversion dans ce cas-ci prend plus de temps et sera sauvée dans 2 fichiers `.INV` qui sont référencés dans un fichier `.txt`.
 
-Pour afficher le DOI, il faut aller dans la fenêtre d'affichage et charger les deux fichiers du DOI: `File` &rarr; `Read DOI files` &rarr; `Read DOI pair of inversion files`. Ensuite, sélectionner `Display sections` &rarr; `Display region of investigation`. Le DOI s'affiche (*Fig. 6*).
+La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut relancer une inversion  puis calculer le DOI dans `Inversion` &rarr; `Calculate DOI`. 
 
-![DOI](./pictures/DOI.png)  
-*Figure 6: Profondeur d'investigation*
+Une fois celui-ci calculer, pour l'afficher il faut aller dans la fenêtre d'affichage et sélectionner `Show normalized DOI model `
 
-# Inversion (pyBERT)
-Pour réaliser l'inversion avec pyBERT/pyGIMLi, il faudra utiliser spyder dans l'environnement python "bert" (voir instructions d'installation).
-
-Dans un script, insèrer les lignes de code suivantes (voir code: [inversionPyBERT.py](./inversionPyBERT.py)):
-
-```python
-import pybert as pb
-
-# Read the datafile
-tdip=pb.TDIPdata(filename='./data/B52_DDN6.ohm', verbose=True)
-data = tdip.data # Extract the data container
-mgr = pb.ERTManager(data = tdip.data) # Build a pyBERT manager
-
-# Show the data
-tdip.showRhoa()
-
-# Build an inversion mesh
-## Parameters list:
-##      - paraDepth [m]: depth of the model
-##      - quality [/]: quality of the mesh (higher is better)
-##      - paraMaxCellSize [m²]: maximum size of a cell in the mesh
-##      - paraDX [/]: discretization close to the electrodes
-mesh = mgr.createMesh(data, paraDepth = 15, quality = 33.6,
-                      paraMaxCellSize = 2, paraDX = 0.6)
-
-# Inversion for resistivity:
-## Parameters list:
-##      - mesh: mesh build using createMesh (see above)
-##      - lam: lambda factor, to optimize for the dataset
-##      - robustData: use robust norm on the data?
-##      - verbose: display informations on the inversion?
-tdip.invertRhoa(mesh=mesh,lam = 10, robustData= False,
-                verbose = True)
-
-# Display the results:
-tdip.showResistivity(cMap='jet')
-
-# Invert chargeability:
-## Parameters list:
-##      - lam: lambda factor, to optimize for the dataset
-##      - ma: chargeabilty data (mrad)
-tdip.invertMa(lam = 10, ma = tdip.data('ip')*0.001)
-
-# Display the results:
-tdip.showChargeability(cMap='jet')
-```
 # Visualisation des données (PARAVIEW)
 Pour visualiser des résultats d'inversion plus complexes, nous allons utiliser un logiciel de visualitation 3D appelé [Paraview](https://www.paraview.org/). Ce logiciel permet de simplement visualiser un bloc modèle 3D et de réaliser des manipulations de base dessus.
 
