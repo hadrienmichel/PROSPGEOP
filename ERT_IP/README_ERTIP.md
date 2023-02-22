@@ -40,7 +40,7 @@ Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces err
 La meilleure manière de calculer l'erreur attenante à une mesure est d'utiliser le théorème de réciprocité. En théorie, la résistivité mesurée lors d'une injection sur le dipole AB et une mesure sur le dipole MN devrait être équivalente à celle obtenue lors d'une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesure, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
 # Installation des logiciels
-L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de téaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser les librairies open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Télécharger l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresser l'archive.
+L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de réaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser les librairies open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Téléchargez l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresserzl'archive.
 
 Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes (attention que le fichier (`ERT.yml`) doit bien se trouver dans le fichier courant):
 ```
@@ -52,7 +52,7 @@ python inversion.py
 # Inversion des données 
 L'environnement nouvellement créé utilise donc les librairies [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Une interface graphique vous permet une utilisation optimale sans forcément maîtriser le langage python.  
 
-L'interface `ERT-IP inversion` prend en entrée un fichier de données `.ohm`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.ohm`](./data/HOD_DD.ohm) à titre d'exemple pour réaliser les différentes manipulations. 
+L'interface `ERT-IP inversion` prend en entrée un fichier de données `.ohm`. Dans le cadre de ce tutoriel, nous allons utiliser le fichier [`Hod_DD.ohm`](./data/Hod_DD.ohm) à titre d'exemple pour réaliser les différentes manipulations. 
 
 ## 1) Charger les données
 
