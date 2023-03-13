@@ -6,7 +6,7 @@ Dans un premier temps, on enfonce les électrodes dans le sol suffisamment pour 
 # Analyse des données
 
 ## 1) Analyses des données brutes:
-Il est de bonne pratique de réaliser des histogrammes des données pour avoir une première idée de la qualité des données ainsi que du contenu du jeu de données. Pour ce faire, nous allons charger le jeu de données comme base de données *pandas* dans python et réaliser des histogrammes de la résistance mesurée ainsi que de la chargeabilité. Le script suivant vous permet de faire cette manipulation pour un fichier `.dat` contenant des données au format RES2DINV (voir ci-dessous). 
+Il est de bonne pratique de réaliser des histogrammes des données pour avoir une première idée de la qualité des données ainsi que du contenu du jeu de données. Pour ce faire, nous allons charger le jeu de données comme base de données *pandas* dans python et réaliser des histogrammes de la résistance mesurée ainsi que de la chargeabilité. Le script suivant vous permet de faire cette manipulation pour un fichier `.ohm` contenant des données au format RES2DINV (voir ci-dessous). 
 
 ```python
 import pandas as pd
@@ -40,7 +40,7 @@ Les mesures de résistivités électriques sont accompagnées d'erreurs. Ces err
 La meilleure manière de calculer l'erreur attenante à une mesure est d'utiliser le théorème de réciprocité. En théorie, la résistivité mesurée lors d'une injection sur le dipole AB et une mesure sur le dipole MN devrait être équivalente à celle obtenue lors d'une injection sur le dipole MN et une mesure sur le dipole AB. Ainsi, en répètant la mesure en inversant les dipoles d'injection et de mesure, on peut obtenir une estimation de l'erreur sur la mesure. Pour plus de détails, se référer aux rappels théoriques du cours.
 
 # Installation des logiciels
-L'inversion des données est réalisée a l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de réaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser les librairies open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Téléchargez l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresserzl'archive.
+L'inversion des données est réalisée à l'aide d'un code d'inversion non linéaire. Il existe plusieurs codes permettant de réaliser cette tâche: RES2DINV, BERT, E4D, CRTOMO, RESIPy, etc. Dans le cadre de ces travaux pratiques, nous allons utiliser les librairies open-source [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Téléchargez l'archive contenant l'exécutable d'installation "Installation ERT" sur ecampus. Ensuite, décompresserzl'archive.
 
 Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes (attention que le fichier (`ERT.yml`) doit bien se trouver dans le fichier courant):
 ```
@@ -61,7 +61,7 @@ Une fois le fichier ouvert, les caractéristiques du fichier s'affichent dans la
 
 ## 2) Réaliser l'inversion
 
-Il est possible de contrôler et modifer beaucoup de paramètres d'inversion grâce à pygimli. Dans le cadre de cette introduction nous n'allons pas les voir. Ils sont cependant décrits complètement dans l'[API de pyGIMLi](https://www.pygimli.org/gimliapi/classGIMLI_1_1RInversion.html#a64e77df1cc633bbc711e2167401834a3).
+Il est possible de contrôler et modifier beaucoup de paramètres d'inversion grâce à pygimli. Dans le cadre de cette introduction nous n'allons pas les voir. Ils sont cependant décrits complètement dans l'[API de pyGIMLi](https://www.pygimli.org/gimliapi/classGIMLI_1_1RInversion.html#a64e77df1cc633bbc711e2167401834a3).
 
 Si vous souhaitez observer la pseudosection pour faire une première analyse sur les données avant de lancer une inversion, ceci est possible en sélectionnant `File` &rarr; `Show pseudosection matrix`
 
@@ -80,7 +80,7 @@ A la fin de l'inversion le résultat de celle-ci, c'est-à-dire la distribution 
 
 Pour afficher les résultats détaillés, sélectionnez `Post-inversion` &rarr; `Display results`.
 
-Une nouvelle fenêtre s'ouvre. Dans cette fenêtre tous les modèles disponibles à l'affichage sont proposés. Les modèles grisés indiquent que ces données ne sont pas disponibles. Par exemple, dans le cas qui nous occupe seul les modèles des valeurs de résistivité et la sensibilité sont affichables (*Fig.5*). Les modèles disponibles sont : résistivité, chargeabilité, chargeabilité normalisée, sensibilité et DOI normalisé. Vous pourrez choisir l'échelle de couleur ,`Colormap` et fixer la taille de cette échelle avec les valeurs minimum et maximum. La possibilité de choisir une échelle logarithmique vous est aussi offerte.Vous pourrez aussi jouer avec le titre des axes et leur police. Attention, même si certains modèles ne sont pas affichables veillez à quand même leur entrer des valeurs min et max, sinon cela entraîner un erreur dans l'exécution du code. 
+Une nouvelle fenêtre s'ouvre. Dans cette fenêtre tous les modèles disponibles à l'affichage sont proposés. Les modèles grisés indiquent que ces données ne sont pas disponibles. Par exemple, dans le cas qui nous occupe seul les modèles des valeurs de résistivité et la sensibilité sont affichables (*Fig.5*). Les modèles disponibles sont : résistivité, chargeabilité, chargeabilité normalisée, sensibilité et DOI normalisé. Vous pourrez choisir l'échelle de couleur ,`Colormap` et fixer la taille de cette échelle avec les valeurs minimum et maximum. La possibilité de choisir une échelle logarithmique vous est aussi offerte.Vous pourrez aussi jouer avec le titre des axes et leur police. Attention, même si certains modèles ne sont pas affichables veillez à quand même leur entrer des valeurs min et max, sinon cela entraînera un erreur dans l'exécution du code. Une autre possibilité pour afficher les résultats est de les exporter sous le format `.vtk` et d'ensuite les visualiser à l'aide d'un logiciel de visualisation (cf. Visualisation des données (PARAVIEW)). Celui est possible en cliquant sur `File` &rarr; `Export results as VTK file`. 
 
 ![Fin de l'inversion](./pictures/display_results.png)  
 *Figure 5: Fenêtre de choix des modèles à afficher*
@@ -114,9 +114,9 @@ La matrice de sensibilité est calculée en même temps que l'inversion (il s'ag
 
 ### 2) Profondeur d'investigation
 
-La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut relancer une inversion  puis calculer le DOI dans `Inversion` &rarr; `Calculate DOI`. 
+La profondeur d'investigation peut être estimée a l'aide de l'index de profondeur d'investigation (*Depth of investigation, DOI*). Pour calculer ce dernier, il faut relancer une inversion puis calculer le DOI dans `Inversion` &rarr; `Calculate DOI`. 
 
-Une fois celui-ci calculer, pour l'afficher il faut aller dans la fenêtre d'affichage et sélectionner `Show normalized DOI model `
+Une fois celui-ci calculé, pour l'afficher il faut aller dans la fenêtre d'affichage et sélectionner `Show normalized DOI model `
 
 # Visualisation des données (PARAVIEW)
 Pour visualiser des résultats d'inversion plus complexes, nous allons utiliser un logiciel de visualitation 3D appelé [Paraview](https://www.paraview.org/). Ce logiciel permet de simplement visualiser un bloc modèle 3D et de réaliser des manipulations de base dessus.
