@@ -6,7 +6,7 @@ Dans un premier temps, on enfonce les électrodes dans le sol suffisamment pour 
 # Analyse des données
 
 ## 1) Analyses des données brutes:
-Il est de bonne pratique de réaliser des histogrammes des données pour avoir une première idée de la qualité des données ainsi que du contenu du jeu de données. Pour ce faire, nous allons charger le jeu de données comme base de données *pandas* dans python et réaliser des histogrammes de la résistance mesurée ainsi que de la chargeabilité. Le script suivant vous permet de faire cette manipulation pour un fichier `.ohm` contenant des données au format RES2DINV (voir ci-dessous). 
+Il est de bonne pratique de réaliser des histogrammes des données pour avoir une première idée de la qualité des données ainsi que du contenu du jeu de données. Pour ce faire, nous allons charger le jeu de données comme base de données *pandas* dans python et réaliser des histogrammes de la résistance mesurée ainsi que de la chargeabilité. Le script suivant vous permet de faire cette manipulation pour un fichier `.ohm` contenant des données au format pyGIMLi (voir ci-dessous). 
 
 ```python
 import pandas as pd
