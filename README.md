@@ -112,7 +112,7 @@ Envoyez toujours un e-mail avant de venir dans nos bureaux pour des questions. N
 - Frédéric Nguyen ([f.nguyen@uliege.be](mailto:f.nguyen@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
 ## Assistants:
 - Tom Debouny ([tom.debouny@uliege.be](mailto:tom.debouny@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
-- Guillaume Blanchy ([tom.debouny@uliege.be](mailto:tom.debouny@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
-- Hadrien Michel ([gblanchy@uliege.be](mailto:gblanchy@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
+- Guillaume Blanchy ([gblanchy@uliege.be](mailto:gblanchy@uliege.be]?subject=[GEOL0021-7]%20Github%20repository))
+- Hadrien Michel ([hadrien.michel@uliege.be](mailto:hadrien.michel@uliege.be?subject=[GEOL0021-7]%20Github%20repository))
 ## Maintenance Github:
 - Hadrien Michel ([hadrien.michel@uliege.be](mailto:hadrien.michel@uliege.be?subject=[GEOL0021-7]%20Github%20repository%20maintenance))
