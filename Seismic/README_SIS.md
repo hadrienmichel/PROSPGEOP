@@ -1,7 +1,7 @@
 # Avant les travaux pratiques:
 Pour ces travaux pratiques, nous allons avoir besoin de programmes Python. Il vous est donc demandé d'installer les différents programmes nécéssaires pour ce cours. Pour cela, suivez la procédure suivante:
 
-Téléchargez le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) au lien suivant: [ https://github.com/hadrienmichel/SardineReborn/archive/refs/tags/v0.4.0.zip]( https://github.com/hadrienmichel/SardineReborn/archive/refs/tags/v0.4.0.zip). Dézipper l'archive téléchargée et localisez le répertoire (C:/my-directory).
+Téléchargez le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) au lien suivant: [ https://github.com/hadrienmichel/SardineReborn/releases/tag/v0.4.2]( https://github.com/hadrienmichel/SardineReborn/releases/tag/v0.4.2.zip). Dézipper l'archive téléchargée et localisez le répertoire (C:/my-directory).
 
 Lancez `Anaconda prompt` et rentrez les commandes suivantes (le fichier `seismic.yml` doit être dans le répertoire):
 ``` 
