@@ -25,7 +25,7 @@ Pour ces travaux pratiques, nous verrons plusieurs études de cas. Néanmoins, u
 > - pyGIMLi: [https://www.pygimli.org/](https://www.pygimli.org/)
 > - QGIS (version LTR): [https://www.qgis.org/fr/site/forusers/download.html](https://www.qgis.org/fr/site/forusers/download.html)
 >
-> Il vous sera également demander d'installer certains packages python et de créer des environnement spécifiques pour certaines tâches dans les TP.
+> Il vous sera également demander d'installer certains packages python et de créer des environnement spécifiques pour certaines tâches dans les TP. Voir la fin de ce document.
 
 ## [ERT](./ERT_IP/README.md)
 ![ERT](./pictures/ERT_measurements.jpg)
@@ -104,6 +104,14 @@ La gravimétrie a de nombreux domaines d'utilisation possible:
 - Sismique (DAQLink4 de Seismic Source Co.)
 
 Vous travaillerez par groupes de 3 ou 4.
+
+# Installation des logiciels (à faire AVANT les TPs)
+- Sur Teams, téléchargez l'environnement zippé: `conda-env-pg` (~1 GB) et l'extraire.
+- Si vous ne l'avez pas déjà, installez [Anaconda](https://www.anaconda.com/download#downloads).
+- Open "Anaconda Prompt"
+- Taper "cd " puis faire glisser-déposer le dossier extrait plus haut (cond-env-pg) dans la l'invite de commande. Taper Enter.
+- Pour activer l'environnement vous pouvez taper: `Scripts\activate.bat`.
+- L'environnement est maintenant activer et vous pouvez vous rendre dans les dossiers des programmes (en utilisant "cd " + glisser-deposer) et faire tourner `python RIPpy.py` (pour ERT-IP) et `python Interface.pyw` (pour Sismique).
 
 ---
 # Contacts:
