@@ -108,7 +108,7 @@ Vous travaillerez par groupes de 3 ou 4.
 # Installation des logiciels (à faire AVANT les TPs)
 - Sur Teams, téléchargez l'environnement zippé: `conda-env-pg` (~1 GB) et l'extraire.
 - Si vous ne l'avez pas déjà, installez [Anaconda](https://www.anaconda.com/download#downloads).
-- Open "Anaconda Prompt"
+- Ouvrir "Anaconda Prompt"
 - Taper "cd " puis faire glisser-déposer le dossier extrait plus haut (cond-env-pg) dans la l'invite de commande. Taper Enter.
 - Pour activer l'environnement vous pouvez taper: `Scripts\activate.bat`.
 - L'environnement est maintenant activer et vous pouvez vous rendre dans les dossiers des programmes (en utilisant "cd " + glisser-deposer) et faire tourner `python RIPpy.py` (pour ERT-IP) et `python Interface.pyw` (pour Sismique).
