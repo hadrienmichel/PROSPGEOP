@@ -45,9 +45,9 @@ L'inversion des données est réalisée à l'aide d'un code d'inversion non lin�
 Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faudra utiliser anaconda. Ouvrez l'invite de commande anaconda (`Anaconda prompt`) et tapez les instructions suivantes (attention que le fichier (`ERT.yml`) doit bien se trouver dans le fichier courant):
 ```
 cd "C:/my-directory"
-conda env create -f ERT.yml
+conda env create -f ERTIP.yml
 conda activate pg
-python inversion.py
+python RIPpy.py
 ```
 # Inversion des données 
 L'environnement nouvellement créé utilise donc les librairies [pyGIMLI](https://www.pygimli.org/) et [pyBERT](https://gitlab.com/resistivity-net/bert). Une interface graphique vous permet une utilisation optimale sans forcément maîtriser le langage python.  
