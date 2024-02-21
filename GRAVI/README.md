@@ -31,7 +31,8 @@ La gravité est plus forte aux pôles qu'à l'équateur et ce même s'ils sont p
 
 ## L'air libre
 
-Cette correction s'intéresse à l'élévation et permet la prise en compte de la dépendance à 1/r<sup>2</sup>. Une correction approximative à appliquer est de 0.03086 mGal/m.
+Cette correction s'intéresse à l'élévation et permet la prise en compte de la dépendance à 1/r<sup>2</sup>. Une correction approximative à appliquer est de 0.3086 mGal/m.
+
 
 ## La correction de Bouguer
 
