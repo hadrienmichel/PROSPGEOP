@@ -46,7 +46,7 @@ Pour l'installation de l'environnement contenant pyGIMLI et pyBERT, il vous faud
 ```
 cd "C:/my-directory"
 conda env create -f ERTIP.yml
-conda activate pg
+conda activate TpGeophy
 python RIPpy.py
 ```
 # Inversion des données 

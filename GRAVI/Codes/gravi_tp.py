@@ -9,14 +9,14 @@ x = np.arange(-20, 20.1, .5)
 pnts = np.array([x, np.zeros(len(x))]).T
 
 # Meshing
-x2 = np.arange(-20, 20.1, 1)
+x2 = np.arange(-20, 20.1, 2)
 y2 = np.arange(0, -10.1, -2)
 Grid = createGrid(x2,y2,marker=1)
 
 # delta rho distribution
 dRhoRec = pg.solver.parseMapToCellArray([[1, 0.0]], Grid)
-dRhoRec[60]=100
-dRhoRec[61]=100
+dRhoRec[50]=100
+dRhoRec[63]=10
 gc_rec = -solveGravimetry(Grid, dRhoRec, pnts)
 
 ###############################################################################

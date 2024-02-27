@@ -5,12 +5,13 @@ import matplotlib.pyplot as plt
 
 from pygimli.physics.gravimetry import gradUCylinderHoriz, solveGravimetry
 
-radius = 2.  # [m]
+radius = 4.  # [m]
 depth = 5.  # [m]
 pos = [0., -depth]
 dRho = 100
 
-x = np.arange(-20, 20.1, .5)
+x = np.arange(-20, 20.1, 5
+              )
 pnts = np.array([x, np.zeros(len(x))]).T
 
 ###############################################################################
@@ -25,7 +26,7 @@ gz_p = solveGravimetry(circ, dRho, pnts, complete=False)
 
 ###############################################################################
 # Integration for complete 2D mesh after :cite:`WonBev1987`
-world = createWorld(start=[-20, 0], end=[20, -10], marker=1)
+world = createWorld(start=[-20, 0], end=[20, -20], marker=1)
 mesh = createMesh([world, circ])
 dRhoC = pg.solver.parseMapToCellArray([[1, 0.0], [2, dRho]], mesh)
 z=min(dRhoC)
@@ -35,7 +36,7 @@ plc = world + circ
 
 ###############################################################################
 # Finishing the plots
-#fig = plt.figure()
+fig = plt.figure()
 
 ax1 = pg.plt.subplot(2, 1, 1)
 ax1.plot(x, gz_a, '-b', marker='.', label='Analytical')
