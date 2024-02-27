@@ -165,11 +165,11 @@ Dans un premier temps, deux anomalies proches sont placées dans un milieu homog
 
 # L'inversion (linéaire)
 
-L'inversion est une approche mathématique utilisée pour extraire des informations détaillées sur la structure interne de la Terre à partir de mesures géophysiques. Elle implique la résolution d'un problème inverse, où les données observées sont utilisées pour estimer les propriétés physiques du sous-sol. Que ce soit en gravimétrie ou dans d'autres domaines, l'inversion permet de reconstruire des modèles souterrains en ajustant de manière itérative les paramètres du modèle afin de minimiser les écarts entre les données mesurées et les prédictions du modèle. Bien que la linéarité ou non du problème fait varier les détails des méthodes itératives, le processus fondamental d'ajustement itératif des paramètres pour minimiser la fonction coût reste une caractéristique commune dans les deux types d'inversion.
+L'inversion est une approche mathématique utilisée pour extraire des informations détaillées sur la structure interne de la Terre à partir de mesures géophysiques. Elle implique la résolution d'un problème inverse, où les données observées sont utilisées pour estimer les propriétés physiques du sous-sol. Que ce soit en gravimétrie ou dans d'autres domaines, l'inversion permet de reconstruire des modèles souterrains en ajustant de manière itérative les paramètres du modèle afin de minimiser les écarts entre les données mesurées et les prédictions du modèle. Bien que la linéarité ou non du problème fait varier les détails des méthodes itératives, le processus fondamental d'ajustement itératif des paramètres pour minimiser la fonction coût (écart entre observations et prédictions du modèle) reste une caractéristique commune aux différents types d'inversion.
 
 ## Le facteur de régularisation 
 
-Dans un premier temps, l'inversion consiste en une solution des moindres carrées et vise à minimiser l'écart entre les données mesurées et les données calculées du modèle. Malheureusement, le problème inverse est généralement est mal posé ou mal conditionné ce qui peut provoquer l'apparition d'artéfacts. Il convient donc d'introduire un facteur de régularisation. Le facteur de régularisation introduit une contrainte qui guide l'inversion en favorisant des solutions plus lisses, ce qui peut aider à prévenir des ajustements excessifs aux bruits dans les données. En d'autres termes, la régularisation vise à éviter des solutions qui pourraient être trop sensibles aux variations locales des données, en introduisant une certaine préférence pour des modèles plus simples ou plus réguliers. Le choix du facteur de régularisation est souvent un compromis délicat entre l'ajustement précis aux données et la stabilité de la solution.
+Dans un premier temps, l'inversion consiste en une solution des moindres carrées et vise à minimiser l'écart entre les données mesurées et les données calculées du modèle. Malheureusement, le problème inverse est généralement mal posé ou mal conditionné ce qui peut provoquer l'apparition d'artéfacts. Il convient donc d'introduire un facteur de régularisation. Le facteur de régularisation introduit une contrainte qui guide l'inversion en favorisant des solutions plus lisses, ce qui peut aider à prévenir des ajustements excessifs aux bruits dans les données. En d'autres termes, la régularisation vise à éviter des solutions qui pourraient être trop sensibles aux variations locales des données, en introduisant une certaine préférence pour des modèles plus simples ou plus réguliers. Le choix du facteur de régularisation est souvent un compromis délicat entre l'ajustement précis aux données et la stabilité de la solution.
 
 ## La contrainte de pondération en fonction de la profondeur 
 
@@ -199,7 +199,7 @@ rect = mt.createRectangle(start=[-6, -3.5], end=[6, -6.0],
 rect.rotate([0, 0, 0.15])
 
 geom = world + rect
-pg.show(geom, markers=True)
+#pg.show(geom, markers=True)
 mesh = mt.createMesh(geom, quality=33, area=0.2)
 
 # %%%
@@ -239,6 +239,7 @@ ax[1].set_xlabel('$x$-coordinate [m]')
 ax[1].set_ylabel('$z$-coordinate [m]')
 ax[1].set_ylim((-9, 1))
 ax[1].set_xlim((-25, 25))
+fig.tight_layout()
 
 
 # %%%
@@ -261,7 +262,10 @@ Beta = 3
 z0 = 5
 wz = 1 / (cz+z0)**(Beta/2)
 
-pg.show()[0].plot(cz, wz, ".")
+fig, ax = pg.plt.subplots()
+ax.plot(cz, wz, ".")
+ax.set_ylabel('Z (cell centroid)')
+ax.set_xlabel('Weight [-]')
 
 # %%%
 # Inversion
@@ -289,8 +293,8 @@ rho = inv.run(g, absoluteError=error, lam=10e5, verbose=True)
 #
 
 fig, ax = pg.plt.subplots(ncols=1, nrows=2, sharex=True)
-ax[0].plot(x, data, "+")
-ax[0].plot(x, inv.response, "-")
+ax[0].plot(x, data, "+", label='data')
+ax[0].plot(x, inv.response, "-", label='noisefree')
 ax[0].set_ylabel(r'$\frac{\partial u}{\partial z}$ [mGal]')
 ax[0].grid()
 ax[0].legend()
@@ -302,9 +306,10 @@ ax[1].set_xlabel('$x$-coordinate [m]')
 ax[1].set_ylabel('$z$-coordinate [m]')
 ax[1].set_ylim((-12, 1))
 ax[1].set_xlim((-25, 25))
+fig.tight_layout()
 
 
 ```
 
-Il convient de réaliser une première inversion sans facteur de régularisation (lambda) et sans pondération en fonction de la profondeur (wz). Ensuite veuillez analyser l'impact de l'introduction de ces deux termes sur le résultat de l'inversion. Analysez l'impact des variations de la valeur du lambda. Faites de même avec le terme Beta et son impact sur la fonction de la sensibilité par rapport à la profondeur. 
+Il convient de réaliser une première inversion sans facteur de régularisation (lambda) et sans pondération en fonction de la profondeur (wz). Ensuite, veuillez analyser l'impact de l'introduction de ces deux termes sur le résultat de l'inversion. Analysez l'impact des variations de la valeur du lambda. Faites de même avec le terme Beta et son impact sur la fonction de la sensibilité par rapport à la profondeur. 
 
