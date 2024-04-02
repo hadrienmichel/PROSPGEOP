@@ -73,7 +73,7 @@ hist = data.hist(column=['Cond.1[mS/m]','Inph.1[ppt]','Cond.2[mS/m]','Inph.2[ppt
 pyplot.show()
 # Sauver les données au format csv pour QGIS (séparateur=tabulation):
 filenameSave = filename.parents[0] / (filename.stem + '_sorted' + filename.suffix)
-data.to_csv(filenameSave, sep='\t', index=False)
+data[::100].to_csv(filenameSave, sep='\t', index=False)  # [::100] takes 1 row out of 100 (downsampling)
 print('File saved successfully with the changes !')
 ```
 
