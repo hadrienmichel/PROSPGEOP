@@ -45,7 +45,7 @@ hist = geoData.hist(column=['Cond.1[mS/m]','Inph.1[ppt]','Cond.2[mS/m]','Inph.2[
 pyplot.show()
 # Sauver les données au format csv pour QGIS (séparateur=tabulation):
 filenameSave = filename.parents[0] / (filename.stem + '_sorted' + filename.suffix)
-geoData.to_csv(filenameSave, sep='\t', index=False)
+geoData[::100].to_csv(filenameSave, sep='\t', index=False)  # [::100] takes 1 row out of 100 (downsampling)
 if geoPandasImport:
     filenameSaveSHP = filename.parents[0] / (filename.stem + '_sorted.shp')
     geoData.to_file(filenameSaveSHP)
