@@ -5,10 +5,13 @@ Dans le cas d'appareils opérés seuls, il s'agit d'un tube d'une longueur pouva
 
 Dans le cas des appareils nécessitant plusieurs opérateurs, chaque opérateur tient une boucle et les deux boucles sont connectées par un câble pouvant faire jusqu'à 40 m. Cette méthode permet de sonder beaucoup plus profondément, mais est peu pratique à mettre en œuvre. Elle est donc rarement utilisée, si ce n'est pour des cas particuliers où l'information en profondeur est plus importante que l'information spatiale.
 
-Dans chaque cas, l'orientation des boucles d'injection et de mesure aura de l'importance. En effet, en fonction de ce paramètre, l'appareil sondera plus ou moins profondément. La profondeur d'investigation peut être approximée par la loi suivante:  
-<img src="https://render.githubusercontent.com/render/math?math=d_{Low} = s \times 0.75">  
-et <img src="https://render.githubusercontent.com/render/math?math=d_{High} = s \times 1.5">  
-où *s* est l'espacement entre les boucles d'injection et de mesure. La configuration "High" correspond à des boucles placées horizontalement (champ magnétique perpendiculaire à la surface) et la configuration "Low" correspond à des boucles placées verticalement (champ magnétique parallèle à la surface).
+Dans chaque cas, l'orientation des boucles d'injection et de mesure aura de l'importance. En effet, en fonction de ce paramètre, l'appareil sondera plus ou moins profondément. La profondeur d'investigation peut être approximée par les lois suivantes: 
+
+$d_{Low} = s \times 0.75$
+
+$d_{High} = s \times 1.5$
+
+où $s$ est l'espacement entre les boucles d'injection et de mesure. La configuration "High" correspond à des boucles placées horizontalement (champ magnétique perpendiculaire à la surface) et la configuration "Low" correspond à des boucles placées verticalement (champ magnétique parallèle à la surface).
 
 Il est également possible de faire des mesures électromagnétiques aéroportées. L'avantage de cette méthode est qu'elle permet de rapidement couvrir de très larges étendues avec une information relativement profonde (de l'ordre de 100 mètres). Cependant, ces mesures représentent un coût très élevé.
 
@@ -70,7 +73,7 @@ hist = data.hist(column=['Cond.1[mS/m]','Inph.1[ppt]','Cond.2[mS/m]','Inph.2[ppt
 pyplot.show()
 # Sauver les données au format csv pour QGIS (séparateur=tabulation):
 filenameSave = filename.parents[0] / (filename.stem + '_sorted' + filename.suffix)
-data.to_csv(filenameSave, sep='\t', index=False)
+data[::100].to_csv(filenameSave, sep='\t', index=False)  # [::100] takes 1 row out of 100 (downsampling)
 print('File saved successfully with the changes !')
 ```
 
