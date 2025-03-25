@@ -1,11 +1,11 @@
 # Avant les travaux pratiques:
 Pour ces travaux pratiques, nous allons avoir besoin de programmes Python. Il vous est donc demandé d'installer les différents programmes nécessaires pour ce cours. Pour cela, suivez la procédure suivante:
 
-Téléchargez le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) au lien suivant: https://github.com/hadrienmichel/SardineReborn/releases/tag/v0.4.2. Dézipper l'archive téléchargée et localiser le répertoire (C:/my-directory).
+Téléchargez le code [Sardine Reborn](https://github.com/hadrienmichel/SardineReborn) au lien suivant:  https://github.com/hadrienmichel/SardineReborn/archive/refs/tags/v0.5.0.zip. Dézipper l'archive téléchargée et localiser le répertoire (C:/my-directory).
 
 Lancez `Anaconda prompt`, activer l’environnement `pg` construit pour le TP ERTIP et installer le paquet supplémentaire `obspy`
 ```
-conda activate pg
+conda activate TpGeophy
 conda install conda-forge::obspy
 ```
 
