@@ -1,21 +1,61 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb 14 13:46:42 2023
+
+@author: tomde
+"""
+
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot
+
+fullFilenamePath = './data/B52_Gradient7.dat'  # Chemin depuis ce code vers le fichier des données
+numberOfBarsInHistogram = 20
+
+labelERT = 'R (Ohm)'
+labelIP = 'IP (mV/V)'
+
 # Importer le jeu de données via pandas:
-#   Si le jeux de données contient ERT et IP et que le jeu contient des estimations d'erreur,
-#   les paramètres a entrée sont ceux utilisé ci-dessous.
-data = pd.read_csv('./data/B52_Gradient7.dat', delimiter='\t', header=None, skiprows=15, 
-    names= ['Nb. Electrodes', 'A(x)','A(y)','B(x)','B(y)','M(x)','M(y)',
-    'N(x)','N(y)','R (Ohm)','Res. Error (Ohm)','IP (mV/V)','IP Error (mV/V)'], index_col=False,
-    skipfooter=5, engine='python')
-# Si le jeux de données contient moins de données, il faut ajuster les paramètres skiprows et names en fonction.
+#
+#   - Si le jeux de données contient ERT et IP et que le jeu contient des estimations d'erreur,
+#   les paramètres a entrer sont ceux utilisés ci-dessous.
+#
+#   - Si le jeux de données contient moins de données,
+#   il faut ajuster les paramètres skiprows et names en fonction.
+#
+data = pd.read_csv(
+    fullFilenamePath,
+    delimiter='\t',
+    header=None,
+    skiprows=15,  # Doit correspondre au nombre de lignes à skipper au début du fichier de données
+    names= [
+        'Nb. Electrodes', 'A(x)', 'A(y)', 'B(x)', 'B(y)', 'M(x)', 'M(y)', 'N(x)', 'N(y)',
+        labelERT, 'Res. Error (Ohm)',
+        labelIP, 'IP Error (mV/V)'],
+    index_col=False,
+    skipfooter=5,  # Nombre de lignes vides ou nulles à ignorer en fin de fichier
+    engine='python')
 nbInit = len(data.index)
-print('Initial number of values: {}'.format(nbInit))
+print(f'Initial number of values: {nbInit}')
 print(data.describe())
+
 # Montrer les histogrammes:
-# 1) Résistance: 
-binsR = np.logspace(start=np.log(min(data['R (Ohm)'])), stop=np.log(np.quantile(data['R (Ohm)'],0.9)),num=20)
-hist1 = data.hist(column=['R (Ohm)'], bins=binsR, density=True)
+
+# 1) Résistance:
+binsR = np.logspace(
+    start=np.log10(min(data[labelERT])),
+    stop=np.log10(max(data[labelERT])),
+    num=numberOfBarsInHistogram + 1)
+hist1 = data.hist(
+    column=labelERT,
+    bins=binsR,
+    density=False)  # Nécéssairement False quand axe x en log
+pyplot.xscale('log')
+
 # 2) IP:
-hist2 = data.hist(column=['IP (mV/V)'], density=True)
+hist2 = data.hist(
+    column=labelIP,
+    bins=numberOfBarsInHistogram,
+    density=False)
+
 pyplot.show()
